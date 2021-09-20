@@ -2,7 +2,7 @@
 import re
 from django.urls import reverse_lazy
 from django.conf import settings
-from django.views.generic import ListView, UpdateView, CreateView
+from django.views.generic import ListView, UpdateView, CreateView, DetailView
 from .models import PersonModel
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
@@ -17,7 +17,7 @@ class PersonList(ListView):
     model = PersonModel
 
     def get_queryset(self):
-        found = self.model.objects.filter().order_by('id')
+        found = self.model.objects.filter()
         q = self.request.GET.get('q')
         s_type = self.request.GET.get("s_type")
         data_number = self.request.GET.get("data_number")
@@ -81,3 +81,7 @@ class PersonUpdate(UpdateView):
         context['media_url'] = settings.MEDIA_URL
         return context
 
+
+class PersonDetails(DetailView):
+    model = PersonModel
+    template_name = 'person/details.html'
