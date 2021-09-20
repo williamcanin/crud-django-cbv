@@ -5,6 +5,7 @@ role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
     <div class="modal-content">
       <form class="person-model-delete__form" action="" method="POST"
       enctype="multipart/form-data">
+        {% csrf_token %}
         <div class="modal-header">
           <h5 class="modal-title" id="ModalLabel">
             Do you really want to delete record?

@@ -1,8 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %} Listing {% endblock %}
+
+{% block head %}{% endblock %}
+
+{% block content %}
+
 <div class="person-form">
   <form method="POST" id="form_client" enctype="multipart/form-data">
     <div class="row person__header">
       <div class="col-sm-12">
-        <a class="btn btn-sm btn-primary" href="">
+        <a class="btn btn-sm btn-primary" href="{% url 'person_read' %}">
           <i class="fas fa-arrow-left"></i> Back to list
         </a>
       </div>
@@ -18,28 +26,37 @@
       </thead>
       <tbody>
         <tr>
+          <th><label for="id_id">ID</label></th>
+          <td>
+            <input class="person-form__input-entry" type="text" id="id_id" name="id"
+            value="{{ object.id }}"
+            maxlength="70" required disabled>
+            </div>
+          </td>
+        </tr>
+        <tr>
           <th><label for="id_photo">Photo</label></th>
           <td>
-            <div class="float-left mb-3">
-              <img class="person-form__photo-thumb"
-              src="" alt="" width="32">
-            </div>
+            <a href="#" class="person-listing__photo-open">
+              <img id="person-listing__photo-thumb" class="person-listing__photo-thumb"
+              src="{{ media_url }}{{ object.photo }}" align="center" width="24"/>
+            </a>
           </td>
         </tr>
         <tr>
           <th><label for="id_name">Name</label></th>
           <td>
             <input class="person-form__input-entry" type="text" id="id_name" name="name"
-            value=""
+            value="{{ object.name | title }}"
             maxlength="70" required disabled>
           </td>
         </tr>
         <tr>
-          <th><label for="id_ssa">SSA</label></th>
+          <th><label for="id_cpf">CPF</label></th>
           <td>
             <input class="person-form__input-entry" type="text"
-            data-mask="000.000.000-00" id="id_ssa" name="ssa"
-            value="" maxlength="15"
+            data-mask="000.000.000-00" id="id_ssa" name="cpf"
+            value="{{ object.cpf }}" maxlength="15"
             placeholder="Only number" required disabled>
           </td>
         </tr>
@@ -47,7 +64,7 @@
           <th><label for="id_city">City</label></th>
           <td>
             <input class="person-form__input-entry" type="text" id="id_city" name="city"
-            value=""
+            value="{{ object.city | title }}"
             maxlength="30" required disabled>
           </td>
         </tr>
@@ -57,3 +74,20 @@
   </form>
 
 </div>
+
+
+<!-- Modals -->
+<div class="modal fade" id="ModalPhotoView" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <img src="" class="person-listing__photo-full" style="width: 100%">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

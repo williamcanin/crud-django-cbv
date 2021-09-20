@@ -2,7 +2,7 @@
 import re
 from django.urls import reverse_lazy
 from django.conf import settings
-from django.views.generic import ListView, UpdateView, CreateView, DetailView
+from django.views.generic import ListView, UpdateView, CreateView, DetailView, DeleteView
 from .models import PersonModel
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
@@ -85,3 +85,15 @@ class PersonUpdate(UpdateView):
 class PersonDetails(DetailView):
     model = PersonModel
     template_name = 'person/details.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['media_url'] = settings.MEDIA_URL
+        return context
+
+
+class PersonDelete(DeleteView):
+    model = PersonModel
+    fields = '__all__'
+    template_name = 'person/delete_confirm.html'
+    success_url = reverse_lazy('person_read')
