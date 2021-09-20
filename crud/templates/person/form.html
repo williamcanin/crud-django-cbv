@@ -8,6 +8,7 @@
 
 <div class="person-form">
   <form method="POST" id="form_client" enctype="multipart/form-data">
+    {% csrf_token %}
     <div class="row person__header">
       <div class="col-sm-12">
         <button type="submit" class="btn btn-success btn-sm">

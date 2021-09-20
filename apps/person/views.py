@@ -2,7 +2,7 @@
 import re
 from django.urls import reverse_lazy
 from django.conf import settings
-from django.views.generic import ListView, UpdateView
+from django.views.generic import ListView, UpdateView, CreateView
 from .models import PersonModel
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
@@ -17,8 +17,11 @@ class PersonList(ListView):
     model = PersonModel
 
     def get_queryset(self):
-        found = self.model.objects.filter()
+        found = self.model.objects.filter().order_by('id')
+        q = self.request.GET.get('q')
+        s_type = self.request.GET.get("s_type")
         data_number = self.request.GET.get("data_number")
+        page = self.request.GET.get("page", 1)
 
         if data_number == "10":
             paginator = Paginator(found, 10)
@@ -31,17 +34,12 @@ class PersonList(ListView):
         else:
             paginator = Paginator(found, 10)
 
-        page = self.request.GET.get("page", 1)
-
         try:
             found = paginator.page(page)
         except PageNotAnInteger:
             found = paginator.page(1)
         except EmptyPage:
             found = paginator.page(paginator.num_pages)
-
-        q = self.request.GET.get('q')
-        s_type = self.request.GET.get("s_type")
 
         if s_type == "cpf":
             q = re.sub("[^0-9]", "", q)
@@ -60,6 +58,18 @@ class PersonList(ListView):
         return context
 
 
+class PersonCreate(CreateView):
+    template_name = 'person/form.html'
+    fields = '__all__'
+    model = PersonModel
+    success_url = reverse_lazy('person_read')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['media_url'] = settings.MEDIA_URL
+        return context
+
+
 class PersonUpdate(UpdateView):
     template_name = 'person/form.html'
     fields = '__all__'
@@ -70,3 +80,4 @@ class PersonUpdate(UpdateView):
         context = super().get_context_data(**kwargs)
         context['media_url'] = settings.MEDIA_URL
         return context
+
