@@ -1,6 +1,8 @@
-import re
 # from django.shortcuts import render
-from django.views.generic import ListView
+import re
+from django.urls import reverse_lazy
+from django.conf import settings
+from django.views.generic import ListView, UpdateView
 from .models import PersonModel
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
@@ -53,5 +55,18 @@ class PersonList(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['media_url'] = settings.MEDIA_URL
         context['data_number'] = self.request.GET.get("data_number")
+        return context
+
+
+class PersonUpdate(UpdateView):
+    template_name = 'person/form.html'
+    fields = '__all__'
+    model = PersonModel
+    success_url = reverse_lazy('person_read')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['media_url'] = settings.MEDIA_URL
         return context

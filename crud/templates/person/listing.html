@@ -86,7 +86,7 @@
           {{ person.city | title }}
         </td>
         <td>
-          <a class="fas fa-pencil-alt person-listing__btns" href=""></a>
+          <a class="fas fa-pencil-alt person-listing__btns" href="{% url 'person_update' person.id %}"></a>
           <a class="fas fa-file-alt person-listing__btns" href=""></a>
           <a class="person-listing__btn-delete" href="" data-toggle="modal"
           data-target="#confirmDeleteModal">
