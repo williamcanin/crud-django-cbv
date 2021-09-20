@@ -1,0 +1,24 @@
+.navbar__app {
+  background-color: $primary-color;
+  .nav-link {
+    color: $second-color !important;
+    &:hover, &:focus, &:active, &:visited {
+        color: $second-color !important;
+    }
+  }
+  .navbar-brand {
+    color: $second-color !important;
+  }
+  &-menu {
+    background-color: $second-color;
+    border: $border;
+    border-radius: 0px;
+    a {
+      color: $primary-color;
+      &:hover {
+        background-color: $primary-color;
+        color: $second-color;
+      }
+    }
+  }
+}

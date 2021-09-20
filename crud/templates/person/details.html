@@ -1,0 +1,59 @@
+<div class="person-form">
+  <form method="POST" id="form_client" enctype="multipart/form-data">
+    <div class="row person__header">
+      <div class="col-sm-12">
+        <a class="btn btn-sm btn-primary" href="">
+          <i class="fas fa-arrow-left"></i> Back to list
+        </a>
+      </div>
+    </div>
+    <table class="table table-sm table-responsive-sm person-form__table">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">
+          Details registry
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th><label for="id_photo">Photo</label></th>
+          <td>
+            <div class="float-left mb-3">
+              <img class="person-form__photo-thumb"
+              src="" alt="" width="32">
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th><label for="id_name">Name</label></th>
+          <td>
+            <input class="person-form__input-entry" type="text" id="id_name" name="name"
+            value=""
+            maxlength="70" required disabled>
+          </td>
+        </tr>
+        <tr>
+          <th><label for="id_ssa">SSA</label></th>
+          <td>
+            <input class="person-form__input-entry" type="text"
+            data-mask="000.000.000-00" id="id_ssa" name="ssa"
+            value="" maxlength="15"
+            placeholder="Only number" required disabled>
+          </td>
+        </tr>
+        <tr>
+          <th><label for="id_city">City</label></th>
+          <td>
+            <input class="person-form__input-entry" type="text" id="id_city" name="city"
+            value=""
+            maxlength="30" required disabled>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+  </form>
+
+</div>

@@ -1,0 +1,9 @@
+// Reset
+body {
+  a {
+    outline: none !important;
+    &:focus, &:visited, &:active, &:hover {
+        box-shadow: none !important;
+    }
+  }
+}

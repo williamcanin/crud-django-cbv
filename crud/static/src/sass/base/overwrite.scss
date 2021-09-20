@@ -1,0 +1,18 @@
+// Overwrite
+.table, .jumbotron{
+  background-color: #FFFFFF !important;
+}
+
+.btn {
+  outline: none !important;
+  border-radius: 0 !important;
+  &:focus, &:visited, &:active {
+    box-shadow: none !important;
+  }
+}
+
+.alert {
+  max-width: 380px;
+  margin: 0 auto;
+  text-align: center;
+}
