@@ -40,4 +40,4 @@ $ heroku config:set DEBUG=Fase
 
 > NOTE: O Heroku executa seu aplicativo em dynos e os dynos entram em suspensão após 30 minutos, se não houver solicitação. Isso faz com que o Heroku não preserve o upload de arquivos de mídia do usuário entre o reinício do dynos. Por isso o projeto habilita a opção de upload de mídias apenas em modo DEBUG = True. See [Discussion](https://stackoverflow.com/questions/41474150/using-heroku-for-django-media-files) and [Doc Heroku](https://devcenter.heroku.com/articles/s3)
 
-> Nota: Antes de realizar o deploy para github, executar "gulp clean"
+> Nota: Antes de realizar o deploy para github, executar "npm run clean"
