@@ -17,9 +17,9 @@
           <i class="fas fa-save"></i> Save
         </button>
         {% if object.id %}
-        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+        <button type="button" class="btn btn-danger btn-sm person-btn-delete" data-toggle="modal"
         data-target="#confirmDeleteModal">
-          Delete
+          <span data-target="{% url 'person_delete' object.id %}">Delete</span>
         </button>
         {% endif %}
         <a class="btn btn-secondary btn-sm" href="{% url 'person_read' %}">
@@ -99,56 +99,10 @@
   </form>
 </div>
 
-<!-- Modal View Photo -->
-<div class="modal fade" id="ModalPhotoView" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-        <img src="" class="person-listing__photo-full" style="width: 100%">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+<!-- Include Modal View Photo -->
+{% include 'person/modals/photo.html' %}
 
-<!-- Modal Delete Record -->
-{% if object.id %}
-  <div class="modal fade person-modal-delete" id="confirmDeleteModal" tabindex="-1"
-  role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <form class="person-model-delete__form" action="" method="POST"
-        enctype="multipart/form-data">
-          {% csrf_token %}
-          <div class="modal-header">
-            <h5 class="modal-title" id="ModalLabel">
-              Do you really want to delete record?
-            </h5>
-          </div>
-          <div class="modal-body m-4">
-            <div class="row person-modal-delete__info">
-              <label for="">ID: </label>
-              <p>{{ object.id }}</p>
-            </div>
-            <div class="row person-modal-delete__info">
-              <label for="">Name: </label>
-              <p>{{ object.name | title }}</p>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-sm btn-danger">
-              Delete
-            </button>
-            <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">
-              Close
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
- {% endif %}
+<!-- Include Modal Delete Record -->
+{% include 'person/modals/delete.html' %}
 
 {% endblock %}

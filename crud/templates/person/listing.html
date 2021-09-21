@@ -95,9 +95,9 @@
         <td>
           <a class="fas fa-pencil-alt person-listing__btns" href="{% url 'person_update' person.id %}"></a>
           <a class="fas fa-file-alt person-listing__btns" href="{% url 'person_details' person.id %}"></a>
-          <a class="person-listing__btn-delete" href="" data-toggle="modal"
+          <a class="person-listing__btn-delete person-btn-delete" href="" data-toggle="modal"
           data-target="#confirmDeleteModal">
-            <i class="fas fa-trash-alt person-listing__btns" data-target="{% url 'person_delete' person.id %}"></i>
+            <span class="fas fa-trash-alt person-listing__btns" data-target="{% url 'person_delete' person.id %}"></span>
           </a>
         </td>
       </tr>
@@ -151,57 +151,10 @@
 </div> <!-- End person-listing -->
 
 
-<!-- Modal View Photo -->
-<div class="modal fade" id="ModalPhotoView" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-        <img src="" class="person-listing__photo-full" style="width: 100%">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+<!-- Include Modal View Photo -->
+{% include 'person/modals/photo.html' %}
 
-<!-- Modal Delete Record -->
-{% for person in object_list %}
-  <div class="modal fade person-modal-delete" id="confirmDeleteModal" tabindex="-1"
-  role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <form class="person-model-delete__form" action="" method="POST"
-        enctype="multipart/form-data">
-          {% csrf_token %}
-          <div class="modal-header">
-            <h5 class="modal-title" id="ModalLabel">
-              Do you really want to delete record?
-            </h5>
-          </div>
-          <!-- Error: get info (to repair)  -->
-          <!-- <div class="modal-body m-4">
-            <div class="row person-modal-delete__info">
-              <label for="">ID: </label>
-              <p>{{ person.id }}</p>
-            </div>
-            <div class="row person-modal-delete__info">
-              <label for="">Name: </label>
-              <p>{{ person.name | title }}</p>
-            </div>
-          </div> -->
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-sm btn-danger">
-              Delete
-            </button>
-            <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">
-              Close
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
- {% endfor %}
+<!-- Include Modal Delete Record -->
+{% include 'person/modals/delete.html' %}
 
 {% endblock %}

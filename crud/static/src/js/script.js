@@ -13,8 +13,8 @@ $(".person-listing__photo-open").on("click", function() {
 });
 
 // Add path delete registry
-$(".person-listing__btn-delete").on("click", function() {
-  $('.person-model-delete__form').attr('action', $(this).find('i').attr('data-target'));
+$(".person-btn-delete").on("click", function() {
+  $('.person-model-delete__form').attr('action', $(this).find('span').attr('data-target'));
   $('#confirmDeleteModal').modal('show');
 });
 
