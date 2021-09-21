@@ -8,6 +8,8 @@
 
 <div class="person-listing">
   <div class="row person-listing__header">
+
+    <!-- Buttons -->
     <div class="col-md-4 person-listing__header-col">
       <form method="GET">
         <a class="btn btn-success btn-sm" href="{% url 'person_new' %}">
@@ -18,6 +20,8 @@
         </a>
       </form>
     </div>
+
+    <!-- Search -->
     <div class="col-md-8 d-flex flex-row-reverse person-listing__header-col">
       <form method="GET">
         <span class="person-listing__search-label">
@@ -30,13 +34,15 @@
           <option value="cpf">CPF</option>
         </select>
         <input type="text" data-mask="0000000" class="person-listing__search-input" name="q"
-        placeholder="Enter information" value="{{ request.GET.q }}">
-        <button type="submit" class="btn btn-primary btn-sm">
+        placeholder="Enter information">
+        <button type="submit" class="btn btn-primary btn-sm person-listing__search-btn">
           <i class="fas fa-search"></i> Search
         </button>
       </form>
     </div>
   </div>
+
+  <!-- Selector -->
   <div class="row person-listing__data-number-wrapper">
     <div class="col">
         <form method="GET" class="person-listing__data-number-form">
@@ -53,6 +59,7 @@
     </div>
   </div>
 
+  <!-- Table -->
   <table id="tbl_listing" class="table table-sm table-responsive-sm">
     <thead class="person__thead">
       <tr>
@@ -70,10 +77,10 @@
         <th scope="row">{{ person.id }}</th>
         {% if person.photo %}
         <td>
-          <a href="#" class="person-listing__photo-open">
+          <div class="person-listing__photo-open">
             <img id="person-listing__photo-thumb" class="person-listing__photo-thumb"
             src="{{ media_url }}{{ person.photo }}" align="center" width="24" />
-          </a>
+          </div>
         </td>
         {% endif %}
         <td>
@@ -94,15 +101,11 @@
           </a>
         </td>
       </tr>
-
-
-
     {% endfor %}
     </tbody>
   </table>
 
 <!-- Paginator -->
-
 {% if object_list.has_other_pages %}
   <nav class="person-listing__pagination">
     <ul class="pagination justify-content-center">
@@ -140,13 +143,12 @@
   </nav>
   {% endif %}
 
-<!-- End Paginator -->
-
+<!-- No results -->
 {% if not object_list %}
   <p class="font-weight-bold person-listing__not_found_text">No results</p>
 {% endif %}
 
-</div>
+</div> <!-- End person-listing -->
 
 
 <!-- Modal View Photo -->
@@ -163,9 +165,8 @@
   </div>
 </div>
 
-
+<!-- Modal Delete Record -->
 {% for person in object_list %}
-  <!-- Modal Delete Record -->
   <div class="modal fade person-modal-delete" id="confirmDeleteModal" tabindex="-1"
   role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

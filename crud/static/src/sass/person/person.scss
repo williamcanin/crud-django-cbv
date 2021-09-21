@@ -93,6 +93,7 @@
   &__photo-thumb {
       border-radius: 50%;
       border: 1px solid $primary-color;
+      cursor: pointer;
   }
   &__not_found_text {
       color: #df4141;
@@ -147,10 +148,29 @@
         min-width: 200px;
         width: 360px;
         outline: none;
+        &:hover, &:focus, &:active {
+          border-bottom-color: #1283a0;
+        }
+    }
+    &__input-id {
+      max-width: 80px;
+      min-width: 80px;
+      border-bottom: transparent;
+      border-radius: 4px;
+      background-color: #e0e0e0;
+    }
+    &__input-details {
+      background-color: #ebebeb;
+      border-radius: 2px;
+      border-bottom: transparent;
+      &:hover, &:focus, &:active {
+        border-bottom-color: none;
+      }
     }
     &__photo-thumb {
         border-radius: 50%;
         border: 1px solid $primary-color;
+        cursor: pointer;
     }
     &__check-clear {
         margin-left: 10px;

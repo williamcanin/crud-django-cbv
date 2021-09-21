@@ -9,6 +9,8 @@
 <div class="person-form">
   <form method="POST" id="form_client" enctype="multipart/form-data">
     {% csrf_token %}
+
+    <!-- Buttons -->
     <div class="row person__header">
       <div class="col-sm-12">
         <button type="submit" class="btn btn-success btn-sm">
@@ -25,6 +27,8 @@
         </a>
       </div>
     </div>
+
+    <!-- Table -->
     <table class="table table-sm table-responsive-sm person-form__table">
       <thead>
         <tr>
@@ -35,23 +39,27 @@
         </tr>
       </thead>
       <tbody>
+        {% if object.id %}
         <tr>
           <th><label for="id_id">ID</label></th>
           <td>
-            <input class="person-form__input-entry" type="text" id="id_id" name="id"
+            <input class="person-form__input-entry person-form__input-id" type="text" id="id_id" name="id"
             value="{{ object.id }}"
-            maxlength="70" required disabled>
+            maxlength="8" disabled>
             </div>
           </td>
         </tr>
+        {% endif %}
         <tr>
           <th><label for="id_photo">Photo</label></th>
           <td>
-            <div class="float-left mb-3">
+            {% if object.photo %}
+            <div class="float-left mb-3 person-listing__photo-open">
               Currently:
               <img class="person-form__photo-thumb"
-              src="{% if object.photo %}{{ media_url }}{{ object.photo }}{% endif %}" alt="" width="32">
+              src="{{ media_url }}{{ object.photo }}" alt="" width="32">
             </div>
+            {% endif %}
             <div class="input-group input-group-sm mb-3">
               <div class="custom-file person-form__choose-file">
                 <input class="custom-file-input" type="file" accept="images/*" name="photo" id="id_photo">
@@ -89,8 +97,20 @@
     </table>
     <br>
   </form>
+</div>
 
-
+<!-- Modal View Photo -->
+<div class="modal fade" id="ModalPhotoView" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <img src="" class="person-listing__photo-full" style="width: 100%">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 {% endblock %}
