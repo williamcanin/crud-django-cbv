@@ -1,2 +1,0 @@
-user: wcanin
-password: admin
