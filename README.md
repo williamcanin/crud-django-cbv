@@ -3,6 +3,7 @@
 * Python >= 3.9
 * Pip >= 21.2
 * Poetry >= 1.1.8
+* Npm >= 6.14
 * PostgreSQL >= 13.4
 
 ## Using
