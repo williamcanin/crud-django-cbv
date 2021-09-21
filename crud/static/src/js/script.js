@@ -1,5 +1,11 @@
 // Enter your code JavaScript
 
+// Change input File label
+$(".custom-file-input").on("change", function() {
+  filename = this.files[0].name
+  $(".person-form__choose-file-label").text(filename);
+});
+
 // Open image in modal
 $(".person-listing__photo-open").on("click", function() {
   $('.person-listing__photo-full').attr('src', $(this).find('img').attr('src'));

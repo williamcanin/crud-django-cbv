@@ -196,3 +196,16 @@
         }
     }
 }
+
+.person-modal-delete {
+  &__info{
+    label, p {
+      font-weight: bold;
+      padding-right: 10px;
+      font-size: 20px;
+    }
+    p {
+      font-weight: normal;
+    }
+  }
+}

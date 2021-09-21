@@ -179,14 +179,17 @@
               Do you really want to delete record?
             </h5>
           </div>
-          <div class="modal-body m-4">
-            <div class="row">
-              <p class="">{{ person.id }}</p>
+          <!-- Error: get info (to repair)  -->
+          <!-- <div class="modal-body m-4">
+            <div class="row person-modal-delete__info">
+              <label for="">ID: </label>
+              <p>{{ person.id }}</p>
             </div>
-            <div class="row">
+            <div class="row person-modal-delete__info">
+              <label for="">Name: </label>
               <p>{{ person.name | title }}</p>
             </div>
-          </div>
+          </div> -->
           <div class="modal-footer">
             <button type="submit" class="btn btn-sm btn-danger">
               Delete
