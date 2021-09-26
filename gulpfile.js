@@ -16,8 +16,9 @@ function pathsConfig(AppName, vendorsRoot) {
     vendorsJs: [
       `${vendorsRoot}/jquery/dist/jquery.js`,
       `${vendorsRoot}/jquery-mask-plugin/dist/jquery.mask.js`,
-      `${vendorsRoot}/bootstrap/dist/js/bootstrap.js`,
-      `${vendorsRoot}/popper.js/dist/umd/popper.js`,
+      // `${vendorsRoot}/bootstrap/dist/js/bootstrap.js`,
+      // `${vendorsRoot}/@popperjs/core/dist/umd/popper.js`,
+      `${vendorsRoot}/bootstrap/dist/js/bootstrap.bundle.min.js`,
     ],
     vendorsCss: [
       `${vendorsRoot}/@fortawesome/fontawesome-free/css/all.css`,
