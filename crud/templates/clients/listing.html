@@ -8,50 +8,40 @@
 
 <div class="clients-listing">
   <div class="row clients-listing__header">
-
-    <!-- {{ perms.app_name }} -->
-
     <!-- Buttons -->
     <div class="col-md-4 clients-listing__header-col">
-      <form method="GET">
+      <form method="GET" class="clients-listing__form-actions">
         {% if perms.app_name.add_clientmodel %}
-        <a class="btn btn-success btn-sm" href="{% url 'client_new' %}">
+        <a class="btn btn-outline-success" href="{% url 'client_new' %}">
           <i class="fas fa-user-plus"></i> Add
         </a>
         {% endif %}
-        <a class="btn btn-primary btn-sm" href="{% url 'client_read' %}">
+        <a class="btn btn-outline-primary" href="{% url 'client_read' %}">
           <i class="fas fa-sync"></i> Refresh
         </a>
       </form>
     </div>
-
     <!-- Search -->
-    <div class="col-md-8 d-flex flex-row-reverse clients-listing__header-col">
+    <div class="col-md-8 clients-listing__header-col">
       <form method="GET">
-        <span class="clients-listing__search-label">
-          Search by:
-        </span>
-        <select name="s_type" class="custom-select custom-select-sm
-        clients-listing__search-select">
-          <option value="id">ID</option>
-          <option value="name">Name</option>
-          <option value="cpf">CPF</option>
-        </select>
-        <input type="text" data-mask="0000000" class="clients-listing__search-input" name="q"
-        placeholder="Enter information">
-        <button type="submit" class="btn btn-primary btn-sm clients-listing__search-btn">
-          <i class="fas fa-search"></i> Search
-        </button>
+        <div class="input-group">
+          <select name="s_type" class="form-select form-select-sm clients-listing__search-select">
+            <option value="id">ID</option>
+            <option value="name">Name</option>
+            <option value="cpf">CPF</option>
+          </select>
+          <input type="text" class="form-control clients-listing__search-input"  name="q" data-mask="0000000" placeholder="Write the information and press Enter">
+        </div>
       </form>
     </div>
   </div>
 
   <!-- Selector -->
-  <div class="row clients-listing__data-number-wrapper">
+  <div class="row clients-listing__data-number-wrapper pt-5">
     <div class="col">
         <form method="GET" class="clients-listing__data-number-form">
           <input type="hidden" name="page" value="">
-          <select name="data_number" class="custom-select custom-select-sm
+          <select name="data_number" class="form-select form-select-sm
           clients-listing__data-number" onchange=this.form.submit()>
             <option selected>Select</option>
             <option value="10">10</option>
@@ -64,7 +54,7 @@
   </div>
 
   <!-- Table -->
-  <table id="tbl_listing" class="table table-sm table-responsive-sm">
+  <table id="tbl_listing" class="table table-striped">
     <thead class="client__thead">
       <tr>
         <th scope="col">ID</th>
@@ -82,8 +72,8 @@
         {% if client.photo %}
         <td>
           <div class="clients-listing__photo-open">
-            <img id="clients-listing__photo-thumb" class="clients-listing__photo-thumb"
-            src="{{ media_url }}{{ client.photo }}" align="center" width="24" />
+            <img id="clients-listing__photo-thumb" class="rounded-circle clients-listing__photo-thumb"
+            src="{{ media_url }}{{ client.photo }}" width="24" />
           </div>
         </td>
         {% endif %}
@@ -116,7 +106,7 @@
 <!-- Paginator -->
 {% if object_list.has_other_pages %}
   <nav class="clients-listing__pagination">
-    <ul class="pagination justify-content-center">
+    <ul class="pagination pagination-lg justify-content-center">
       <li class="page-item clients-listing__pagination-btn">
       {% if object_list.has_previous %}
         <a class="page-link" href="?page={{ object_list.previous_page_number }}&data_number={{ data_number }}"

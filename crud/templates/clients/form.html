@@ -11,25 +11,129 @@
     {% csrf_token %}
 
     <!-- Buttons -->
-    <div class="row clients__header">
+    <div class="row pb-1 clients__header">
       <div class="col-sm-12">
-        <button type="submit" class="btn btn-success btn-sm">
+        <button type="submit" class="btn btn-outline-success">
           <i class="fas fa-save"></i> Save
         </button>
         {% if object.id %}
-        <button type="button" class="btn btn-danger btn-sm clients-btn-delete" data-toggle="modal"
+        <button type="button" class="btn btn-outline-danger clients-btn-delete" data-toggle="modal"
         data-target="#confirmDeleteModal">
           <span data-target="{% url 'client_delete' object.id %}">Delete</span>
         </button>
         {% endif %}
-        <a class="btn btn-secondary btn-sm" href="{% url 'client_read' %}">
+        <a class="btn btn-outline-secondary" href="{% url 'client_read' %}">
           <i class="fas fa-ban"></i> Cancel
         </a>
       </div>
     </div>
 
+    <hr />
+    <div class="row">
+      {% if object.id %}
+      <div class="form-group col-md-2">
+        <label for="id">ID</label>
+        <input type="text" class="form-control clients-form__input-entry clients-form__input-id" name="id" value="{{ object.id }}" maxlength="8" disabled>
+      </div>
+      {% endif %}
+
+      <div class="form-group col-md-5">
+        <label for="id">Photo</label>
+        <div class="row">
+          {% if object.photo %}
+          <div class="col-md-1 clients-listing__photo-open">
+            <img class="rounded-circle clients-form__photo-thumb"
+          src="{{ media_url }}{{ object.photo }}" alt="" width="34" >
+          </div>
+          {% endif %}
+          <div class="col-md">
+            <input class="form-control" type="file" accept="images/*" name="photo" id="id_photo">
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-7">
+        <label for="name">Nome</label>
+        <input class="form-control clients-form__input-entry" type="text" id="id_name" name="name"
+            value="{% if object.name %}{{ object.name | title }}{% endif %}"
+            maxlength="70" required>
+      </div>
+
+      <div class="form-group col-md-3">
+        <label for="campo2">CNPJ / CPF</label>
+        <input class="form-control clients-form__input-entry" type="text"
+            data-mask="000.000.000-00" id="id_cpf" name="cpf"
+            value="{% if object.cpf %}{{ object.cpf }}{% endif %}" maxlength="15"
+            placeholder="Only number" required>
+      </div>
+
+      <div class="form-group col-md-2">
+        <label for="campo3">City</label>
+        <input class="form-control clients-form__input-entry" type="text" id="id_city" name="city"
+            value="{% if object.city %}{{ object.city | title }}{% endif %}"
+            maxlength="30" required>
+      </div>
+    </div>
+<!--
+    <div class="row">
+      <div class="form-group col-md-5">
+        <label for="campo1">Endereço</label>
+        <input type="text" class="form-control" name="customer['address']">
+      </div>
+
+      <div class="form-group col-md-3">
+        <label for="campo2">Bairro</label>
+        <input type="text" class="form-control" name="customer['hood']">
+      </div>
+
+      <div class="form-group col-md-2">
+        <label for="campo3">CEP</label>
+        <input type="text" class="form-control" name="customer['zip_code']">
+      </div>
+
+      <div class="form-group col-md-2">
+        <label for="campo3">Data de Cadastro</label>
+        <input type="text" class="form-control" name="customer['created']" disabled>
+      </div>
+    </div> -->
+
+    <!-- <div class="row">
+      <div class="form-group col-md-3">
+        <label for="campo1">Município</label>
+        <input type="text" class="form-control" name="customer['city']">
+      </div>
+
+      <div class="form-group col-md-2">
+        <label for="campo2">Telefone</label>
+        <input type="text" class="form-control" name="customer['phone']">
+      </div>
+
+      <div class="form-group col-md-2">
+        <label for="campo3">Celular</label>
+        <input type="text" class="form-control" name="customer['mobile']">
+      </div>
+
+      <div class="form-group col-md-1">
+        <label for="campo3">UF</label>
+        <input type="text" class="form-control" name="customer['state']">
+      </div>
+
+      <div class="form-group col-md-2">
+        <label for="campo3">Inscrição Estadual</label>
+        <input type="text" class="form-control" name="customer['ie']">
+      </div>
+
+      <div class="form-group col-md-2">
+        <label for="campo3">UF</label>
+        <input type="text" class="form-control">
+      </div>
+    </div> -->
+
     <!-- Table -->
-    <table class="table table-sm table-responsive-sm clients-form__table">
+    <!-- <table class="table clients-form__table">
       <thead>
         <tr>
           <th scope="col">Clients</th>
@@ -94,7 +198,7 @@
           </td>
         </tr>
       </tbody>
-    </table>
+    </table> -->
     <br>
   </form>
 </div>
