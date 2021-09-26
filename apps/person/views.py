@@ -1,5 +1,8 @@
 # from django.shortcuts import render
 import re
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.conf import settings
 from django.views.generic import ListView, UpdateView, CreateView, DetailView, DeleteView
@@ -11,7 +14,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 #     if obj != "" and obj is not None:
 #         return obj.strip()
 
-
+# @method_decorator(login_required(login_url='/login/'), name='dispatch')
 class PersonList(ListView):
     template_name = 'person/listing.html'
     model = PersonModel
@@ -58,8 +61,9 @@ class PersonList(ListView):
         return context
 
 
-class PersonCreate(CreateView):
+class PersonCreate(LoginRequiredMixin, CreateView):
     template_name = 'person/form.html'
+    login_url = reverse_lazy('login')
     fields = '__all__'
     model = PersonModel
     success_url = reverse_lazy('person_read')
@@ -70,8 +74,9 @@ class PersonCreate(CreateView):
         return context
 
 
-class PersonUpdate(UpdateView):
+class PersonUpdate(LoginRequiredMixin, UpdateView):
     template_name = 'person/form.html'
+    login_url = reverse_lazy('login')
     fields = '__all__'
     model = PersonModel
     success_url = reverse_lazy('person_read')
@@ -92,8 +97,9 @@ class PersonDetails(DetailView):
         return context
 
 
-class PersonDelete(DeleteView):
+class PersonDelete(LoginRequiredMixin, DeleteView):
     model = PersonModel
     fields = '__all__'
+    login_url = reverse_lazy('login')
     template_name = 'person/delete_confirm.html'
     success_url = reverse_lazy('person_read')

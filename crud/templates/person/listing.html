@@ -12,9 +12,11 @@
     <!-- Buttons -->
     <div class="col-md-4 person-listing__header-col">
       <form method="GET">
+        {% if user.is_authenticated %}
         <a class="btn btn-success btn-sm" href="{% url 'person_new' %}">
           <i class="fas fa-user-plus"></i> Add
         </a>
+        {% endif %}
         <a class="btn btn-primary btn-sm" href="{% url 'person_read' %}">
           <i class="fas fa-sync"></i> Refresh
         </a>
@@ -93,12 +95,12 @@
           {{ person.city | title }}
         </td>
         <td>
-          <a class="fas fa-pencil-alt person-listing__btns" href="{% url 'person_update' person.id %}"></a>
+          {% if user.is_authenticated %} <a class="fas fa-pencil-alt person-listing__btns" href="{% url 'person_update' person.id %}"></a>{% endif %}
           <a class="fas fa-file-alt person-listing__btns" href="{% url 'person_details' person.id %}"></a>
-          <a class="person-listing__btn-delete person-btn-delete" href="" data-toggle="modal"
+          {% if user.is_authenticated %} <a class="person-listing__btn-delete person-btn-delete" href="" data-toggle="modal"
           data-target="#confirmDeleteModal">
             <span class="fas fa-trash-alt person-listing__btns" data-target="{% url 'person_delete' person.id %}"></span>
-          </a>
+          </a>{% endif %}
         </td>
       </tr>
     {% endfor %}
