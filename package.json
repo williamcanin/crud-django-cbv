@@ -1,7 +1,7 @@
 {
-  "name": "sample-crud-django-fbv",
+  "name": "crud-django-cbv",
   "version": "0.1.0",
-  "description": "Sample Crud Django using Function-Based Views",
+  "description": "CRUD Django using Class-Based Views",
   "main": "index.js",
   "scripts": {
     "postinstall": "poetry install",
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/williamcanin/sample-crud-django-fbv.git"
+    "url": "git+https://github.com/williamcanin/crud-django-cbv.git"
   },
   "keywords": [
     "crud"
@@ -24,9 +24,9 @@
   "author": "William Canin <william.costa.canin@gmail.com> (https://williamcanin.github.io/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/williamcanin/sample-crud-django-fbv/issues"
+    "url": "https://github.com/williamcanin/crud-django-cbv/issues"
   },
-  "homepage": "https://github.com/williamcanin/sample-crud-django-fbv#readme",
+  "homepage": "https://github.com/williamcanin/crud-django-cbv#readme",
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.15.3",
     "bootstrap": "^4.6.0",

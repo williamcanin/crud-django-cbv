@@ -6,33 +6,33 @@
 
 {% block content %}
 
-<div class="person-form">
+<div class="clients-form">
   <form method="POST" id="form_client" enctype="multipart/form-data">
     {% csrf_token %}
 
     <!-- Buttons -->
-    <div class="row person__header">
+    <div class="row clients__header">
       <div class="col-sm-12">
         <button type="submit" class="btn btn-success btn-sm">
           <i class="fas fa-save"></i> Save
         </button>
         {% if object.id %}
-        <button type="button" class="btn btn-danger btn-sm person-btn-delete" data-toggle="modal"
+        <button type="button" class="btn btn-danger btn-sm clients-btn-delete" data-toggle="modal"
         data-target="#confirmDeleteModal">
-          <span data-target="{% url 'person_delete' object.id %}">Delete</span>
+          <span data-target="{% url 'client_delete' object.id %}">Delete</span>
         </button>
         {% endif %}
-        <a class="btn btn-secondary btn-sm" href="{% url 'person_read' %}">
+        <a class="btn btn-secondary btn-sm" href="{% url 'client_read' %}">
           <i class="fas fa-ban"></i> Cancel
         </a>
       </div>
     </div>
 
     <!-- Table -->
-    <table class="table table-sm table-responsive-sm person-form__table">
+    <table class="table table-sm table-responsive-sm clients-form__table">
       <thead>
         <tr>
-          <th scope="col">Person</th>
+          <th scope="col">Clients</th>
           <th scope="col">
           New registry
           </th>
@@ -43,7 +43,7 @@
         <tr>
           <th><label for="id_id">ID</label></th>
           <td>
-            <input class="person-form__input-entry person-form__input-id" type="text" id="id_id" name="id"
+            <input class="clients-form__input-entry clients-form__input-id" type="text" id="id_id" name="id"
             value="{{ object.id }}"
             maxlength="8" disabled>
             </div>
@@ -54,16 +54,16 @@
           <th><label for="id_photo">Photo</label></th>
           <td>
             {% if object.photo %}
-            <div class="float-left mb-3 person-listing__photo-open">
+            <div class="float-left mb-3 clients-listing__photo-open">
               Currently:
-              <img class="person-form__photo-thumb"
+              <img class="clients-form__photo-thumb"
               src="{{ media_url }}{{ object.photo }}" alt="" width="32">
             </div>
             {% endif %}
             <div class="input-group input-group-sm mb-3">
-              <div class="custom-file person-form__choose-file">
+              <div class="custom-file clients-form__choose-file">
                 <input class="custom-file-input" type="file" accept="images/*" name="photo" id="id_photo">
-                <label class="custom-file-label person-form__choose-file-label" for="id_photo">Choose file</label>
+                <label class="custom-file-label clients-form__choose-file-label" for="id_photo">Choose file</label>
               </div>
             </div>
           </td>
@@ -71,7 +71,7 @@
         <tr>
           <th><label for="id_name">Name</label></th>
           <td>
-            <input class="person-form__input-entry" type="text" id="id_name" name="name"
+            <input class="clients-form__input-entry" type="text" id="id_name" name="name"
             value="{% if object.name %}{{ object.name | title }}{% endif %}"
             maxlength="70" required>
           </td>
@@ -79,7 +79,7 @@
         <tr>
           <th><label for="id_cpf">CPF</label></th>
           <td>
-            <input class="person-form__input-entry" type="text"
+            <input class="clients-form__input-entry" type="text"
             data-mask="000.000.000-00" id="id_cpf" name="cpf"
             value="{% if object.cpf %}{{ object.cpf }}{% endif %}" maxlength="15"
             placeholder="Only number" required>
@@ -88,7 +88,7 @@
         <tr>
           <th><label for="id_city">City</label></th>
           <td>
-            <input class="person-form__input-entry" type="text" id="id_city" name="city"
+            <input class="clients-form__input-entry" type="text" id="id_city" name="city"
             value="{% if object.city %}{{ object.city | title }}{% endif %}"
             maxlength="30" required>
           </td>
@@ -100,9 +100,9 @@
 </div>
 
 <!-- Include Modal View Photo -->
-{% include 'person/modals/photo.html' %}
+{% include 'clients/modals/photo.html' %}
 
 <!-- Include Modal Delete Record -->
-{% include 'person/modals/delete.html' %}
+{% include 'clients/modals/delete.html' %}
 
 {% endblock %}

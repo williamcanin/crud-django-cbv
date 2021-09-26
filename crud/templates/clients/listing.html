@@ -6,38 +6,40 @@
 
 {% block content %}
 
-<div class="person-listing">
-  <div class="row person-listing__header">
+<div class="clients-listing">
+  <div class="row clients-listing__header">
+
+    <!-- {{ perms.app_name }} -->
 
     <!-- Buttons -->
-    <div class="col-md-4 person-listing__header-col">
+    <div class="col-md-4 clients-listing__header-col">
       <form method="GET">
-        {% if user.is_authenticated %}
-        <a class="btn btn-success btn-sm" href="{% url 'person_new' %}">
+        {% if perms.app_name.add_clientmodel %}
+        <a class="btn btn-success btn-sm" href="{% url 'client_new' %}">
           <i class="fas fa-user-plus"></i> Add
         </a>
         {% endif %}
-        <a class="btn btn-primary btn-sm" href="{% url 'person_read' %}">
+        <a class="btn btn-primary btn-sm" href="{% url 'client_read' %}">
           <i class="fas fa-sync"></i> Refresh
         </a>
       </form>
     </div>
 
     <!-- Search -->
-    <div class="col-md-8 d-flex flex-row-reverse person-listing__header-col">
+    <div class="col-md-8 d-flex flex-row-reverse clients-listing__header-col">
       <form method="GET">
-        <span class="person-listing__search-label">
+        <span class="clients-listing__search-label">
           Search by:
         </span>
         <select name="s_type" class="custom-select custom-select-sm
-        person-listing__search-select">
+        clients-listing__search-select">
           <option value="id">ID</option>
           <option value="name">Name</option>
           <option value="cpf">CPF</option>
         </select>
-        <input type="text" data-mask="0000000" class="person-listing__search-input" name="q"
+        <input type="text" data-mask="0000000" class="clients-listing__search-input" name="q"
         placeholder="Enter information">
-        <button type="submit" class="btn btn-primary btn-sm person-listing__search-btn">
+        <button type="submit" class="btn btn-primary btn-sm clients-listing__search-btn">
           <i class="fas fa-search"></i> Search
         </button>
       </form>
@@ -45,12 +47,12 @@
   </div>
 
   <!-- Selector -->
-  <div class="row person-listing__data-number-wrapper">
+  <div class="row clients-listing__data-number-wrapper">
     <div class="col">
-        <form method="GET" class="person-listing__data-number-form">
+        <form method="GET" class="clients-listing__data-number-form">
           <input type="hidden" name="page" value="">
           <select name="data_number" class="custom-select custom-select-sm
-          person-listing__data-number" onchange=this.form.submit()>
+          clients-listing__data-number" onchange=this.form.submit()>
             <option selected>Select</option>
             <option value="10">10</option>
             <option value="25">25</option>
@@ -63,7 +65,7 @@
 
   <!-- Table -->
   <table id="tbl_listing" class="table table-sm table-responsive-sm">
-    <thead class="person__thead">
+    <thead class="client__thead">
       <tr>
         <th scope="col">ID</th>
         <th scope="col">Photo</th>
@@ -74,33 +76,37 @@
       </tr>
     </thead>
     <tbody>
-      {% for person in object_list %}
+      {% for client in object_list %}
       <tr class="tbl_item">
-        <th scope="row">{{ person.id }}</th>
-        {% if person.photo %}
+        <th scope="row">{{ client.id }}</th>
+        {% if client.photo %}
         <td>
-          <div class="person-listing__photo-open">
-            <img id="person-listing__photo-thumb" class="person-listing__photo-thumb"
-            src="{{ media_url }}{{ person.photo }}" align="center" width="24" />
+          <div class="clients-listing__photo-open">
+            <img id="clients-listing__photo-thumb" class="clients-listing__photo-thumb"
+            src="{{ media_url }}{{ client.photo }}" align="center" width="24" />
           </div>
         </td>
         {% endif %}
         <td>
-          {{ person.name | title }}
+          {{ client.name | title }}
         </td>
         <td>
-          <span data-mask="000.000.000-00">{{ person.cpf }}</span>
+          <span data-mask="000.000.000-00">{{ client.cpf }}</span>
         </td>
         <td>
-          {{ person.city | title }}
+          {{ client.city | title }}
         </td>
         <td>
-          {% if user.is_authenticated %} <a class="fas fa-pencil-alt person-listing__btns" href="{% url 'person_update' person.id %}"></a>{% endif %}
-          <a class="fas fa-file-alt person-listing__btns" href="{% url 'person_details' person.id %}"></a>
-          {% if user.is_authenticated %} <a class="person-listing__btn-delete person-btn-delete" href="" data-toggle="modal"
+          {% if perms.app_name.change_clientmodel %}
+          <a class="fas fa-pencil-alt clients-listing__btns" href="{% url 'client_update' client.id %}"></a>
+          {% endif %}
+          <a class="fas fa-file-alt clients-listing__btns" href="{% url 'client_details' client.id %}"></a>
+          {% if perms.app_name.delete_clientmodel %}
+          <a class="clients-listing__btn-delete clients-btn-delete" href="" data-toggle="modal"
           data-target="#confirmDeleteModal">
-            <span class="fas fa-trash-alt person-listing__btns" data-target="{% url 'person_delete' person.id %}"></span>
-          </a>{% endif %}
+            <span class="fas fa-trash-alt clients-listing__btns" data-target="{% url 'client_delete' client.id %}"></span>
+          </a>
+          {% endif %}
         </td>
       </tr>
     {% endfor %}
@@ -109,9 +115,9 @@
 
 <!-- Paginator -->
 {% if object_list.has_other_pages %}
-  <nav class="person-listing__pagination">
+  <nav class="clients-listing__pagination">
     <ul class="pagination justify-content-center">
-      <li class="page-item person-listing__pagination-btn">
+      <li class="page-item clients-listing__pagination-btn">
       {% if object_list.has_previous %}
         <a class="page-link" href="?page={{ object_list.previous_page_number }}&data_number={{ data_number }}"
         tabindex="-1">Previous</a>
@@ -119,22 +125,22 @@
         <a class="page-link disabled">Previous</a>
       {% endif %}
       </li>
-      <li class="page-item person-listing__pagination-text">
+      <li class="page-item clients-listing__pagination-text">
         <span class="page-link">
           {{ object_list.number }}
         </span>
       </li>
-      <li class="page-item person-listing__pagination-text">
+      <li class="page-item clients-listing__pagination-text">
         <span class="page-link">
           of
         </span>
       </li>
-      <li class="page-item person-listing__pagination-text">
+      <li class="page-item clients-listing__pagination-text">
         <span class="page-link">
           {{ object_list.paginator.num_pages }}
         </span>
       </li>
-      <li class="page-item person-listing__pagination-btn">
+      <li class="page-item clients-listing__pagination-btn">
         {% if object_list.has_next %}
           <a class="page-link" href="?page={{ object_list.next_page_number }}&data_number={{ data_number }}">Next</a>
         {% else %}
@@ -147,16 +153,16 @@
 
 <!-- No results -->
 {% if not object_list %}
-  <p class="font-weight-bold person-listing__not_found_text">No results</p>
+  <p class="font-weight-bold clients-listing__not_found_text">No results</p>
 {% endif %}
 
-</div> <!-- End person-listing -->
+</div> <!-- End clients-listing -->
 
 
 <!-- Include Modal View Photo -->
-{% include 'person/modals/photo.html' %}
+{% include 'clients/modals/photo.html' %}
 
 <!-- Include Modal Delete Record -->
-{% include 'person/modals/delete.html' %}
+{% include 'clients/modals/delete.html' %}
 
 {% endblock %}

@@ -6,20 +6,20 @@
 
 {% block content %}
 
-<div class="person-form">
+<div class="clients-form">
   <form method="POST" id="form_client" enctype="multipart/form-data">
 
     <!-- Button -->
-    <div class="row person__header">
+    <div class="row client__header">
       <div class="col-sm-12">
-        <a class="btn btn-sm btn-primary" href="{% url 'person_read' %}">
+        <a class="btn btn-sm btn-primary" href="{% url 'client_read' %}">
           <i class="fas fa-arrow-left"></i> Back to list
         </a>
       </div>
     </div>
 
     <!-- Table -->
-    <table class="table table-sm table-responsive-sm person-form__table">
+    <table class="table table-sm table-responsive-sm clients-form__table">
       <thead>
         <tr>
           <th scope="col"></th>
@@ -32,7 +32,7 @@
         <tr>
           <th><label for="id_id">ID</label></th>
           <td>
-            <input class="person-form__input-entry person-form__input-id person-form__input-details" type="text" id="id_id" name="id"
+            <input class="clients-form__input-entry clients-form__input-id clients-form__input-details" type="text" id="id_id" name="id"
             value="{{ object.id }}"
             maxlength="8" disabled>
             </div>
@@ -41,8 +41,8 @@
         <tr>
           <th><label for="id_photo">Photo</label></th>
           <td>
-            <a href="#" class="person-listing__photo-open">
-              <img id="person-listing__photo-thumb" class="person-listing__photo-thumb"
+            <a href="#" class="clients-listing__photo-open">
+              <img id="clients-listing__photo-thumb" class="clients-listing__photo-thumb"
               src="{{ media_url }}{{ object.photo }}" align="center" width="24"/>
             </a>
           </td>
@@ -50,7 +50,7 @@
         <tr>
           <th><label for="id_name">Name</label></th>
           <td>
-            <input class="person-form__input-entry person-form__input-details" type="text" id="id_name" name="name"
+            <input class="clients-form__input-entry clients-form__input-details" type="text" id="id_name" name="name"
             value="{{ object.name | title }}"
             maxlength="70" disabled>
           </td>
@@ -58,7 +58,7 @@
         <tr>
           <th><label for="id_cpf">CPF</label></th>
           <td>
-            <input class="person-form__input-entry person-form__input-details" type="text"
+            <input class="clients-form__input-entry clients-form__input-details" type="text"
             data-mask="000.000.000-00" id="id_ssa" name="cpf"
             value="{{ object.cpf }}" maxlength="15"
             placeholder="Only number" disabled>
@@ -67,7 +67,7 @@
         <tr>
           <th><label for="id_city">City</label></th>
           <td>
-            <input class="person-form__input-entry person-form__input-details" type="text" id="id_city" name="city"
+            <input class="clients-form__input-entry clients-form__input-details" type="text" id="id_city" name="city"
             value="{{ object.city | title }}"
             maxlength="30" disabled>
           </td>
@@ -80,6 +80,6 @@
 
 
 <!-- Include Modal View Photo -->
-{% include 'person/modals/photo.html' %}
+{% include 'clients/modals/photo.html' %}
 
 {% endblock %}

@@ -43,7 +43,7 @@
 
 
 // Custom
-.person-listing {
+.clients-listing {
   &__btns{
     &:hover{
       text-decoration: none;
@@ -141,7 +141,7 @@
   }
 }
 
-.person-form {
+.clients-form {
     &__input-entry {
         border: none;
         border-bottom: $border;
@@ -197,7 +197,7 @@
     }
 }
 
-.person-modal-delete {
+.clients-modal-delete {
   &__info{
     label, p {
       font-weight: bold;

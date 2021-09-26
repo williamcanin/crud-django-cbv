@@ -1,12 +1,11 @@
 # from django.shortcuts import render
 import re
-from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
+# from django.utils.decorators import method_decorator
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.urls import reverse_lazy
 from django.conf import settings
 from django.views.generic import ListView, UpdateView, CreateView, DetailView, DeleteView
-from .models import PersonModel
+from .models import ClientModel
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
@@ -15,9 +14,10 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 #         return obj.strip()
 
 # @method_decorator(login_required(login_url='/login/'), name='dispatch')
-class PersonList(ListView):
-    template_name = 'person/listing.html'
-    model = PersonModel
+class ClientList(LoginRequiredMixin, ListView):
+    template_name = 'clients/listing.html'
+    login_url = reverse_lazy('login')
+    model = ClientModel
 
     def get_queryset(self):
         found = self.model.objects.filter()
@@ -61,12 +61,13 @@ class PersonList(ListView):
         return context
 
 
-class PersonCreate(LoginRequiredMixin, CreateView):
-    template_name = 'person/form.html'
+class ClientCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+    template_name = 'clients/form.html'
     login_url = reverse_lazy('login')
+    permission_required = 'clients.add_clientmodel'
     fields = '__all__'
-    model = PersonModel
-    success_url = reverse_lazy('person_read')
+    model = ClientModel
+    success_url = reverse_lazy('client_read')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -74,12 +75,13 @@ class PersonCreate(LoginRequiredMixin, CreateView):
         return context
 
 
-class PersonUpdate(LoginRequiredMixin, UpdateView):
-    template_name = 'person/form.html'
+class ClientUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+    template_name = 'clients/form.html'
     login_url = reverse_lazy('login')
+    permission_required = 'clients.change_clientmodel'
     fields = '__all__'
-    model = PersonModel
-    success_url = reverse_lazy('person_read')
+    model = ClientModel
+    success_url = reverse_lazy('client_read')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -87,9 +89,9 @@ class PersonUpdate(LoginRequiredMixin, UpdateView):
         return context
 
 
-class PersonDetails(DetailView):
-    model = PersonModel
-    template_name = 'person/details.html'
+class ClientDetails(DetailView):
+    model = ClientModel
+    template_name = 'clients/details.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -97,9 +99,10 @@ class PersonDetails(DetailView):
         return context
 
 
-class PersonDelete(LoginRequiredMixin, DeleteView):
-    model = PersonModel
+class ClientDelete(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+    model = ClientModel
     fields = '__all__'
     login_url = reverse_lazy('login')
-    template_name = 'person/delete_confirm.html'
-    success_url = reverse_lazy('person_read')
+    permission_required = 'clients.delete_clientmodel'
+    template_name = 'clients/delete_confirm.html'
+    success_url = reverse_lazy('client_read')

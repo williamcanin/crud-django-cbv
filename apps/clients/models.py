@@ -3,7 +3,7 @@ from django.db import models
 from contextlib import suppress
 
 
-class PersonModel(models.Model):
+class ClientModel(models.Model):
     objects = None
     name = models.CharField('Nome', max_length=150, null=True)
     cpf = models.CharField('CPF', max_length=15, null=True,)
@@ -19,26 +19,26 @@ class PersonModel(models.Model):
         return f"{self.name}".title()
 
     class Meta:
-        verbose_name = "Pessoa"
-        verbose_name_plural = "Pessoas"
+        verbose_name = "Client"
+        verbose_name_plural = "Clients"
         ordering = ["id"]
 
     def save(self, *args, **kwargs):
 
-        # Remove hyphen and dot of SSA before save
+        # Remove hyphen and dot of CPF before save
         self.cpf = re.sub("[^0-9]", "", self.cpf)
 
         # Remove old photo after adding new
         with suppress(Exception):
-            obj = PersonModel.objects.get(id=self.id)
+            obj = ClientModel.objects.get(id=self.id)
             if obj.photo != self.photo and obj.photo != "default.png":
                 obj.photo.delete(save=False)
 
         # Save
-        super(PersonModel, self).save(*args, **kwargs)
+        super(ClientModel, self).save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
 
         # Before deleting the record, remove the photo for the record
         self.photo.delete()
-        super(PersonModel, self).delete(*args, **kwargs)
+        super(ClientModel, self).delete(*args, **kwargs)

@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import PersonModel
+from .models import ClientModel
 
 
-class PersonAdmin(admin.ModelAdmin):
+class ClientAdmin(admin.ModelAdmin):
     exclude = []
     # readonly_fields = ("cpf",)
     fieldsets = (
@@ -16,4 +16,4 @@ class PersonAdmin(admin.ModelAdmin):
     search_fields = ("id", "name")
 
 
-admin.site.register(PersonModel, PersonAdmin)
+admin.site.register(ClientModel, ClientAdmin)
