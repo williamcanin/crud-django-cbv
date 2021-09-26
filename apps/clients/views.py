@@ -91,11 +91,12 @@ class ClientUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
 
 class ClientDetails(DetailView):
     model = ClientModel
-    template_name = 'clients/details.html'
+    template_name = 'clients/form.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['media_url'] = settings.MEDIA_URL
+        context['is_details'] = True
         return context
 
 

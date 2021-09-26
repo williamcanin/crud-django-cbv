@@ -13,6 +13,7 @@
     <!-- Buttons -->
     <div class="row pb-1 clients__header">
       <div class="col-sm-12">
+        {% if not is_details %}
         <button type="submit" class="btn btn-outline-success">
           <i class="fas fa-save"></i> Save
         </button>
@@ -25,10 +26,16 @@
         <a class="btn btn-outline-secondary" href="{% url 'client_read' %}">
           <i class="fas fa-ban"></i> Cancel
         </a>
+        {% else %}
+        <a class="btn btn-outline-primary" href="{% url 'client_read' %}">
+          <i class="fas fa-arrow-left"></i> Back to list
+        </a>
+        {% endif %}
+
       </div>
     </div>
 
-    <hr />
+    <hr/>
     <div class="row">
       {% if object.id %}
       <div class="form-group col-md-2">
@@ -46,9 +53,11 @@
           src="{{ media_url }}{{ object.photo }}" alt="" width="34" >
           </div>
           {% endif %}
+          {% if not is_details %}
           <div class="col-md">
             <input class="form-control" type="file" accept="images/*" name="photo" id="id_photo">
           </div>
+          {% endif %}
         </div>
 
       </div>
@@ -59,7 +68,7 @@
         <label for="name">Nome</label>
         <input class="form-control clients-form__input-entry" type="text" id="id_name" name="name"
             value="{% if object.name %}{{ object.name | title }}{% endif %}"
-            maxlength="70" required>
+            maxlength="70" required {% if is_details %} disabled {% endif %}>
       </div>
 
       <div class="form-group col-md-3">
@@ -67,139 +76,17 @@
         <input class="form-control clients-form__input-entry" type="text"
             data-mask="000.000.000-00" id="id_cpf" name="cpf"
             value="{% if object.cpf %}{{ object.cpf }}{% endif %}" maxlength="15"
-            placeholder="Only number" required>
+            placeholder="Only number" required {% if is_details %} disabled {% endif %}>
       </div>
 
       <div class="form-group col-md-2">
         <label for="campo3">City</label>
         <input class="form-control clients-form__input-entry" type="text" id="id_city" name="city"
             value="{% if object.city %}{{ object.city | title }}{% endif %}"
-            maxlength="30" required>
+            maxlength="30" required {% if is_details %} disabled {% endif %}>
       </div>
     </div>
-<!--
-    <div class="row">
-      <div class="form-group col-md-5">
-        <label for="campo1">Endereço</label>
-        <input type="text" class="form-control" name="customer['address']">
-      </div>
 
-      <div class="form-group col-md-3">
-        <label for="campo2">Bairro</label>
-        <input type="text" class="form-control" name="customer['hood']">
-      </div>
-
-      <div class="form-group col-md-2">
-        <label for="campo3">CEP</label>
-        <input type="text" class="form-control" name="customer['zip_code']">
-      </div>
-
-      <div class="form-group col-md-2">
-        <label for="campo3">Data de Cadastro</label>
-        <input type="text" class="form-control" name="customer['created']" disabled>
-      </div>
-    </div> -->
-
-    <!-- <div class="row">
-      <div class="form-group col-md-3">
-        <label for="campo1">Município</label>
-        <input type="text" class="form-control" name="customer['city']">
-      </div>
-
-      <div class="form-group col-md-2">
-        <label for="campo2">Telefone</label>
-        <input type="text" class="form-control" name="customer['phone']">
-      </div>
-
-      <div class="form-group col-md-2">
-        <label for="campo3">Celular</label>
-        <input type="text" class="form-control" name="customer['mobile']">
-      </div>
-
-      <div class="form-group col-md-1">
-        <label for="campo3">UF</label>
-        <input type="text" class="form-control" name="customer['state']">
-      </div>
-
-      <div class="form-group col-md-2">
-        <label for="campo3">Inscrição Estadual</label>
-        <input type="text" class="form-control" name="customer['ie']">
-      </div>
-
-      <div class="form-group col-md-2">
-        <label for="campo3">UF</label>
-        <input type="text" class="form-control">
-      </div>
-    </div> -->
-
-    <!-- Table -->
-    <!-- <table class="table clients-form__table">
-      <thead>
-        <tr>
-          <th scope="col">Clients</th>
-          <th scope="col">
-          New registry
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        {% if object.id %}
-        <tr>
-          <th><label for="id_id">ID</label></th>
-          <td>
-            <input class="clients-form__input-entry clients-form__input-id" type="text" id="id_id" name="id"
-            value="{{ object.id }}"
-            maxlength="8" disabled>
-            </div>
-          </td>
-        </tr>
-        {% endif %}
-        <tr>
-          <th><label for="id_photo">Photo</label></th>
-          <td>
-            {% if object.photo %}
-            <div class="float-left mb-3 clients-listing__photo-open">
-              Currently:
-              <img class="clients-form__photo-thumb"
-              src="{{ media_url }}{{ object.photo }}" alt="" width="32">
-            </div>
-            {% endif %}
-            <div class="input-group input-group-sm mb-3">
-              <div class="custom-file clients-form__choose-file">
-                <input class="custom-file-input" type="file" accept="images/*" name="photo" id="id_photo">
-                <label class="custom-file-label clients-form__choose-file-label" for="id_photo">Choose file</label>
-              </div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <th><label for="id_name">Name</label></th>
-          <td>
-            <input class="clients-form__input-entry" type="text" id="id_name" name="name"
-            value="{% if object.name %}{{ object.name | title }}{% endif %}"
-            maxlength="70" required>
-          </td>
-        </tr>
-        <tr>
-          <th><label for="id_cpf">CPF</label></th>
-          <td>
-            <input class="clients-form__input-entry" type="text"
-            data-mask="000.000.000-00" id="id_cpf" name="cpf"
-            value="{% if object.cpf %}{{ object.cpf }}{% endif %}" maxlength="15"
-            placeholder="Only number" required>
-          </td>
-        </tr>
-        <tr>
-          <th><label for="id_city">City</label></th>
-          <td>
-            <input class="clients-form__input-entry" type="text" id="id_city" name="city"
-            value="{% if object.city %}{{ object.city | title }}{% endif %}"
-            maxlength="30" required>
-          </td>
-        </tr>
-      </tbody>
-    </table> -->
-    <br>
   </form>
 </div>
 
