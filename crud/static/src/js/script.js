@@ -1,10 +1,10 @@
 // Enter your code JavaScript
 
-// Change input File label
-$(".custom-file-input").on("change", function() {
-  filename = this.files[0].name
-  $(".clients-form__choose-file-label").text(filename);
-});
+// Change input File label [DEPRECATED]
+// $(".custom-file-input").on("change", function() {
+//   filename = this.files[0].name
+//   $(".clients-form__choose-file-label").text(filename);
+// });
 
 // Open image in modal
 $(".clients-listing__photo-open").on("click", function() {

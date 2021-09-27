@@ -1,17 +1,17 @@
-<div class="modal fade clients-modal-delete" id="confirmDeleteModal" tabindex="-1"
-  role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <form class="clients-model-delete__form" action="" method="POST"
+<div class="modal fade clients-modal-delete" id="confirmDeleteModal" data-bs-backdrop="static" data-bs-keyboard="false"
+tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form class="clients-model-delete__form" action="" method="POST"
         enctype="multipart/form-data">
-          {% csrf_token %}
-          <div class="modal-header">
-            <h5 class="modal-title" id="ModalLabel">
-              Do you really want to delete record?
-            </h5>
-          </div>
-          {% if object.id %}
-          <div class="modal-body m-4">
+        {% csrf_token %}
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalLabel">
+            Do you really want to delete record?
+          </h5>
+        </div>
+        {% if object.id %}
+          <div class="modal-body">
             <div class="row clients-modal-delete__info">
               <label for="">ID: </label>
               <p>{{ object.id }}</p>
@@ -22,15 +22,11 @@
             </div>
           </div>
           {% endif %}
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-sm btn-danger">
-              Delete
-            </button>
-            <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">
-              Close
-            </button>
-          </div>
-        </form>
-      </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger">Delete</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </form>
     </div>
+  </div>
 </div>
