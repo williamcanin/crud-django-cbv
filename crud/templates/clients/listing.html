@@ -62,13 +62,7 @@
         <th scope="col">Photo</th>
         <th scope="col">Name</th>
         <th scope="col">Email</th>
-        <th scope="col">Endereço</th>
         <th scope="col">Cell</th>
-        <th scope="col">Phone</th>
-        <th scope="col">CPF</th>
-        <th scope="col">CNPJ</th>
-        <th scope="col">RG</th>
-        <th scope="col">City</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
@@ -91,25 +85,7 @@
           {{ client.email }}
         </td>
         <td>
-          {{ client.address }}
-        </td>
-        <td>
           {{ client.cell_phone }}
-        </td>
-        <td>
-          {{ client.phone }}
-        </td>
-        <td>
-          <span data-mask="000.000.000-00">{{ client.cpf }}</span>
-        </td>
-        <td>
-          <span data-mask="00.000.000/0000-00">{{ client.cnpj }}</span>
-        </td>
-        <td>
-          {{ client.rg }}
-        </td>
-        <td>
-          {{ client.city | title }}
         </td>
         <td>
           {% if perms.app_name.change_clientmodel %}

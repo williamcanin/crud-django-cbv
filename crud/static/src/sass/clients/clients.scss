@@ -2,9 +2,8 @@
 .clients-listing {
   &__table {
     // display: block;
-    // overflow-x: scroll;
+    // overflow-x: auto;
     // white-space: nowrap;
-    // min-width: 1024px;
     .fa-trash-alt, .fa-file-alt, .fa-edit {
       margin: 0px 2px;
       &:hover, &:focus, &:visited, &:active {

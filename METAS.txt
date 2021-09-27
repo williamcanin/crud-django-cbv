@@ -1,0 +1,2 @@
+[x] Corrigir erro de data que não carrega (formato)
+[] Usar checkbox para CPF/CNPJ
