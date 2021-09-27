@@ -6,13 +6,15 @@ class ClientAdmin(admin.ModelAdmin):
     exclude = []
     # readonly_fields = ("cpf",)
     fieldsets = (
-        ("Personal Data", {
+        ("Clients Data", {
             "fields": (
-                ("name", "cpf"), ("city")
+                ("name", "email", "cpf"), ("birth_date", "city", "district"),
+                ("address", "cep", "rg"), ("cell_phone", "cnpj", "phone"), ("photo")
             ),
         }),
     )
-    list_display = ("id", "name", "cpf", "city")
+    list_display = ("id", "name", "cpf", "cnpj", "email", "address", "district",
+                    "city", "cell_phone", "phone")
     search_fields = ("id", "name")
 
 

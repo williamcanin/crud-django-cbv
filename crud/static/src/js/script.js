@@ -18,12 +18,14 @@ $(".clients-btn-delete").on("click", function() {
   $('#confirmDeleteModal').modal('show');
 });
 
-// Change input search mask SSA
+// Change input search mask
 $(".clients-listing__search-select").change(function() {
   const select = $('.clients-listing__search-select option:selected').val();
   const busca = $('.clients-listing__search-input');
   if (select == "cpf") {
     busca.mask('000.000.000-00');
+  } else if (select == "cnpj") {
+    busca.mask('00.000.000/0000-00');
   } else if (select == "id") {
     busca.mask('0000000');
   } else {

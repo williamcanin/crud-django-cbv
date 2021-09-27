@@ -47,6 +47,9 @@ class ClientList(LoginRequiredMixin, ListView):
         if s_type == "cpf":
             q = re.sub("[^0-9]", "", q)
             found = self.model.objects.filter(cpf=q)
+        elif s_type == "cnpj":
+            q = re.sub("[^0-9]", "", q)
+            found = self.model.objects.filter(cnpj=q)
         elif s_type == "id":
             found = self.model.objects.filter(id=q)
         elif s_type == "name":
