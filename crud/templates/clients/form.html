@@ -67,13 +67,7 @@
       </div>
 
       <div class="form-group col-md-5">
-        <!-- <label for="state">Estados</label> -->
         {{ form.cpf_or_cnpj }}
-        <!-- <select name="cpf_or_cnpj" id="id_cpf_or_cnpj" class="form-select form-select-sm clients-form__cpf_or_cnpj"
-        {% if is_details %} disabled {% endif %}>
-          <option value="cpf" {% if object.cpf_or_cnpj == "cpf" %}selected{% endif %}>CPF</option>
-          <option value="cnpj" {% if object.cpf_or_cnpj == "cnpj" %}selected{% endif %}>CNPJ</option>
-        </select> -->
         {% if object.cpf_or_cnpj == "cnpj" %}
         <input class="form-control clients-form__input-entry clients-form__input-cpf-cnpj" type="text"
             data-mask="00.000.000/0000-00" id="id_cpf_cnpj" name="cpf_cnpj"
