@@ -47,15 +47,3 @@ $(".clients-form__cpf_or_cnpj").change(function() {
     input.unmask();
   }
 });
-
-// Change input cpf/cnpj mask
-// $("#flexRadioCPF").on("click", function() {
-//   const input = $('.clients-form__input-cpf-cnpj');
-//   input.val('');
-//   input.mask('000.000.000-00');
-// });
-// $("#flexRadioCNPJ").on("click", function() {
-//   const input = $('.clients-form__input-cpf-cnpj');
-//   input.val('');
-//   input.mask('00.000.000/0000-00');
-// });

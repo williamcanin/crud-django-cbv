@@ -1,2 +1,3 @@
 [x] Corrigir erro de data que não carrega (formato)
-[] Usar checkbox para CPF/CNPJ
+[x] Usar checkbox/combobox para CPF/CNPJ
+[ ] Fazer mdelo de país/estado/cidade

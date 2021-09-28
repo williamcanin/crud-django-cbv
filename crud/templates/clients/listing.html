@@ -85,7 +85,7 @@
           {{ client.email }}
         </td>
         <td>
-          {{ client.cell_phone }}
+          <span data-mask="(00) 00000-0000">{{ client.cell_phone }}</span>
         </td>
         <td>
           {% if perms.app_name.change_clientmodel %}
