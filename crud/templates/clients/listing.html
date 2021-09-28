@@ -64,12 +64,12 @@
         <th scope="col">CPF/CNPJ</th>
         <th scope="col">Email</th>
         <th scope="col">Cell</th>
-        <th scope="col">Actions</th>
+        <!-- <th scope="col">Actions</th> -->
       </tr>
     </thead>
     <tbody>
       {% for client in object_list %}
-      <tr class="tbl_item">
+      <tr class="tbl_item clickable-row" data-href="{% url 'client_details' client.id %}">
         <th scope="row">{{ client.id }}</th>
         {% if client.photo %}
         <td>
@@ -96,7 +96,7 @@
           <span data-mask="(00) 00000-0000">{{ client.cell_phone }}</span>
         </td>
 
-        <td>
+        <!-- <td>
           {% if perms.app_name.change_clientmodel %}
           <a class="fas fa-pencil-alt clients-listing__btns" href="{% url 'client_update' client.id %}"></a>
           {% endif %}
@@ -106,7 +106,7 @@
             <span class="fas fa-trash-alt clients-listing__btns" data-target="{% url 'client_delete' client.id %}"></span>
           </a>
           {% endif %}
-        </td>
+        </td> -->
 
 
       </tr>

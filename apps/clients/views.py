@@ -8,6 +8,7 @@ from .forms import ClientForm
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
+
 # def is_validate(obj):
 #     if obj != "" and obj is not None:
 #         return obj.strip()
@@ -63,6 +64,7 @@ class ClientList(LoginRequiredMixin, ListView):
 class ClientCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     template_name = 'clients/form.html'
     login_url = reverse_lazy('sign-in')
+    # Usando o {{ perms.auth }} mostra os valores para usar no "permission_required"
     permission_required = 'clients.add_clientmodel'
     model = ClientModel
     form_class = ClientForm
@@ -82,7 +84,11 @@ class ClientUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = ClientModel
     form_class = ClientForm
     # fields = '__all__'
-    success_url = reverse_lazy('client_read')
+    # success_url = reverse_lazy('client_details')
+
+    def get_success_url(self):
+        id_ = self.kwargs['pk']
+        return reverse_lazy('client_details', kwargs={'pk': id_})
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

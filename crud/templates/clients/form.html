@@ -27,13 +27,18 @@
           <span data-target="{% url 'client_delete' object.id %}">Delete</span>
         </button>
         {% endif %}
-        <a class="btn btn-outline-secondary" href="{% url 'client_read' %}">
+        <a class="btn btn-outline-secondary" href="{% url 'client_details' object.id %}">
           <i class="fas fa-ban"></i> Cancel
         </a>
         {% else %}
         <a class="btn btn-outline-primary" href="{% url 'client_read' %}">
-          <i class="fas fa-arrow-left"></i> Back to list
+          <i class="fas fa-file-alt"></i> All Clients
         </a>
+        {% if perms.app_name.change_clientmodel %}
+        <a class="btn btn-outline-success" href="{% url 'client_update' object.id %}">
+          <i class="fas fa-pencil-alt"></i> Edit
+        </a>
+        {% endif %}
         {% endif %}
 
       </div>
