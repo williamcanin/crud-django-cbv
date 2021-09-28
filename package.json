@@ -45,6 +45,7 @@
     "gulp-sass": "^5.0.0",
     "gulp-uglify-es": "^3.0.0",
     "jquery": "^3.6.0",
-    "jquery-mask-plugin": "^1.14.16"
+    "jquery-mask-plugin": "^1.14.16",
+    "sass": "^1.42.1"
   }
 }
