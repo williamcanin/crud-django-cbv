@@ -1,8 +1,5 @@
-# from django.shortcuts import render
 import re
-# from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-# from django.views.generic.edit import FormMixin, FormView
 from django.urls import reverse_lazy
 from django.conf import settings
 from django.views.generic import ListView, UpdateView, CreateView, DetailView, DeleteView
@@ -49,9 +46,6 @@ class ClientList(LoginRequiredMixin, ListView):
         if s_type == "cpf" or s_type == "cnpj":
             q = re.sub("[^0-9]", "", q)
             found = self.model.objects.filter(cpf_cnpj=q)
-        # elif s_type == "cnpj":
-        #     q = re.sub("[^0-9]", "", q)
-        #     found = self.model.objects.filter(cnpj=q)
         elif s_type == "id":
             found = self.model.objects.filter(id=q)
         elif s_type == "name":
@@ -98,8 +92,6 @@ class ClientUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
 
 class ClientDetails(DetailView):
     model = ClientModel
-    # form_class = ClientForm
-    # fields = '__all__'
     template_name = 'clients/form.html'
 
     def get_context_data(self, **kwargs):
@@ -111,7 +103,6 @@ class ClientDetails(DetailView):
 
 class ClientDelete(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = ClientModel
-    # fields = '__all__'
     login_url = reverse_lazy('sign-in')
     permission_required = 'clients.delete_clientmodel'
     template_name = 'clients/delete_confirm.html'

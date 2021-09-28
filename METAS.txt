@@ -1,4 +1,3 @@
 [x] Corrigir erro de data que não carrega (formato)
 [x] Usar checkbox/combobox para CPF/CNPJ
 [ ] Fazer mdelo de país/estado/cidade
-[ ] remover details e usar update com campo disabled
