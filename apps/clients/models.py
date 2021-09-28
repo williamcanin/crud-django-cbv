@@ -1,6 +1,13 @@
 import re
 from django.db import models
 from contextlib import suppress
+from apps.core.places import STATES_BRAZIL
+
+
+CHOICE_CPF_CNPJ = (
+    ('cpf', "CPF"),
+    ('cnpj', "CNPJ")
+)
 
 
 class ClientModel(models.Model):
@@ -9,12 +16,8 @@ class ClientModel(models.Model):
     email = models.EmailField(max_length=254, blank=True)
     birth_date = models.DateField('Data de Nascimento', null=True)
     district = models.CharField('Bairro', max_length=150, null=True)
-    # state = models.CharField('Estado', max_length=80, null=True)
-    choice_cpf_cnpj = (
-        ('cpf', "CPF"),
-        ('cnpj', "CNPJ")
-    )
-    cpf_or_cnpj = models.CharField('CPF/CNPJ2', max_length=10, choices=choice_cpf_cnpj, default="cpf")
+    state = models.CharField('Estados', max_length=25, choices=STATES_BRAZIL, default="default")
+    cpf_or_cnpj = models.CharField('CPF/CNPJ2', max_length=10, choices=CHOICE_CPF_CNPJ, default="cpf")
     cpf_cnpj = models.CharField('CPF/CNPJ', max_length=18, blank=True)
     address = models.CharField('Endereço', max_length=250, null=True)
     photo = models.ImageField('Imagem',
@@ -33,6 +36,7 @@ class ClientModel(models.Model):
         return f"{self.name}".title()
 
     class Meta:
+        db_table = 'tbl_clients'
         verbose_name = "Client"
         verbose_name_plural = "Clients"
         ordering = ["id"]

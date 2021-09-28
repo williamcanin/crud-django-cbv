@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 from django.conf import settings
 from django.views.generic import ListView, UpdateView, CreateView, DetailView, DeleteView
 from .models import ClientModel
+from .forms import ClientForm
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
@@ -68,8 +69,9 @@ class ClientCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     template_name = 'clients/form.html'
     login_url = reverse_lazy('sign-in')
     permission_required = 'clients.add_clientmodel'
-    fields = '__all__'
     model = ClientModel
+    form_class = ClientForm
+    # fields = '__all__'
     success_url = reverse_lazy('client_read')
 
     def get_context_data(self, **kwargs):
@@ -82,8 +84,9 @@ class ClientUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     template_name = 'clients/form.html'
     login_url = reverse_lazy('sign-in')
     permission_required = 'clients.change_clientmodel'
-    fields = '__all__'
     model = ClientModel
+    form_class = ClientForm
+    # fields = '__all__'
     success_url = reverse_lazy('client_read')
 
     def get_context_data(self, **kwargs):
@@ -94,6 +97,8 @@ class ClientUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
 
 class ClientDetails(DetailView):
     model = ClientModel
+    form_class = ClientForm
+    fields = '__all__'
     template_name = 'clients/form.html'
 
     def get_context_data(self, **kwargs):
@@ -105,7 +110,7 @@ class ClientDetails(DetailView):
 
 class ClientDelete(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = ClientModel
-    fields = '__all__'
+    # fields = '__all__'
     login_url = reverse_lazy('sign-in')
     permission_required = 'clients.delete_clientmodel'
     template_name = 'clients/delete_confirm.html'
