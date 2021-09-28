@@ -8,13 +8,13 @@ class ClientAdmin(admin.ModelAdmin):
     fieldsets = (
         ("Clients Data", {
             "fields": (
-                ("name", "email", "cpf"), ("birth_date", "city", "district"),
-                ("address", "cep", "rg"), ("cell_phone", "cnpj", "phone"), ("photo")
+                ("name", "email"), ("birth_date", "city", "district"),
+                ("address", "cep", "rg"), ("cell_phone", "phone"), ("photo", "cpf_cnpj")
             ),
         }),
     )
-    list_display = ("id", "name", "cpf", "cnpj", "email", "address", "district",
-                    "city", "cell_phone", "phone")
+    list_display = ("id", "name", "email", "address", "district",
+                    "city", "cell_phone", "phone", "cpf_cnpj")
     search_fields = ("id", "name")
 
 

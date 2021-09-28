@@ -7,6 +7,7 @@
 {% block content %}
 
 <div class="clients-form">
+
   <form method="POST" id="form_client" enctype="multipart/form-data">
     {% csrf_token %}
 
@@ -36,7 +37,7 @@
     </div>
 
     <hr/>
-    <div class="row">
+    <div class="row pb-3">
       {% if object.id %}
       <div class="form-group col-md-2">
         <label for="id">ID</label>
@@ -60,8 +61,27 @@
           </div>
           {% endif %}
         </div>
-
       </div>
+
+      <div class="form-group col-md-5">
+        <select name="cpf_or_cnpj" id="id_cpf_or_cnpj" class="form-select form-select-sm clients-form__cpf_or_cnpj"
+        {% if is_details %} disabled {% endif %}>
+          <option value="cpf" {% if object.cpf_or_cnpj == "cpf" %}selected{% endif %}>CPF</option>
+          <option value="cnpj" {% if object.cpf_or_cnpj == "cnpj" %}selected{% endif %}>CNPJ</option>
+        </select>
+        {% if object.cpf_or_cnpj == "cpf" %}
+        <input class="form-control clients-form__input-entry clients-form__input-cpf-cnpj" type="text"
+            data-mask="000.000.000-00" id="id_cpf_cnpj" name="cpf_cnpj"
+            value="{% if object.cpf_cnpj %}{{ object.cpf_cnpj }}{% endif %}" maxlength="15"
+            {% if not is_details %} placeholder="Only number" {% endif %} {% if is_details %} disabled {% endif %}>
+        {% else %}
+        <input class="form-control clients-form__input-entry clients-form__input-cpf-cnpj" type="text"
+            data-mask="00.000.000/0000-00" id="id_cpf_cnpj" name="cpf_cnpj"
+            value="{% if object.cpf_cnpj %}{{ object.cpf_cnpj }}{% endif %}" maxlength="15"
+            {% if not is_details %} placeholder="Only number" {% endif %} {% if is_details %} disabled {% endif %}>
+        {% endif %}
+      </div>
+
     </div>
 
     <div class="row">
@@ -78,20 +98,7 @@
             value="{% if object.birth_date %}{{ object.birth_date|date:"Y-m-d" }}{% endif %}" maxlength="15"
             placeholder="Only number" required {% if is_details %} disabled {% endif %}>
       </div>
-      <div class="form-group col-md-2">
-        <label for="cpf">CPF</label>
-        <input class="form-control clients-form__input-entry" type="text"
-            data-mask="000.000.000-00" id="id_cpf" name="cpf"
-            value="{% if object.cpf %}{{ object.cpf }}{% endif %}" maxlength="15"
-            placeholder="Only number" required {% if is_details %} disabled {% endif %}>
-      </div>
-      <div class="form-group col-md-2">
-        <label for="cnpj">CNPJ</label>
-        <input class="form-control clients-form__input-entry" type="text"
-            data-mask="00.000.000/0000-00" id="id_cnpj" name="cnpj"
-            value="{% if object.cnpj %}{{ object.cnpj }}{% endif %}" maxlength="15"
-            {% if not is_details %} placeholder="Only number" {% endif %} {% if is_details %} disabled {% endif %}>
-      </div>
+
       <div class="form-group col-md-2">
         <label for="rg">RG</label>
         <input class="form-control clients-form__input-entry" type="text" id="id_rg" name="rg"

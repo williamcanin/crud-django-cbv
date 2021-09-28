@@ -10,15 +10,19 @@ class ClientModel(models.Model):
     birth_date = models.DateField('Data de Nascimento', null=True)
     district = models.CharField('Bairro', max_length=150, null=True)
     # state = models.CharField('Estado', max_length=80, null=True)
+    choice_cpf_cnpj = (
+        ('cpf', "CPF"),
+        ('cnpj', "CNPJ")
+    )
+    cpf_or_cnpj = models.CharField('CPF/CNPJ2', max_length=10, choices=choice_cpf_cnpj, default="cpf")
+    cpf_cnpj = models.CharField('CPF/CNPJ', max_length=18, blank=True)
     address = models.CharField('Endereço', max_length=250, null=True)
     photo = models.ImageField('Imagem',
                               default="default.png",
                               upload_to="images/upload", null=True, blank=True
                               )
-    cpf = models.CharField('CPF', max_length=15, null=True)
     rg = models.CharField('RG', max_length=15, null=True)
     cep = models.CharField('CEP', max_length=15, null=True)
-    cnpj = models.CharField('CNPJ', max_length=16, blank=True)
     cell_phone = models.CharField('CEL', max_length=15, null=True)
     phone = models.CharField('Fone', max_length=15, blank=True)
     city = models.CharField('Cidade', max_length=80, null=True)
@@ -35,11 +39,8 @@ class ClientModel(models.Model):
 
     def save(self, *args, **kwargs):
 
-        # Remove hyphen and dot of CPF before save
-        self.cpf = re.sub("[^0-9]", "", self.cpf)
-
-        # Remove hyphen and dot of CNPJ before save
-        self.cnpj = re.sub("[^0-9]", "", self.cnpj)
+        # Remove hyphen and dot of CPF/CNPJ before save
+        self.cpf_cnpj = re.sub("[^0-9]", "", self.cpf_cnpj)
 
         # Remove hyphen and dot of PHONE before save
         self.phone = re.sub("[^0-9]", "", self.phone)

@@ -32,3 +32,30 @@ $(".clients-listing__search-select").change(function() {
     busca.unmask();
   }
 });
+
+// Change input CPF/CNPJ mask
+$(".clients-form__cpf_or_cnpj").change(function() {
+  const select = $('.clients-form__cpf_or_cnpj option:selected').val();
+  const input = $('.clients-form__input-cpf-cnpj');
+  if (select == "cpf") {
+    input.val('');
+    input.mask('000.000.000-00');
+  } else if (select == "cnpj") {
+    input.val('');
+    input.mask('00.000.000/0000-00');
+  } else {
+    input.unmask();
+  }
+});
+
+// Change input cpf/cnpj mask
+// $("#flexRadioCPF").on("click", function() {
+//   const input = $('.clients-form__input-cpf-cnpj');
+//   input.val('');
+//   input.mask('000.000.000-00');
+// });
+// $("#flexRadioCNPJ").on("click", function() {
+//   const input = $('.clients-form__input-cpf-cnpj');
+//   input.val('');
+//   input.mask('00.000.000/0000-00');
+// });

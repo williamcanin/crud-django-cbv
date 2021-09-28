@@ -109,4 +109,10 @@
   &__photo-thumb {
     cursor: pointer;
   }
+  &__cpf_or_cnpj {
+    max-width: 100px !important;
+  }
+  &__input-cpf-cnpj {
+    max-width: 250px !important;
+  }
 }
