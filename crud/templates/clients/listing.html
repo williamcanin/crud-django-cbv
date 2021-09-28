@@ -95,6 +95,7 @@
         <td>
           <span data-mask="(00) 00000-0000">{{ client.cell_phone }}</span>
         </td>
+
         <td>
           {% if perms.app_name.change_clientmodel %}
           <a class="fas fa-pencil-alt clients-listing__btns" href="{% url 'client_update' client.id %}"></a>
@@ -106,6 +107,8 @@
           </a>
           {% endif %}
         </td>
+
+
       </tr>
     {% endfor %}
     </tbody>

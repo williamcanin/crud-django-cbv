@@ -1,5 +1,8 @@
 // Records clients
 .clients-listing {
+  .clickable-row {
+    cursor: pointer;
+  }
   &__table {
     // display: block;
     // overflow-x: auto;

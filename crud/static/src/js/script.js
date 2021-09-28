@@ -47,3 +47,9 @@ $(".clients-form__cpf_or_cnpj").change(function() {
     input.unmask();
   }
 });
+
+
+// Add class "clickable-row" in <tr> of table, and code [data-href="{% url 'client_details' client.id %}"] in <tr>
+$(".clickable-row").on("click", function() {
+  window.location = $(this).data("href");
+});
