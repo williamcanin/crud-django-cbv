@@ -2,7 +2,7 @@
 import re
 # from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.views.generic.edit import FormMixin
+# from django.views.generic.edit import FormMixin, FormView
 from django.urls import reverse_lazy
 from django.conf import settings
 from django.views.generic import ListView, UpdateView, CreateView, DetailView, DeleteView
@@ -96,9 +96,9 @@ class ClientUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
         return context
 
 
-class ClientDetails(FormMixin, DetailView):
+class ClientDetails(DetailView):
     model = ClientModel
-    form_class = ClientForm
+    # form_class = ClientForm
     # fields = '__all__'
     template_name = 'clients/form.html'
 
