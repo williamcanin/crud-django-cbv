@@ -99,6 +99,7 @@ class ClientUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
 class ClientDetails(FormMixin, DetailView):
     model = ClientModel
     form_class = ClientForm
+    # fields = '__all__'
     template_name = 'clients/form.html'
 
     def get_context_data(self, **kwargs):
