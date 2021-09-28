@@ -1,13 +1,10 @@
 {% extends "base.html" %}
-<!-- { % load crispy_forms_tags % } -->
 
 {% block title %} Formulary {% endblock %}
 
 {% block head %}{% endblock %}
 
 {% block content %}
-
-<!-- { { form|crispy } } -->
 
 <div class="clients-form">
 
@@ -18,34 +15,41 @@
     <div class="row pb-1 clients-form__header">
       <div class="col-sm-12">
         {% if not is_details %}
-        <button type="submit" class="btn btn-outline-success">
-          <i class="fas fa-save"></i> Save
-        </button>
-        {% if object.id %}
-        <button type="button" class="btn btn-outline-danger clients-btn-delete" data-toggle="modal"
-        data-target="#confirmDeleteModal">
-          <span data-target="{% url 'client_delete' object.id %}">Delete</span>
-        </button>
-        {% endif %}
-        <a class="btn btn-outline-secondary" href="{% url 'client_details' object.id %}">
-          <i class="fas fa-ban"></i> Cancel
-        </a>
+          <button type="submit" class="btn btn-outline-success">
+            <i class="fas fa-save"></i> Save
+          </button>
+          {% if object.id %}
+            <a class="btn btn-outline-secondary" href="{% url 'client_details' object.id %}">
+              <i class="fas fa-ban"></i> Cancel
+            </a>
+          {% else %}
+            <a class="btn btn-outline-secondary" href="{% url 'client_read' %}">
+              <i class="fas fa-ban"></i> Cancel
+            </a>
+          {% endif %}
         {% else %}
-        <a class="btn btn-outline-primary" href="{% url 'client_read' %}">
-          <i class="fas fa-file-alt"></i> All Clients
-        </a>
-        {% if perms.app_name.change_clientmodel %}
-        <a class="btn btn-outline-success" href="{% url 'client_update' object.id %}">
-          <i class="fas fa-pencil-alt"></i> Edit
-        </a>
+          <a class="btn btn-outline-primary" href="{% url 'client_read' %}">
+            <i class="fas fa-file-alt"></i> All Clients
+          </a>
+          {% if perms.app_name.change_clientmodel %}
+            <a class="btn btn-outline-success" href="{% url 'client_update' object.id %}">
+              <i class="fas fa-pencil-alt"></i> Edit
+            </a>
+            {% if object.id %}
+              <button type="button" class="btn btn-outline-danger clients-btn-delete" data-toggle="modal"
+              data-target="#confirmDeleteModal">
+                <span data-target="{% url 'client_delete' object.id %}">Delete</span>
+              </button>
+            {% endif %}
+          {% endif %}
         {% endif %}
-        {% endif %}
-
       </div>
     </div>
 
+    <!-- Forms -->
     <hr/>
     <div class="row pb-3">
+
       {% if object.id %}
       <div class="form-group col-md-2">
         <label for="id">ID</label>
@@ -58,34 +62,34 @@
         <label for="id">Photo</label>
         <div class="row">
           {% if object.photo %}
-          <div class="col-md-1 clients-listing__photo-open">
-            <img class="rounded-circle clients-form__photo-thumb"
-          src="{{ media_url }}{{ object.photo }}" alt="" width="34" >
-          </div>
+            <div class="col-md-1 clients-listing__photo-open">
+              <img class="rounded-circle clients-form__photo-thumb"
+              src="{{ media_url }}{{ object.photo }}" alt="" width="34" >
+            </div>
           {% endif %}
           {% if not is_details %}
-          <div class="col-md">
-            <input class="form-control" type="file" accept="images/*" name="photo" id="id_photo">
-          </div>
+            <div class="col-md">
+              <input class="form-control" type="file" accept="images/*" name="photo" id="id_photo">
+            </div>
           {% endif %}
         </div>
       </div>
 
       <div class="form-group col-md-5">
         {% if not is_details %}
-        {{ form.cpf_or_cnpj }}
+          {{ form.cpf_or_cnpj }}
         {% else %}
-        <select name="cpf_or_cnpj" class="form-select clients-form__cpf_or_cnpj" id="id_cpf_or_cnpj"  disabled>
-          <option>{{ object.get_cpf_or_cnpj_display }}</option>
-        </select>
+          <select name="cpf_or_cnpj" class="form-select clients-form__cpf_or_cnpj" id="id_cpf_or_cnpj"  disabled>
+            <option>{{ object.get_cpf_or_cnpj_display }}</option>
+          </select>
         {% endif %}
         {% if object.cpf_or_cnpj == "cnpj" %}
-        <input class="form-control clients-form__input-entry clients-form__input-cpf-cnpj" type="text"
+          <input class="form-control clients-form__input-entry clients-form__input-cpf-cnpj" type="text"
             data-mask="00.000.000/0000-00" id="id_cpf_cnpj" name="cpf_cnpj"
             value="{% if object.cpf_cnpj %}{{ object.cpf_cnpj }}{% endif %}" maxlength="15"
             {% if not is_details %} placeholder="Only number" {% endif %} {% if is_details %} disabled {% endif %}>
         {% else %}
-        <input class="form-control clients-form__input-entry clients-form__input-cpf-cnpj" type="text"
+          <input class="form-control clients-form__input-entry clients-form__input-cpf-cnpj" type="text"
             data-mask="000.000.000-00" id="id_cpf_cnpj" name="cpf_cnpj"
             value="{% if object.cpf_cnpj %}{{ object.cpf_cnpj }}{% endif %}" maxlength="15"
             {% if not is_details %} placeholder="Only number" {% endif %} {% if is_details %} disabled {% endif %}>
@@ -95,12 +99,14 @@
     </div>
 
     <div class="row">
+
       <div class="form-group col-md-4">
         <label for="name">Nome</label>
         <input class="form-control clients-form__input-entry" type="text" id="id_name" name="name"
             value="{% if object.name %}{{ object.name | title }}{% endif %}"
             maxlength="70" required {% if is_details %} disabled {% endif %}>
       </div>
+
       <div class="form-group col-md-2">
         <label for="birth_date">Data de Nascimento</label>
         <input class="form-control clients-form__input-entry" type="date"
@@ -115,67 +121,79 @@
             value="{% if object.rg %}{{ object.rg }}{% endif %}"
             maxlength="15" required {% if is_details %} disabled {% endif %}>
       </div>
+
     </div>
 
     <div class="row">
+
       <div class="form-group col-md-4">
         <label for="address">Endereço</label>
         <input class="form-control clients-form__input-entry" type="text" id="id_address" name="address"
             value="{% if object.address %}{{ object.address | title }}{% endif %}"
             maxlength="30" required {% if is_details %} disabled {% endif %}>
       </div>
+
       <div class="form-group col-md-3">
         <label for="city">City</label>
         <input class="form-control clients-form__input-entry" type="text" id="id_city" name="city"
             value="{% if object.city %}{{ object.city | title }}{% endif %}"
             maxlength="30" required {% if is_details %} disabled {% endif %}>
       </div>
+
       <div class="form-group col-md-3">
         <label for="district">Bairro</label>
         <input class="form-control clients-form__input-entry" type="text" id="id_districty" name="district"
             value="{% if object.district %}{{ object.district | title }}{% endif %}"
             maxlength="30" required {% if is_details %} disabled {% endif %}>
       </div>
+
       <div class="form-group col-md-2">
         <label for="cep">CEP</label>
         <input class="form-control clients-form__input-entry" type="text" id="id_cep" name="cep"
             value="{% if object.cep %}{{ object.cep }}{% endif %}"
             maxlength="30" required {% if is_details %} disabled {% endif %}>
       </div>
+
     </div>
 
     <div class="row">
+
       <div class="form-group col-md-2">
         <label for="state">Estados</label>
         {% if not is_details %}
           {{ form.state }}
         {% else %}
-        <select name="state" class="form-select" id="id_state" disabled>
-          <option selected>{{ object.get_state_display }}</option>
-        </select>
+          <select name="state" class="form-select" id="id_state" disabled>
+            <option selected>{{ object.get_state_display }}</option>
+          </select>
         {% endif %}
       </div>
+
       <div class="form-group col-md-3">
         <label for="email">E-Mail</label>
         <input class="form-control clients-form__input-entry" type="email" id="id_email" name="email"
             value="{% if object.email %}{{ object.email }}{% endif %}"
             maxlength="130" {% if is_details %} disabled {% endif %} {% if not is_details %} placeholder="example@xpto.com" {% endif %}>
       </div>
+
       <div class="form-group col-md-2">
         <label for="cell_phone">Celular</label>
         <input class="form-control clients-form__input-entry" type="text" id="id_cell_phone" name="cell_phone"
             value="{% if object.cell_phone %}{{ object.cell_phone }}{% endif %}" data-mask="(00) 00000-0000"
             maxlength="16" required {% if is_details %} disabled {% endif %} {% if not is_details %} placeholder="(00) 00000-0000" {% endif %}>
       </div>
+
       <div class="form-group col-md-2">
         <label for="phone">Fone</label>
         <input class="form-control clients-form__input-entry" type="text" id="id_phone" name="phone"
             value="{% if object.phone %}{{ object.phone }}{% endif %}" data-mask="(00) 0000-0000"
             maxlength="16" {% if is_details %} disabled {% endif %} {% if not is_details %} placeholder="(00) 0000-0000" {% endif %}>
       </div>
+
     </div>
 
   </form>
+
 </div>
 
 <!-- Include Modal View Photo -->

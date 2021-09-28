@@ -4,9 +4,6 @@
     cursor: pointer;
   }
   &__table {
-    // display: block;
-    // overflow-x: auto;
-    // white-space: nowrap;
     .fa-trash-alt, .fa-file-alt, .fa-edit {
       margin: 0px 2px;
       &:hover, &:focus, &:visited, &:active {

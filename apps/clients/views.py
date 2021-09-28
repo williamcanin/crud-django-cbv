@@ -8,12 +8,6 @@ from .forms import ClientForm
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
-
-# def is_validate(obj):
-#     if obj != "" and obj is not None:
-#         return obj.strip()
-
-# @method_decorator(login_required(login_url='/login/'), name='dispatch')
 class ClientList(LoginRequiredMixin, ListView):
     template_name = 'clients/listing.html'
     login_url = reverse_lazy('sign-in')
@@ -87,8 +81,8 @@ class ClientUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     # success_url = reverse_lazy('client_details')
 
     def get_success_url(self):
-        id_ = self.kwargs['pk']
-        return reverse_lazy('client_details', kwargs={'pk': id_})
+        pk = self.kwargs['pk']
+        return reverse_lazy('client_details', kwargs={'pk': pk})
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

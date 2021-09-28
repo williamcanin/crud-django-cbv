@@ -59,26 +59,16 @@
     <thead class="client__thead">
       <tr>
         <th scope="col">ID</th>
-        <th scope="col">Photo</th>
         <th scope="col">Name</th>
         <th scope="col">CPF/CNPJ</th>
         <th scope="col">Email</th>
         <th scope="col">Cell</th>
-        <!-- <th scope="col">Actions</th> -->
       </tr>
     </thead>
     <tbody>
       {% for client in object_list %}
       <tr class="tbl_item clickable-row" data-href="{% url 'client_details' client.id %}">
         <th scope="row">{{ client.id }}</th>
-        {% if client.photo %}
-        <td>
-          <div class="clients-listing__photo-open">
-            <img id="clients-listing__photo-thumb" class="rounded-circle clients-listing__photo-thumb"
-            src="{{ media_url }}{{ client.photo }}" width="24" />
-          </div>
-        </td>
-        {% endif %}
         <td>
           {{ client.name | title }}
         </td>
@@ -95,19 +85,6 @@
         <td>
           <span data-mask="(00) 00000-0000">{{ client.cell_phone }}</span>
         </td>
-
-        <!-- <td>
-          {% if perms.app_name.change_clientmodel %}
-          <a class="fas fa-pencil-alt clients-listing__btns" href="{% url 'client_update' client.id %}"></a>
-          {% endif %}
-          <a class="fas fa-file-alt clients-listing__btns" href="{% url 'client_details' client.id %}"></a>
-          {% if perms.app_name.delete_clientmodel %}
-          <a href="" class="clients-listing__btn-delete clients-btn-delete" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">
-            <span class="fas fa-trash-alt clients-listing__btns" data-target="{% url 'client_delete' client.id %}"></span>
-          </a>
-          {% endif %}
-        </td> -->
-
 
       </tr>
     {% endfor %}
@@ -158,12 +135,5 @@
 {% endif %}
 
 </div> <!-- End clients-listing -->
-
-
-<!-- Include Modal View Photo -->
-{% include 'clients/modals/photo.html' %}
-
-<!-- Include Modal Delete Record -->
-{% include 'clients/modals/delete.html' %}
 
 {% endblock %}
