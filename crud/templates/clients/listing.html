@@ -61,6 +61,7 @@
         <th scope="col">ID</th>
         <th scope="col">Photo</th>
         <th scope="col">Name</th>
+        <th scope="col">CPF/CNPJ</th>
         <th scope="col">Email</th>
         <th scope="col">Cell</th>
         <th scope="col">Actions</th>
@@ -80,6 +81,13 @@
         {% endif %}
         <td>
           {{ client.name | title }}
+        </td>
+        <td>
+          {% if client.cpf_or_cnpj == "cpf" %}
+          <span data-mask="CPF: 000.000.000-00">{{ client.cpf_cnpj }}</span>
+          {% else %}
+          <span data-mask="CNPJ: 00.000.000/0000-00">{{ client.cpf_cnpj }}</span>
+          {% endif %}
         </td>
         <td>
           {{ client.email }}

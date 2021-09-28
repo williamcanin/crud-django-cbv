@@ -69,14 +69,14 @@
           <option value="cpf" {% if object.cpf_or_cnpj == "cpf" %}selected{% endif %}>CPF</option>
           <option value="cnpj" {% if object.cpf_or_cnpj == "cnpj" %}selected{% endif %}>CNPJ</option>
         </select>
-        {% if object.cpf_or_cnpj == "cpf" %}
+        {% if object.cpf_or_cnpj == "cnpj" %}
         <input class="form-control clients-form__input-entry clients-form__input-cpf-cnpj" type="text"
-            data-mask="000.000.000-00" id="id_cpf_cnpj" name="cpf_cnpj"
+            data-mask="00.000.000/0000-00" id="id_cpf_cnpj" name="cpf_cnpj"
             value="{% if object.cpf_cnpj %}{{ object.cpf_cnpj }}{% endif %}" maxlength="15"
             {% if not is_details %} placeholder="Only number" {% endif %} {% if is_details %} disabled {% endif %}>
         {% else %}
         <input class="form-control clients-form__input-entry clients-form__input-cpf-cnpj" type="text"
-            data-mask="00.000.000/0000-00" id="id_cpf_cnpj" name="cpf_cnpj"
+            data-mask="000.000.000-00" id="id_cpf_cnpj" name="cpf_cnpj"
             value="{% if object.cpf_cnpj %}{{ object.cpf_cnpj }}{% endif %}" maxlength="15"
             {% if not is_details %} placeholder="Only number" {% endif %} {% if is_details %} disabled {% endif %}>
         {% endif %}
