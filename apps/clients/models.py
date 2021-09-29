@@ -4,39 +4,43 @@ from contextlib import suppress
 from apps.core.places import STATES_BRAZIL
 
 
-CHOICE_CPF_CNPJ = (
-    ('cpf', "CPF"),
-    ('cnpj', "CNPJ")
-)
+CHOICE_CPF_CNPJ = (("cpf", "CPF"), ("cnpj", "CNPJ"))
 
 
 class ClientModel(models.Model):
     objects = None
-    name = models.CharField('Nome', max_length=150, null=True)
+    name = models.CharField("Nome", max_length=150, null=True)
     email = models.EmailField(max_length=254, blank=True)
-    birth_date = models.DateField('Data de Nascimento', null=True)
-    district = models.CharField('Bairro', max_length=150, null=True)
-    state = models.CharField('Estados', max_length=25, choices=STATES_BRAZIL, default="default")
-    cpf_or_cnpj = models.CharField('CPF/CNPJ2', max_length=10, choices=CHOICE_CPF_CNPJ, default="cpf")
-    cpf_cnpj = models.CharField('CPF/CNPJ', max_length=18, blank=True)
-    address = models.CharField('Endereço', max_length=250, null=True)
-    photo = models.ImageField('Imagem',
-                              default="default.png",
-                              upload_to="images/upload", null=True, blank=True
-                              )
-    rg = models.CharField('RG', max_length=15, null=True)
-    cep = models.CharField('CEP', max_length=15, null=True)
-    cell_phone = models.CharField('CEL', max_length=15, null=True)
-    phone = models.CharField('Fone', max_length=15, blank=True)
-    city = models.CharField('Cidade', max_length=80, null=True)
-    created_at = models.DateTimeField('Data de Criação', auto_now_add=True, null=True)
-    update_at = models.DateTimeField('Data de atualização', auto_now=True, null=True)
+    birth_date = models.DateField("Data de Nascimento", null=True)
+    district = models.CharField("Bairro", max_length=150, null=True)
+    state = models.CharField(
+        "Estados", max_length=25, choices=STATES_BRAZIL, default="default"
+    )
+    cpf_or_cnpj = models.CharField(
+        "CPF/CNPJ2", max_length=10, choices=CHOICE_CPF_CNPJ, default="cpf"
+    )
+    cpf_cnpj = models.CharField("CPF/CNPJ", max_length=18, blank=True)
+    address = models.CharField("Endereço", max_length=250, null=True)
+    photo = models.ImageField(
+        "Imagem",
+        default="default.png",
+        upload_to="images/upload",
+        null=True,
+        blank=True,
+    )
+    rg = models.CharField("RG", max_length=15, null=True)
+    cep = models.CharField("CEP", max_length=15, null=True)
+    cell_phone = models.CharField("CEL", max_length=15, null=True)
+    phone = models.CharField("Fone", max_length=15, blank=True)
+    city = models.CharField("Cidade", max_length=80, null=True)
+    created_at = models.DateTimeField("Data de Criação", auto_now_add=True, null=True)
+    update_at = models.DateTimeField("Data de atualização", auto_now=True, null=True)
 
     def __str__(self):
         return f"{self.name}".title()
 
     class Meta:
-        db_table = 'tbl_clients'
+        db_table = "tbl_clients"
         verbose_name = "Client"
         verbose_name_plural = "Clients"
         ordering = ["id"]
