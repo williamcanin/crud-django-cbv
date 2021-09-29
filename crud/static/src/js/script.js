@@ -77,7 +77,7 @@ $("#search_cep").on("click", function() {
             $("#id_district").val("");
             $("#id_city").val("");
             $("#id_state").val("");
-            alert("CEP não encontrado.");
+            $('#ModalCEPNotFound').modal('show');
         }
       });
     }

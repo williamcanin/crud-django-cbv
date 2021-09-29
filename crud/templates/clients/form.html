@@ -260,4 +260,9 @@
 <!-- Include Modal Delete Record -->
 {% include 'clients/modals/delete.html' %}
 
+
+{% if not is_details %}
+  {% include 'clients/modals/cep.html' %}
+{% endif %}
+
 {% endblock %}

@@ -118,7 +118,7 @@ function initBrowserSync() {
       `${paths.templates}/**/*.html`
     ], {
       // https://www.browsersync.io/docs/options/#option-proxy
-      proxy: '127.0.0.1:8000'
+      proxy: 'localhost:8000'
 
     }
   )
