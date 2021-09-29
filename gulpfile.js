@@ -112,14 +112,15 @@ function runServer(cb) {
 
 function initBrowserSync() {
   browserSync.init(
-    [
-      `${paths.css}/*.css`,
-      `${paths.js}/*.js`,
-      `${paths.templates}/**/*.html`
-    ], {
-      // https://www.browsersync.io/docs/options/#option-proxy
-      proxy: 'localhost:8000'
-
+    {
+      files: [
+        `${paths.css}/*.css`,
+        `${paths.js}/*.js`,
+        `${paths.templates}/**/*.html`
+      ],
+      notify: false,
+      port: 8000,
+      proxy: '127.0.0.1:8000'
     }
   )
 }
