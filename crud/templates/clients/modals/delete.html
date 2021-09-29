@@ -5,27 +5,36 @@ tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
       <form class="clients-model-delete__form" action="" method="POST"
         enctype="multipart/form-data">
         {% csrf_token %}
+
         <div class="modal-header">
           <h5 class="modal-title" id="ModalLabel">
             Do you really want to delete record?
           </h5>
         </div>
+
         {% if object.id %}
+
           <div class="modal-body">
+
             <div class="row clients-modal-delete__info">
               <label for="">ID: </label>
               <p>{{ object.id }}</p>
             </div>
+
             <div class="row clients-modal-delete__info">
               <label for="">Name: </label>
               <p>{{ object.name | title }}</p>
             </div>
+
           </div>
-          {% endif %}
+
+        {% endif %}
+
         <div class="modal-footer">
           <button type="submit" class="btn btn-danger">Delete</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
+
       </form>
     </div>
   </div>

@@ -8,19 +8,26 @@
 
 <div class="clients-listing">
   <div class="row clients-listing__header">
+
     <!-- Buttons -->
     <div class="col-md-4 clients-listing__header-col">
       <form method="GET" class="clients-listing__form-actions">
+
         {% if perms.app_name.add_clientmodel %}
-        <a class="btn btn-outline-success" href="{% url 'client_new' %}">
-          <i class="fas fa-user-plus"></i> Add
-        </a>
+          <a class="btn btn-outline-success" href="{% url 'client_new' %}">
+            <i class="fas fa-user-plus"></i> Add
+          </a>
         {% endif %}
+
         <a class="btn btn-outline-primary" href="{% url 'client_read' %}">
           <i class="fas fa-sync"></i> Refresh
         </a>
+
       </form>
     </div>
+
+
+
     <!-- Search -->
     <div class="col-md-8 clients-listing__header-col">
       <form method="GET">
@@ -36,6 +43,8 @@
       </form>
     </div>
   </div>
+
+
 
   <!-- Selector -->
   <div class="row clients-listing__data-number-wrapper pt-5">
@@ -54,8 +63,11 @@
     </div>
   </div>
 
+
+
   <!-- Table -->
   <table id="tbl_listing" class="table table-responsive table-striped table-hover clients-listing__table">
+
     <thead class="client__thead">
       <tr>
         <th scope="col">ID</th>
@@ -65,59 +77,72 @@
         <th scope="col">Cell</th>
       </tr>
     </thead>
+
     <tbody>
       {% for client in object_list %}
-      <tr class="tbl_item clickable-row" data-href="{% url 'client_details' client.id %}">
-        <th scope="row">{{ client.id }}</th>
-        <td>
-          {{ client.name | title }}
-        </td>
-        <td>
-          {% if client.cpf_or_cnpj == "cpf" %}
-          <span data-mask="CPF: 000.000.000-00">{{ client.cpf_cnpj }}</span>
-          {% else %}
-          <span data-mask="CNPJ: 00.000.000/0000-00">{{ client.cpf_cnpj }}</span>
-          {% endif %}
-        </td>
-        <td>
-          {{ client.email }}
-        </td>
-        <td>
-          <span data-mask="(00) 00000-0000">{{ client.cell_phone }}</span>
-        </td>
+        <tr class="tbl_item clickable-row" data-href="{% url 'client_details' client.id %}">
+          <th scope="row">{{ client.id }}</th>
 
-      </tr>
+          <td>
+            {{ client.name | title }}
+          </td>
+
+          <td>
+            {% if client.cpf_or_cnpj == "cpf" %}
+            <span data-mask="CPF: 000.000.000-00">{{ client.cpf_cnpj }}</span>
+            {% else %}
+            <span data-mask="CNPJ: 00.000.000/0000-00">{{ client.cpf_cnpj }}</span>
+            {% endif %}
+          </td>
+
+          <td>
+            {{ client.email }}
+          </td>
+
+          <td>
+            <span data-mask="(00) 00000-0000">{{ client.cell_phone }}</span>
+          </td>
+
+        </tr>
     {% endfor %}
     </tbody>
+
   </table>
+
+
 
 <!-- Paginator -->
 {% if object_list.has_other_pages %}
   <nav class="clients-listing__pagination">
     <ul class="pagination pagination-lg justify-content-center">
+
       <li class="page-item clients-listing__pagination-btn">
-      {% if object_list.has_previous %}
-        <a class="page-link" href="?page={{ object_list.previous_page_number }}&data_number={{ data_number }}"
-        tabindex="-1">Previous</a>
-      {% else %}
-        <a class="page-link disabled">Previous</a>
-      {% endif %}
+        {% if object_list.has_previous %}
+          <a class="page-link" href="?page={{ object_list.previous_page_number }}&data_number={{ data_number }}"
+          tabindex="-1">Previous</a>
+        {% else %}
+          <a class="page-link disabled">Previous</a>
+        {% endif %}
       </li>
+
       <li class="page-item clients-listing__pagination-text">
         <span class="page-link">
           {{ object_list.number }}
         </span>
       </li>
+
       <li class="page-item clients-listing__pagination-text">
         <span class="page-link">
           of
         </span>
       </li>
+
       <li class="page-item clients-listing__pagination-text">
         <span class="page-link">
           {{ object_list.paginator.num_pages }}
         </span>
       </li>
+
       <li class="page-item clients-listing__pagination-btn">
         {% if object_list.has_next %}
           <a class="page-link" href="?page={{ object_list.next_page_number }}&data_number={{ data_number }}">Next</a>
@@ -125,6 +150,7 @@
           <a class="page-link disabled">Next</a>
         {% endif %}
       </li>
+
     </ul>
   </nav>
   {% endif %}

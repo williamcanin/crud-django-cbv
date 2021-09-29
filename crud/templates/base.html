@@ -43,23 +43,30 @@
               </li>
             </ul> -->
           </ul>
+
+
           <!-- Profile or Sing In/Sign Up -->
           {% if user.is_authenticated %}
-          <div class="dropdown text-end">
-            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-              {{ user.username }}
-            </a>
-            <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-              <li><a class="dropdown-item" href="#">Change Password</a></li>
-              <li><a class="dropdown-item" href="{% url 'logout' %}">Log out</a></li>
-            </ul>
-          </div>
+
+            <div class="dropdown text-end">
+              <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ user.username }}
+              </a>
+              <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+                <li><a class="dropdown-item" href="#">Change Password</a></li>
+                <li><a class="dropdown-item" href="{% url 'logout' %}">Log out</a></li>
+              </ul>
+            </div>
+
           {% else %}
-          <form class="form-inline my-2 my-lg-0">
-            <a href="{% url 'sign-in' %}" class="btn btn-outline-secondary">Log in</a>
-            <a href="{% url 'sign-up' %}" class="btn btn-primary ml-2">Sign up</a>
-          </form>
+
+            <form class="form-inline my-2 my-lg-0">
+              <a href="{% url 'sign-in' %}" class="btn btn-outline-secondary">Log in</a>
+              <a href="{% url 'sign-up' %}" class="btn btn-primary ml-2">Sign up</a>
+            </form>
+
           {% endif %}
+
         </div>
       </div>
     </header>
