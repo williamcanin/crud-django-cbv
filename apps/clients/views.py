@@ -90,8 +90,10 @@ class ClientUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
         return context
 
 
-class ClientDetails(DetailView):
+class ClientDetails(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
     model = ClientModel
+    login_url = reverse_lazy('sign-in')
+    permission_required = 'clients.view_clientmodel'
     template_name = 'clients/form.html'
 
     def get_context_data(self, **kwargs):
