@@ -53,3 +53,33 @@ $(".clients-form__cpf_or_cnpj").change(function() {
 $(".clickable-row").on("click", function() {
   window.location = $(this).data("href");
 });
+
+// Get CEP (API https://viacep.com.br)
+$("#search_cep").on("click", function() {
+  let getCEPNumbers = $('#id_cep').val().replace(/\D/g, '');
+  if (getCEPNumbers != "") {
+    let validCep = /^[0-9]{8}$/;
+    if(validCep.test(getCEPNumbers)) {
+      $("#id_address").val("...");
+      $("#id_district").val("...");
+      $("#id_city").val("...");
+      $("#id_state").val("...");
+      $.getJSON(`https://viacep.com.br/ws/${getCEPNumbers}/json/?callback=?`, data => {
+        if (!("erro" in data)) {
+          $("#id_address").val(data.logradouro);
+          $("#id_district").val(data.bairro);
+          $("#id_city").val(data.localidade);
+          $("#id_state").val(data.uf);
+        }
+        else {
+            $("#id_cep").val("");
+            $("#id_address").val("");
+            $("#id_district").val("");
+            $("#id_city").val("");
+            $("#id_state").val("");
+            alert("CEP não encontrado.");
+        }
+      });
+    }
+  }
+});
