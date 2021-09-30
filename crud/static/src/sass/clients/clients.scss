@@ -24,6 +24,9 @@
     &:hover{}
   }
   &__header {
+    .btn {
+      min-width: 130px !important;
+    }
     &-col {}
   }
   &__form-actions {
@@ -44,18 +47,19 @@
   }
   &__search-select, &__data-number {
     border: $border;
-    max-width: 100px;
-    width: 120px;
+    max-width: 120px;
     cursor: pointer;
     &:focus, &:visited, &:active {
       box-shadow: none !important;
       border: $border;
     }
   }
+  &__search-select {
+    max-width: 90px;
+  }
   &__photo-full {}
   &__data-number-wrapper {}
   &__data-number-form {}
-  &__data-number {}
   &__photo-thumb {
     cursor: pointer;
   }
@@ -103,6 +107,11 @@
 
 // Forms clients
 .clients-form {
+  &__header {
+    .btn {
+      min-width: 105px !important;
+    }
+  }
   &__photo-thumb {
     cursor: pointer;
   }
