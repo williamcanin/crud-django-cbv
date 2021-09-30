@@ -14,6 +14,14 @@ from .forms import ClientForm
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
+def is_validate(obj):
+    """Função para verficar se o campo de pesquisa
+    foi preenchido antes de mandar a busca"""
+
+    if obj != "" and obj is not None:
+        return obj.strip()
+
+
 class ClientList(LoginRequiredMixin, ListView):
     template_name = "clients/listing.html"
     login_url = reverse_lazy("sign-in")
@@ -44,13 +52,14 @@ class ClientList(LoginRequiredMixin, ListView):
         except EmptyPage:
             found = paginator.page(paginator.num_pages)
 
-        if s_type == "cpf" or s_type == "cnpj":
-            q = re.sub("[^0-9]", "", q)
-            found = self.model.objects.filter(cpf_cnpj=q)
-        elif s_type == "id":
-            found = self.model.objects.filter(id=q)
-        elif s_type == "name":
-            found = self.model.objects.filter(name__icontains=q)
+        if is_validate(q):
+            if s_type == "cpf" or s_type == "cnpj":
+                q = re.sub("[^0-9]", "", q)
+                found = self.model.objects.filter(cpf_cnpj=q)
+            elif s_type == "id":
+                found = self.model.objects.filter(id=q)
+            elif s_type == "name":
+                found = self.model.objects.filter(name__icontains=q)
 
         return found
 
