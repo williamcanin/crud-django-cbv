@@ -23,25 +23,13 @@
             <ul class="navbar-nav pe-3">
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuRegisters" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Registers
+                  Cadastros
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuRegisters">
-                  <li><a class="dropdown-item" href="{% url 'client_read' %}">Clients</a></li>
-                  <!-- <li><a class="dropdown-item" href="">Products</a></li> -->
+                  <li><a class="dropdown-item" href="{% url 'client_read' %}">Clientes</a></li>
                 </ul>
               </li>
             </ul>
-            <!-- Finance -->
-            <!-- <ul class="navbar-nav pe-3">
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuRegisters" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Finance
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuRegisters">
-                  <li><a class="dropdown-item" href="">Cash inflow</a></li>
-                </ul>
-              </li>
-            </ul> -->
           </ul>
 
 
@@ -49,20 +37,21 @@
           {% if user.is_authenticated %}
 
             <div class="dropdown text-end">
-              <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+              <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
+              data-bs-toggle="dropdown" aria-expanded="false">
                 {{ user.username }}
               </a>
               <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-                <li><a class="dropdown-item" href="#">Change Password</a></li>
-                <li><a class="dropdown-item" href="{% url 'logout' %}">Log out</a></li>
+                <li><a class="dropdown-item" href="#">Alterar senha</a></li>
+                <li><a class="dropdown-item" href="{% url 'logout' %}">Sair</a></li>
               </ul>
             </div>
 
           {% else %}
 
             <form class="form-inline my-2 my-lg-0">
-              <a href="{% url 'sign-in' %}" class="btn btn-outline-secondary">Log in</a>
-              <a href="{% url 'sign-up' %}" class="btn btn-primary ml-2">Sign up</a>
+              <a href="{% url 'sign-in' %}" class="btn btn-outline-secondary">Conecte-se</a>
+              <a href="{% url 'sign-up' %}" class="btn btn-primary ml-2">Inscrever-se</a>
             </form>
 
           {% endif %}
