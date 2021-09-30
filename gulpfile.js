@@ -117,9 +117,9 @@ function initBrowserSync() {
         `${paths.js}/*.js`,
         `${paths.templates}/**/*.html`
       ],
+      port: 3000,
       notify: false,
-      port: 8000,
-      proxy: '127.0.0.1:8000'
+      proxy: "127.0.0.1:8000",
     }
   )
 }
