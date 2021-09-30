@@ -83,10 +83,3 @@ $("#search_cep").on("click", function() {
     }
   }
 });
-
-
-// Verify password confirm
-$("#id_signup").on("click", function(){
-  const pass1 = $("#id_password1").val();
-  const pass2 = $("#id_password2").val();
-})
