@@ -1,5 +1,5 @@
 [x] Corrigir erro de data que não carrega (formato)
 [x] Usar checkbox/combobox para CPF/CNPJ
 [ ] Fazer modelo de país/estado/cidade
-[ ] erro acessar o sign-up com usuario logado
+[x] erro acessar o sign-up com usuario logado
 [ ] adicionar usuário criado ao grupo
