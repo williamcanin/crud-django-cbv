@@ -1,23 +1,10 @@
 from .forms import UserRegisterForm
 from django.views.generic.edit import CreateView
-from django.contrib.auth.views import LoginView, PasswordChangeView
+from django.contrib.auth.views import PasswordChangeView
 from django.contrib.messages.views import SuccessMessageMixin
 # from django.contrib.auth.models import Group, User
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.conf import settings
-
-
-
-def anonymous_required(func):
-
-    def as_view(request, *args, **kwargs):
-        redirect_to = kwargs.get('next', settings.LOGIN_REDIRECT_URL)
-        if request.user.is_authenticated():
-            return redirect(redirect_to)
-        response = func(request, *args, **kwargs)
-        return response
-    return as_view
 
 
 class SignUpView(SuccessMessageMixin, CreateView):
@@ -25,6 +12,11 @@ class SignUpView(SuccessMessageMixin, CreateView):
     success_url = reverse_lazy('sign-in')
     form_class = UserRegisterForm
     success_message = "Your profile was created successfully"
+
+    def dispatch(self, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return redirect('/')
+        return super().dispatch(*args, **kwargs)
 
     # def get(self, request, *args, **kwargs):
     #     if request.user.is_authenticated():
