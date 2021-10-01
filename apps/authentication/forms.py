@@ -18,7 +18,7 @@ class UserRegisterForm(UserCreationForm):
         if commit:
             user.save()
 
-            # Add user t group "read_only"
+            # Add user to group "read_only"
             with suppress(Exception):
                 read_only = Group.objects.get(name='read_only')
                 user.groups.add(read_only)
