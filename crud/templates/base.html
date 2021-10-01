@@ -42,6 +42,9 @@
                 {{ user.username }}
               </a>
               <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+                {% if user.is_superuser %}
+                  <li><a class="dropdown-item" href="admin/">Admin</a></li>
+                {% endif %}
                 <li><a class="dropdown-item" href="#">Alterar senha</a></li>
                 <li><a class="dropdown-item" href="{% url 'logout' %}">Sair</a></li>
               </ul>
