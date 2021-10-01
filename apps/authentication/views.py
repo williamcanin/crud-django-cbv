@@ -17,34 +17,3 @@ class SignUpView(SuccessMessageMixin, CreateView):
         if self.request.user.is_authenticated:
             return redirect('/')
         return super().dispatch(*args, **kwargs)
-
-    # def get(self, request, *args, **kwargs):
-    #     if request.user.is_authenticated():
-    #         return redirect('home')
-    #     else:
-    #         return super().get(request, *args, **kwargs)
-
-
-
-    # def form_valid(self, form):
-    #     form.instance.created_by = self.request.user
-
-    #     get_user = User.objects.get(username='wcanin1')
-    #     read_only = Group.objects.get(name='read_only')
-    #     read_only.user_set.add(get_user)
-
-    #     return super().form_valid(form)
-
-    # def post(self, request, *args, **kwargs):
-    #     username_ = self.request.POST.get("username")
-    #     get_user = User.objects.get(username=username_)
-    #     read_only = Group.objects.get(name='read_only')
-    #     print(username_, get_user, read_only)
-    #     get_user.groups.add(name='read_only')
-    #     # read_only.user_set.add(name=username_)
-
-    #     # read_only = Group.objects.get(name='read_only')
-    #     # read_only.user_set.add(username_)
-
-    #     # self.object = None
-    #     return super().post(request, *args, **kwargs)
