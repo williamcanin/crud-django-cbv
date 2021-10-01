@@ -1,68 +1,73 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <div class="row justify-content-center">
-    <div class="col-5">
-      <div class="card">
-        <div class="card-body">
+  {% if not user.is_authenticated %}
+    <div class="row justify-content-center">
+      <div class="col-5">
+        <div class="card">
+          <div class="card-body">
 
-          <h2 class="text-center">Inscrever-se</h2>
+            <h2 class="text-center">Inscrever-se</h2>
 
-          {% if form.errors %}
-          <div class="alert alert-danger" role="alert">
-            {{ form.username.errors }}
-            {{ form.password.errors }}
-            {{ form.password2.errors }}
+            {% if form.errors %}
+            <div class="alert alert-danger" role="alert">
+              {{ form.username.errors }}
+              {{ form.password.errors }}
+              {{ form.password2.errors }}
+            </div>
+            {% endif %}
+
+
+            <form method="POST">
+              {% csrf_token %}
+
+              <div class="form-group pb-3">
+                <label for="id_username">Nome de usuário</label>
+                <input type="text" name="username" id="id_username" class="form-control"
+                placeholder="Username" maxlength="15" required>
+                <small id="usernameHelp" class="form-text text-muted">Obrigatório. 15 caracteres ou menos. Letras, dígitos e _ apenas.</small>
+              </div>
+
+              <div class="form-group pb-3">
+                <label for="id_first_name">Primeiro nome</label>
+                <input type="text" name="first_name" id="id_first_name" class="form-control"
+                placeholder="First name" maxlength="30" required>
+              </div>
+
+              <div class="form-group pb-3">
+                <label for="id_email">Endereço de e-mail</label>
+                <input type="email" name="email" id="id_email" class="form-control" aria-describedby="emailHelp"
+                placeholder="Enter email" required>
+                <small id="emailHelp" class="form-text text-muted">Nunca compartilharemos seu e-mail com mais ninguém.</small>
+              </div>
+
+              <div class="form-group">
+                <label for="id_password1">Senha</label>
+                <input type="password" name="password1" id="id_password1" class="form-control"
+                id="exampleInputPassword1" placeholder="Password" required>
+                <small id="passwordHelp" class="form-text text-muted">
+                  <ul>
+                    <li>Sua senha deve conter pelo menos 8 caracteres.</li>
+                    <li>Sua senha não pode ser uma senha comumente usada.</li>
+                    <li>Sua senha não pode ser totalmente numérica.</li>
+                  </ul>
+                </small>
+              </div>
+
+              <div class="form-group pb-3">
+                <label for="id_password2">Confirmar senha</label>
+                <input type="password" name="password2" id="id_password2" class="form-control"
+                id="exampleInputPasswordConfirm1" placeholder="Password" required>
+              </div>
+
+              <button type="submit" class="btn btn-primary" id="id_signup" >Enviar</button>
+            </form>
+
           </div>
-          {% endif %}
-
-          <form method="POST">
-            {% csrf_token %}
-
-            <div class="form-group pb-3">
-              <label for="id_username">Nome de usuário</label>
-              <input type="text" name="username" id="id_username" class="form-control"
-              placeholder="Username" maxlength="15" required>
-              <small id="usernameHelp" class="form-text text-muted">Obrigatório. 15 caracteres ou menos. Letras, dígitos e _ apenas.</small>
-            </div>
-
-            <div class="form-group pb-3">
-              <label for="id_first_name">Primeiro nome</label>
-              <input type="text" name="first_name" id="id_first_name" class="form-control"
-              placeholder="First name" maxlength="30" required>
-            </div>
-
-            <div class="form-group pb-3">
-              <label for="id_email">Endereço de e-mail</label>
-              <input type="email" name="email" id="id_email" class="form-control" aria-describedby="emailHelp"
-              placeholder="Enter email" required>
-              <small id="emailHelp" class="form-text text-muted">Nunca compartilharemos seu e-mail com mais ninguém.</small>
-            </div>
-
-            <div class="form-group">
-              <label for="id_password1">Senha</label>
-              <input type="password" name="password1" id="id_password1" class="form-control"
-              id="exampleInputPassword1" placeholder="Password" required>
-              <small id="passwordHelp" class="form-text text-muted">
-                <ul>
-                  <li>Sua senha deve conter pelo menos 8 caracteres.</li>
-                  <li>Sua senha não pode ser uma senha comumente usada.</li>
-                  <li>Sua senha não pode ser totalmente numérica.</li>
-                </ul>
-              </small>
-            </div>
-
-            <div class="form-group pb-3">
-              <label for="id_password2">Confirmar senha</label>
-              <input type="password" name="password2" id="id_password2" class="form-control"
-              id="exampleInputPasswordConfirm1" placeholder="Password" required>
-            </div>
-
-            <button type="submit" class="btn btn-primary" id="id_signup" >Enviar</button>
-          </form>
-
         </div>
       </div>
     </div>
-  </div>
+  {% else %}
+    <p class="text-center">Você não pode registrar estando logado!</p>
+  {% endif %}
 {% endblock %}

@@ -4,4 +4,10 @@
 
 {% block head %}{% endblock %}
 
-{% block content %}{% endblock %}
+{% block content %}
+<h2>Homepage</h2>
+  <p>Bem vindo ao site, {% if user.is_authenticated %}{{ user.username }}{% else %}visitante{% endif %}!</p>
+  <p>
+    {% comment %} <strong>Total de usuários registrados: </strong> {{ count }} {% endcomment %}
+  </p>
+{% endblock %}
