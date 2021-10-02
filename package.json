@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "poetry install",
-    "createsuperuser": "python manage.py createsuperuser",
+    "collectstatic": "python manage.py collectstatic",
     "migrate": "python manage.py migrate",
     "make": "python manage.py makemigrations",
     "start": "gulp",
