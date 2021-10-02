@@ -28,40 +28,40 @@ class ClientList(LoginRequiredMixin, ListView):
     model = ClientModel
 
     def get_queryset(self):
-        found = self.model.objects.filter()
+        records = self.model.objects.filter()
         q = self.request.GET.get("q")
         s_type = self.request.GET.get("s_type")
         data_number = self.request.GET.get("data_number")
         page = self.request.GET.get("page", 1)
 
         if data_number == "10":
-            paginator = Paginator(found, 10)
+            paginator = Paginator(records, 10)
         elif data_number == "25":
-            paginator = Paginator(found, 25)
+            paginator = Paginator(records, 25)
         elif data_number == "50":
-            paginator = Paginator(found, 50)
+            paginator = Paginator(records, 50)
         elif data_number == "100":
-            paginator = Paginator(found, 100)
+            paginator = Paginator(records, 100)
         else:
-            paginator = Paginator(found, 10)
+            paginator = Paginator(records, 10)
 
         try:
-            found = paginator.page(page)
+            records = paginator.page(page)
         except PageNotAnInteger:
-            found = paginator.page(1)
+            records = paginator.page(1)
         except EmptyPage:
-            found = paginator.page(paginator.num_pages)
+            records = paginator.page(paginator.num_pages)
 
         if is_validate(q):
             if s_type == "cpf" or s_type == "cnpj":
                 q = re.sub("[^0-9]", "", q)
-                found = self.model.objects.filter(cpf_cnpj=q)
+                records = self.model.objects.filter(cpf_cnpj=q)
             elif s_type == "id":
-                found = self.model.objects.filter(id=q)
+                records = self.model.objects.filter(id=q)
             elif s_type == "name":
-                found = self.model.objects.filter(name__icontains=q)
+                records = self.model.objects.filter(name__icontains=q)
 
-        return found
+        return records
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
