@@ -12,7 +12,7 @@ class SignUpView(SuccessMessageMixin, CreateView):
     template_name = 'authentication/register.html'
     success_url = reverse_lazy('sign-in')
     form_class = UserRegisterForm
-    success_message = "Your profile was created successfully"
+    success_message = "Seu perfil foi criado com sucesso, basta fazer o login :)"
 
     def dispatch(self, *args, **kwargs):
         if self.request.user.is_authenticated:
@@ -20,7 +20,7 @@ class SignUpView(SuccessMessageMixin, CreateView):
         return super().dispatch(*args, **kwargs)
 
 
-class ChangePasswordView(LoginRequiredMixin, PasswordChangeView):
+class ChangePasswordView(SuccessMessageMixin, LoginRequiredMixin, PasswordChangeView):
     template_name = 'authentication/password_change.html'
     success_url = reverse_lazy('home_page')
-    success_message = "Password change successfully!"
+    success_message = "Senha alterada com sucesso!"
