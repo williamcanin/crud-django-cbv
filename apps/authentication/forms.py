@@ -14,8 +14,6 @@ class UserRegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'first_name', 'last_name']
-        proxy = True
-        permissions = [('clients.view_clientmodel', 'clients | Client | Can view Client')]
 
     def save(self, commit=True):
         user = super().save(commit=False)
