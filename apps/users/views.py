@@ -9,7 +9,7 @@ from django.urls import reverse_lazy
 
 
 class SignUpView(SuccessMessageMixin, CreateView):
-    template_name = 'authentication/register.html'
+    template_name = 'users/register.html'
     success_url = reverse_lazy('sign-in')
     form_class = UserRegisterForm
     success_message = "Seu perfil foi criado com sucesso, basta fazer o login :)"
@@ -21,6 +21,6 @@ class SignUpView(SuccessMessageMixin, CreateView):
 
 
 class ChangePasswordView(SuccessMessageMixin, LoginRequiredMixin, PasswordChangeView):
-    template_name = 'authentication/password_change.html'
+    template_name = 'users/password_change.html'
     success_url = reverse_lazy('home_page')
     success_message = "Senha alterada com sucesso!"

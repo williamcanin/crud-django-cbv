@@ -169,7 +169,8 @@
           aria-label="00000-000" aria-describedby="search_cep" id="id_cep" name="cep"
           value="{% if object.cep %}{{ object.cep }}{% endif %}" maxlength="10" required {% if is_details %} disabled {% endif %}>
 
-          <button class="btn btn-primary" type="button" id="search_cep" {% if is_details %} disabled {% endif %}>
+          <button class="btn btn-primary" type="button" id="search_cep" {% if is_details %} disabled {% endif %}
+            data-message="CEP Não encontrado!">
             <i class="fa fa-search" aria-hidden="true"></i>
           </button>
 
@@ -263,7 +264,7 @@
 
 
 {% if not is_details %}
-  {% include 'clients/modals/cep.html' %}
+  {% include 'clients/modals/cep_not_found.html' %}
 {% endif %}
 
 {% endblock %}

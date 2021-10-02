@@ -6,6 +6,12 @@
 //   $(".clients-form__choose-file-label").text(filename);
 // });
 
+// Add Popovers (Bootstrap)
+const popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+const popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+  return new bootstrap.Popover(popoverTriggerEl);
+})
+
 // Open image in modal
 $(".clients-listing__photo-open").on("click", function() {
   $('.clients-listing__photo-full').attr('src', $(this).find('img').attr('src'));
@@ -22,11 +28,11 @@ $(".clients-btn-delete").on("click", function() {
 $(".clients-listing__search-select").change(function() {
   const select = $('.clients-listing__search-select option:selected').val();
   const busca = $('.clients-listing__search-input');
-  if (select == "cpf") {
+  if (select === "cpf") {
     busca.mask('000.000.000-00');
-  } else if (select == "cnpj") {
+  } else if (select === "cnpj") {
     busca.mask('00.000.000/0000-00');
-  } else if (select == "id") {
+  } else if (select === "id") {
     busca.mask('0000000');
   } else {
     busca.unmask();
@@ -37,10 +43,10 @@ $(".clients-listing__search-select").change(function() {
 $(".clients-form__cpf_or_cnpj").change(function() {
   const select = $('.clients-form__cpf_or_cnpj option:selected').val();
   const input = $('.clients-form__input-cpf-cnpj');
-  if (select == "cpf") {
+  if (select === "cpf") {
     input.val('');
     input.mask('000.000.000-00');
-  } else if (select == "cnpj") {
+  } else if (select === "cnpj") {
     input.val('');
     input.mask('00.000.000/0000-00');
   } else {
@@ -57,7 +63,7 @@ $(".clickable-row").on("click", function() {
 // Get CEP (API https://viacep.com.br)
 $("#search_cep").on("click", function() {
   let getCEPNumbers = $('#id_cep').val().replace(/\D/g, '');
-  if (getCEPNumbers != "") {
+  if (getCEPNumbers !== "") {
     let validCep = /^[0-9]{8}$/;
     if(validCep.test(getCEPNumbers)) {
       $("#id_address").val("...");
@@ -72,12 +78,12 @@ $("#search_cep").on("click", function() {
           $("#id_state").val(data.uf);
         }
         else {
-            $("#id_cep").val("");
             $("#id_address").val("");
             $("#id_district").val("");
             $("#id_city").val("");
             $("#id_state").val("");
             $('#ModalCEPNotFound').modal('show');
+            $('#id_cep').val("");
         }
       });
     }

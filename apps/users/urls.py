@@ -7,7 +7,7 @@ urlpatterns = [
     path(
         "sign-in/",
         LoginView.as_view(
-            redirect_authenticated_user=True, template_name="authentication/login.html"
+            redirect_authenticated_user=True, template_name="users/login.html"
         ),
         name="sign-in",
     ),
