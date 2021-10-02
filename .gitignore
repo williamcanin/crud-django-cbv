@@ -16,6 +16,7 @@ temp/
 venv/
 .venv/
 node_modules/
+.ipynb_checkpoints
 .env
 **/*/media/images/
 
