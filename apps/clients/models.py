@@ -17,7 +17,7 @@ class ClientModel(models.Model):
         "Estados", max_length=25, choices=STATES_BRAZIL, default="default"
     )
     cpf_or_cnpj = models.CharField(
-        "CPF/CNPJ2", max_length=10, choices=CHOICE_CPF_CNPJ, default="cpf"
+        "CPF/CNPJ", max_length=10, choices=CHOICE_CPF_CNPJ, default="cpf"
     )
     cpf_cnpj = models.CharField("CPF/CNPJ", max_length=18, blank=True)
     address = models.CharField("Endereço", max_length=250, null=True)
