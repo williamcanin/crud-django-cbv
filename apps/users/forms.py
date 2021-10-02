@@ -7,7 +7,6 @@ from contextlib import suppress
 class UserRegisterForm(UserCreationForm):
     PERM_VIEWS = [
         'Can view Client',
-        'Can view user'
     ]
     email = forms.EmailField()
 
@@ -24,8 +23,8 @@ class UserRegisterForm(UserCreationForm):
 
             with suppress(Exception):
                 # Add user to group "read_only"
-                read_only = Group.objects.get(name='read_only')
-                user.groups.add(read_only)
+                # read_only = Group.objects.get(name='read_only')
+                # user.groups.add(read_only)
 
                 # Add permissions to here user
                 for perm in self.PERM_VIEWS:
