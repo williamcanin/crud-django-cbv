@@ -3,3 +3,4 @@
 [ ] Fazer modelo de país/estado/cidade
 [x] erro acessar o sign-up com usuario logado
 [x] adicionar usuário criado ao grupo
+[ ] implementar mensagens se sucesso.

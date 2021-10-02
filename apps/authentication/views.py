@@ -2,6 +2,7 @@ from .forms import UserRegisterForm
 from django.views.generic.edit import CreateView
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 # from django.contrib.auth.models import Group, User
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
@@ -17,3 +18,9 @@ class SignUpView(SuccessMessageMixin, CreateView):
         if self.request.user.is_authenticated:
             return redirect('/')
         return super().dispatch(*args, **kwargs)
+
+
+class ChangePasswordView(LoginRequiredMixin, PasswordChangeView):
+    template_name = 'authentication/password_change.html'
+    success_url = reverse_lazy('home_page')
+    success_message = "Password change successfully!"

@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="{% static 'css/vendors.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="">
+    {% block head %}{% endblock %}
+    <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
 
@@ -45,7 +47,7 @@
                 {% if user.is_superuser %}
                   <li><a class="dropdown-item" href="/admin/">Admin</a></li>
                 {% endif %}
-                <li><a class="dropdown-item" href="#">Alterar senha</a></li>
+                <li><a class="dropdown-item" href="{% url 'password_change' %}">Alterar senha</a></li>
                 <li><a class="dropdown-item" href="{% url 'logout' %}">Sair</a></li>
               </ul>
             </div>
