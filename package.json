@@ -8,7 +8,6 @@
   },
   "main": "index.js",
   "scripts": {
-    "postinstall": "gulp assets",
     "collectstatic": "python manage.py collectstatic",
     "migrate": "python manage.py migrate",
     "make": "python manage.py makemigrations",

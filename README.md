@@ -38,7 +38,7 @@ $ heroku create <APP NAME> --buildpack heroku/nodejs
 $ heroku config:set DISABLE_COLLECTSTATIC=1
 $ heroku config:set SECRET_KEY="<SECRET_KEY>"
 $ heroku config:set DEBUG=False
-$ heroku config:set ALLOWED_HOSTS="localhost, 127.0.0.1, URL-APP.herokuapp.com"
+$ heroku config:set ALLOWED_HOSTS="localhost, 127.0.0.1,  <APP NAME>.herokuapp.com"
 $ git push -u heroku main
 $ heroku ps:scale web=1
 $ heroku run python manage.py makemigrations
