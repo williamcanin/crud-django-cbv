@@ -43,7 +43,7 @@ function pathsConfig(AppName, vendorsRoot) {
   }
 }
 
-var paths = pathsConfig('crud', 'node_modules')
+var paths = pathsConfig('management', 'node_modules')
 
 var minifyCss = [
   cssnano({ preset: 'default' })   // minify result
