@@ -31,7 +31,7 @@ $ npm run dev
 $ python manage.py collectstatic
 $ poetry export -f requirements.txt --output requirements.txt --without-hashes --dev
 $ git add .
-$ git commit -m "Update in Heroku"
+$ git commit -m "Update"
 $ git checkout -b main
 $ heroku apps:create <APP NAME>
 $ heroku create <APP NAME> --buildpack heroku/nodejs
@@ -46,7 +46,6 @@ $ heroku ps:scale web=1
 $ heroku run python manage.py makemigrations
 $ heroku run python manage.py migrate
 $ heroku run python manage.py createsuperuser
-$ heroku run npm run assets
 ```
 
 > NOTE: O Heroku executa seu aplicativo em dynos e os dynos entram em suspensão após 30 minutos, se não houver solicitação. Isso faz com que o Heroku não preserve o upload de arquivos de mídia do usuário entre o reinício do dynos. Por isso o projeto habilita a opção de upload de mídias apenas em modo DEBUG = True. See [Discussion](https://stackoverflow.com/questions/41474150/using-heroku-for-django-media-files) and [Doc Heroku](https://devcenter.heroku.com/articles/s3)
