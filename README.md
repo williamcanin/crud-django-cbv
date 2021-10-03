@@ -28,7 +28,6 @@ $ npm run dev
 ## Deploy Heroku
 
 ```
-$ npm run assets
 $ python manage.py collectstatic
 $ poetry export -f requirements.txt --output requirements.txt --without-hashes --dev
 $ git add .
