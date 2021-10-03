@@ -34,7 +34,6 @@ $ git add .
 $ git commit -m "Update in Heroku"
 $ git checkout -b main
 $ heroku apps:create <APP NAME>
-
 $ heroku create <APP NAME> --buildpack heroku/nodejs
 $ heroku config:set DISABLE_COLLECTSTATIC=1
 $ heroku config:set SECRET_KEY="<SECRET_KEY>"
