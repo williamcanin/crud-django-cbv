@@ -27,6 +27,7 @@ $ npm run dev
 ## Deploy Heroku
 
 ```
+$ python manage.py collectstatic
 $ poetry export -f requirements.txt --output requirements.txt --without-hashes --dev
 $ git add .
 $ git commit -m "Update in Heroku"
