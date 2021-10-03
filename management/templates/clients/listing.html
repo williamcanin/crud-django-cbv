@@ -13,7 +13,7 @@
     <div class="col-md-4 clients-listing__header-col">
       <form method="GET" class="clients-listing__form-actions">
 
-        {% if perms.app_name.add_clientmodel %}
+        {% if perms.clients.add_clientmodel %}
           <a class="btn btn-outline-success" href="{% url 'client_new' %}">
             <i class="fas fa-user-plus"></i> Adicionar
           </a>
