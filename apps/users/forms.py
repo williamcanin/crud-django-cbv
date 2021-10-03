@@ -8,6 +8,7 @@ class UserRegisterForm(UserCreationForm):
     PERM_VIEWS = [
         'Can view Client',
         'Can add Client',
+        'Can change Client',
     ]
     email = forms.EmailField()
 
