@@ -1,7 +1,10 @@
 {
   "name": "crud-django-cbv",
-  "version": "0.1.0",
   "description": "CRUD Django using Class-Based Views",
+  "version": "0.1.0",
+  "engines": {
+    "node": ">=14.x"
+  },
   "main": "index.js",
   "scripts": {
     "postinstall": "poetry install",
@@ -16,10 +19,6 @@
     "env": "python bin/gen --env",
     "shell": "python manage.py shell",
     "test": "pytest"
-  },
-  "engines": {
-    "node": ">=14.17.5",
-    "npm": ">=6.14.14"
   },
   "repository": {
     "type": "git",
