@@ -46,15 +46,12 @@
           {% endif %}
 
 
-          {% if perms.clients.delete_clientmodel %}
-            {% if object.id %}
-              <button type="button" class="btn btn-outline-danger clients-btn-delete" data-toggle="modal"
-              data-target="#confirmDeleteModal">
-                <span data-target="{% url 'client_delete' object.id %}">Deletar</span>
-              </button>
-            {% endif %}
+          {% if object.id %}
+            <button type="button" class="btn btn-outline-danger clients-btn-delete" data-toggle="modal"
+            data-target="#confirmDeleteModal" {% if not perms.clients.delete_clientmodel %} disabled {% endif %}>
+              <span data-target="{% url 'client_delete' object.id %}">Deletar</span>
+            </button>
           {% endif %}
-
 
         {% endif %}
 
