@@ -34,6 +34,8 @@ $ git add .
 $ git commit -m "Update in Heroku"
 $ git checkout -b main
 $ heroku apps:create <APP NAME>
+
+$ heroku create <APP NAME> --buildpack heroku/nodejs
 $ heroku config:set DISABLE_COLLECTSTATIC=1
 $ heroku config:set SECRET_KEY="<SECRET_KEY>"
 $ heroku config:set DEBUG=False
@@ -43,7 +45,6 @@ $ heroku ps:scale web=1
 $ heroku run python manage.py makemigrations
 $ heroku run python manage.py migrate
 $ heroku run python manage.py createsuperuser
-$ heroku buildpacks
 $ heroku config:set USE_NPM_INSTALL=true
 $ heroku config:set NODE_MODULES_CACHE=false
 ```
