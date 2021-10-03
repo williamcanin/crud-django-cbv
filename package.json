@@ -42,6 +42,7 @@
     "cssnano": "^5.0.8",
     "del": "^6.0.0",
     "gulp": "^4.0.2",
+    "gulp-cli": "^2.3.0",
     "gulp-concat": "^2.6.1",
     "gulp-plumber": "^1.2.1",
     "gulp-postcss": "^9.0.1",
