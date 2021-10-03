@@ -45,6 +45,9 @@ $ heroku ps:scale web=1
 $ heroku run python manage.py makemigrations
 $ heroku run python manage.py migrate
 $ heroku run python manage.py createsuperuser
+$ heroku run npm install -g gulp gulp-cli
+$ heroku run npm install
+$ heroku run npm run assets
 $ heroku config:set USE_NPM_INSTALL=true
 $ heroku config:set NODE_MODULES_CACHE=false
 ```
