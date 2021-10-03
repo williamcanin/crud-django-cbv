@@ -50,7 +50,7 @@
             <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus"
             data-bs-content="You are not allowed to delete!">
               <button type="button" class="btn btn-outline-danger clients-btn-delete" data-toggle="modal"
-              data-target="#confirmDeleteModal">
+              data-target="#confirmDeleteModal" disabled>
                 <span data-target="{% url 'client_delete' object.id %}">Deletar</span>
               </button>
             </span>
