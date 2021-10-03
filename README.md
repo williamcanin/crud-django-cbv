@@ -27,9 +27,12 @@ $ npm run dev
 ## Deploy Heroku
 
 ```
-$ heroku apps:create <APP NAME>
+$ poetry export -f requirements.txt --output requirements.txt --without-hashes --dev
 $ git add .
 $ git commit -m "Update in Heroku"
+$ git checkout -b master
+$ heroku apps:create <APP NAME>
+$ heroku config:set DISABLE_COLLECTSTATIC=1
 $ git push heroku master
 $ heroku ps:scale web=1
 $ heroku run python manage.py makemigrations
