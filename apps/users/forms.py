@@ -7,6 +7,7 @@ from contextlib import suppress
 class UserRegisterForm(UserCreationForm):
     PERM_VIEWS = [
         'Can view Client',
+        'Can add Client',
     ]
     email = forms.EmailField()
 
