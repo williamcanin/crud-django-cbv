@@ -3,7 +3,6 @@ from django.views.generic.edit import CreateView
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
-# from django.contrib.auth.models import Group, User
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 
