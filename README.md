@@ -10,6 +10,7 @@
 
 ```shell
 $ poetry shell
+$ poetry install
 $ npm install
 $ npm run assets
 $ npm run env
