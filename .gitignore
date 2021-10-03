@@ -18,7 +18,7 @@ venv/
 node_modules/
 .ipynb_checkpoints
 .env
-**/*/media/images/
+# **/*/media/images/
 
 ## Comment this block to send on the Heroku -----
 ## apps/clients/migrations/*_initial.py
