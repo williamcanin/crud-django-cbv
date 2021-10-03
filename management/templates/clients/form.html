@@ -46,11 +46,21 @@
           {% endif %}
 
 
-          {% if object.id %}
-            <button type="button" class="btn btn-outline-danger clients-btn-delete" data-toggle="modal"
-            data-target="#confirmDeleteModal" {% if not perms.clients.delete_clientmodel %} disabled {% endif %}>
-              <span data-target="{% url 'client_delete' object.id %}">Deletar</span>
-            </button>
+          {% if not perms.clients.delete_clientmodel %}
+            <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus"
+            data-bs-content="Disabled popover">
+              <button type="button" class="btn btn-outline-danger clients-btn-delete" data-toggle="modal"
+              data-target="#confirmDeleteModal">
+                <span data-target="{% url 'client_delete' object.id %}">Deletar</span>
+              </button>
+            </span>
+          {% else %}
+            {% if object.id %}
+              <button type="button" class="btn btn-outline-danger clients-btn-delete" data-toggle="modal"
+              data-target="#confirmDeleteModal">
+                <span data-target="{% url 'client_delete' object.id %}">Deletar</span>
+              </button>
+            {% endif %}
           {% endif %}
 
         {% endif %}
