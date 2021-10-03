@@ -33,7 +33,7 @@ $ git commit -m "Update in Heroku"
 $ git checkout -b master
 $ heroku apps:create <APP NAME>
 $ heroku config:set DISABLE_COLLECTSTATIC=1
-$ git push heroku master
+$ git push -u heroku master
 $ heroku ps:scale web=1
 $ heroku run python manage.py makemigrations
 $ heroku run python manage.py migrate
