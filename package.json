@@ -17,6 +17,10 @@
     "shell": "python manage.py shell",
     "test": "pytest"
   },
+  "engines": {
+    "node": ">=14.17.5",
+    "npm": ">=6.14.14"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/williamcanin/crud-django-cbv.git"
