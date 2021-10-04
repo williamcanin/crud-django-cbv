@@ -9,6 +9,8 @@
 **/*/__pycache__
 **/*/staticfiles/
 !**/*/staticfiles/.gitkeep
+**/*/media/
+!**/*/media/default.png
 package-lock.json
 poetry.lock
 tmp/
