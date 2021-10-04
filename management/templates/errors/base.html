@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %} Erro de permissão {% endblock %}
+
+{% block head %}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="error-template">
+            <h1>{% block error_title %}{% endblock %}</h1>
+            <h2>{% block error_subtitle %}{% endblock %}</h2>
+            <div class="error-template__details">
+                {% block error_description %}{% endblock %}
+            </div>
+            <div class="error-template__actions">
+                <a href="{% url 'home_page' %}" class="btn btn-primary error-template__btn-home">
+                    Volte para Home
+                </a>
+                <a href="#" class="btn btn-warning error-template__btn-support">
+                    Contact Support
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
