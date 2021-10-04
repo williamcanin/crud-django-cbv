@@ -149,6 +149,10 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'media'),  # Default: media
 ]
 
+STATICFILES_FINDERS_IGNORE = [
+    '*.scss',
+]
+
 # Default: /media/
 MEDIA_URL = '/media/'
 
