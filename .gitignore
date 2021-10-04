@@ -21,10 +21,10 @@ node_modules/
 # **/*/media/images/
 
 ## Comment this block to send on the Heroku -----
-# apps/clients/migrations/*_initial.py
-# **/*/static/js/
-# **/*/static/css/
-# **/*/static/webfonts/
-# **/*/static/images/*.jpg
-# **/*/static/images/*.png
+apps/clients/migrations/*_initial.py
+**/*/static/js/
+**/*/static/css/
+**/*/static/webfonts/
+**/*/static/images/*.jpg
+**/*/static/images/*.png
 ## ------------------------------------------------
