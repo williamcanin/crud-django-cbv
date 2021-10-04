@@ -96,6 +96,7 @@ def default_database():
         print(f"Using database: {DB_URL}")
     except decouple.UndefinedValueError:
         print("Using database: SQLite3")
+        # Creating path for database SQLite3
         Path(os.path.join(BASE_DIR, 'database')).mkdir(parents=True, exist_ok=True)
 
     return f"sqlite:///{os.path.join(BASE_DIR, 'database/database.sqlite3')}"
