@@ -86,14 +86,23 @@ WSGI_APPLICATION = 'management.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-def default_db():
-    from pathlib import Path as create_path
-    create_path(os.path.join(BASE_DIR, 'db')).mkdir(parents=True, exist_ok=True)
-    return f"sqlite:///{os.path.join(BASE_DIR, 'db/db.sqlite3')}"
+
+def default_database():
+    from pathlib import Path
+
+    try:
+        DB_URL = decouple.config('DATABASE_URL')
+        DB_URL = f"{DB_URL.split(':')[0].title()}SQL"
+        print(f"Using database: {DB_URL}")
+    except decouple.UndefinedValueError:
+        print("Using database: SQLite3")
+        Path(os.path.join(BASE_DIR, 'database')).mkdir(parents=True, exist_ok=True)
+
+    return f"sqlite:///{os.path.join(BASE_DIR, 'database/database.sqlite3')}"
 
 
 DATABASES = {
-    'default': decouple.config('DATABASE_URL', default=default_db(), cast=dburl)
+    'default': decouple.config('DATABASE_URL', default=default_database(), cast=dburl)
 }
 
 # Password validation
