@@ -153,6 +153,15 @@ STATICFILES_FINDERS_IGNORE = [
     '*.scss',
 ]
 
+# Repository upoload medias: images, videos, audio. etc.
+# NOTA
+# Você pode mudar e deixar apenas "PHOTO_ENABLE = True", porem, se enviar o projeto
+# para um servidor web, terá que configurar para reconhecer a pasta de MEDIA_ROOT.
+# O Heroku não resolve arquivos de midias, terá que usar um Amazon S3 por exemplo.
+# Por outro lado, você consegue usar midias em modo de DEBUG = True.
+# Veja mais detalhes em:
+# https://stackoverflow.com/questions/41474150/using-heroku-for-django-media-files
+# https://devcenter.heroku.com/articles/s3
 # Default: /media/
 MEDIA_URL = '/media/'
 

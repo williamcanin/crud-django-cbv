@@ -83,6 +83,7 @@ class ClientCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["media_url"] = settings.MEDIA_URL
+        context['PHOTO_ENABLE'] = settings.PHOTO_ENABLE
         return context
 
 
