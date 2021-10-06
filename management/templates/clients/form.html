@@ -199,7 +199,7 @@
       <div class="form-group col-md-3">
         <label for="city">Cidade</label>
         <input class="form-control clients-form__input-entry" type="text" id="id_city" name="city"
-            value="{% if object.city %}{{ object.city | title }}{% endif %}"
+            value="{% if object.city %}{{ object.city | title }}{% endif %} {{ city_cep }}"
             maxlength="30" required {% if is_details %} disabled {% endif %}>
       </div>
 

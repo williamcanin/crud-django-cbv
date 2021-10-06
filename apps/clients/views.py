@@ -14,6 +14,21 @@ from .forms import ClientForm
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
+# def get_cep(instance, name: str, context: dict):
+#     import requests
+#
+#     if instance.request.method == 'GET':
+#         cep = instance.request.GET.get(name)
+#         cep = re.sub("[^0-9]", "", cep)
+#         data = requests.get(f'https://viacep.com.br/ws/{cep}/json/')
+#         address_data = data.json()
+#         if 'erro' not in address_data:
+#             context["city"] = address_data['localidade']
+#             context["uf"] = address_data['uf']
+#             return address_data
+#     return "CEP não encontrado."
+
+
 def is_validate(obj):
     """Função para verficar se o campo de pesquisa
     foi preenchido antes de mandar a busca"""

@@ -190,7 +190,7 @@ LOGOUT_REDIRECT_URL = 'home_page'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 # Expira em 10 minutos
-SESSION_COOKIE_AGE = 10 * 60
+# SESSION_COOKIE_AGE = 10 * 60
 
 # Heroku settings
 django_heroku.settings(locals())
