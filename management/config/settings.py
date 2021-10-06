@@ -139,6 +139,7 @@ USE_L10N = True
 USE_TZ = True
 
 
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
@@ -183,6 +184,10 @@ PHOTO_ENABLE = True if DEBUG else False
 # Login/Logout redirect
 LOGIN_REDIRECT_URL = 'home_page'
 LOGOUT_REDIRECT_URL = 'home_page'
+
+
+# Expirar sessão de login ao fechar brower
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 # Heroku settings
 django_heroku.settings(locals())
