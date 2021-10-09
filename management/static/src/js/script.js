@@ -6,6 +6,12 @@
 //   $(".clients-form__choose-file-label").text(filename);
 // });
 
+// Close alert sucsess automatic
+$("#success-alert").hide();
+$("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
+  $("#success-alert").slideUp(500);
+});
+
 // Add Popovers (Bootstrap)
 const popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
 const popoverList = popoverTriggerList.map(function (popoverTriggerEl) {

@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.models import User, Permission, Group
+from django.contrib.auth.models import User, Permission
 from django.contrib.auth.forms import UserCreationForm
 from contextlib import suppress
 

@@ -15,14 +15,6 @@
 </head>
 <body>
 
-    {% if messages %}
-      {% for message in messages %}
-        <div class="alert alert-success" role="alert">
-          {{ message }}
-        </div>
-      {% endfor %}
-    {% endif %}
-
     <header class="border-bottom">
       <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -77,6 +69,15 @@
 
     <!-- Content -->
     <div class="container py-5">
+
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-success" id="success-alert">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+
       {% block content %}{% endblock %}
     </div>
 

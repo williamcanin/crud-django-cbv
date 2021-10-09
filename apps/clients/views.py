@@ -12,6 +12,7 @@ from django.views.generic import (
 from .models import ClientModel
 from .forms import ClientForm
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.contrib import messages
 
 
 # def get_cep(instance, name: str, context: dict):
@@ -92,6 +93,7 @@ class ClientCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     permission_required = "clients.add_clientmodel"
     model = ClientModel
     form_class = ClientForm
+    # Apenas use o fields se não for usar o form_class
     # fields = '__all__'
     success_url = reverse_lazy("client_read")
 
@@ -100,6 +102,22 @@ class ClientCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
         context["media_url"] = settings.MEDIA_URL
         context['PHOTO_ENABLE'] = settings.PHOTO_ENABLE
         return context
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        messages.success(self.request, 'Salvo com sucesso.')
+        return super().form_valid(form)
+
+    # def form_valid(self, form):
+    #     """If the form is valid, save the associated model."""
+    #     self.object = form.save(commit=False)
+    #     self.object.created_by = self.request.user.username
+    #     self.object.save()
+    #     return super().form_valid(form)
+
+    # def post(self, request, *args, **kwargs):
+    #     self.update_by = self.request.user.username
+    #     return super().post(request, *args, **kwargs)
 
 
 class ClientUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
@@ -110,6 +128,10 @@ class ClientUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     form_class = ClientForm
     # fields = '__all__'
     # success_url = reverse_lazy('client_details')
+
+    def form_valid(self, form):
+        messages.success(self.request, 'Atualizado com sucesso.')
+        return super().form_valid(form)
 
     def get_success_url(self):
         pk = self.kwargs["pk"]

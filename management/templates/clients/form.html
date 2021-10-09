@@ -7,6 +7,8 @@
 {% block content %}
 
 
+
+
 <div class="clients-form">
 
   <form method="POST" id="form_client" enctype="multipart/form-data">
@@ -62,6 +64,11 @@
     <hr/>
     <div class="row pb-3">
 
+      <div class="form-group col-md-2 pb-3">
+        <label for="id">Autor: </label>
+        <input type="text" name="created_by" class="form-control" value="{{ object.created_by }}" disabled>
+      </div>
+
       {% if object.id %}
         <div class="form-group col-md-2">
           <label for="id">ID</label>
@@ -69,6 +76,7 @@
           name="id" value="{{ object.id }}" maxlength="8" disabled>
         </div>
       {% endif %}
+
 
       <!-- { % if PHOTO_ENABLE % } -->
       <div class="form-group col-md-5">
@@ -124,6 +132,10 @@
 
         {% endif %}
 
+        {% if form.errors %}
+          <small id="id_cpf_cnpj" class="form-text text-danger">{{ form.cpf_cnpj.errors }}</small>
+        {% endif %}
+
       </div>
 
     </div>
@@ -151,8 +163,10 @@
       <div class="form-group col-md-2">
         <label for="rg">RG</label>
         <input class="form-control clients-form__input-entry" type="text" id="id_rg" name="rg"
-            value="{% if object.rg %}{{ object.rg }}{% endif %}"
-            maxlength="15" required {% if is_details %} disabled {% endif %}>
+            value="{% if object.rg %}{{ object.rg }}{% endif %}" maxlength="15" {% if is_details %} disabled {% endif %} required>
+        {% if form.errors %}
+          <small id="id_rg" class="form-text text-danger">{{ form.rg.errors }}</small>
+        {% endif %}
       </div>
 
     </div>
@@ -233,6 +247,9 @@
         <input class="form-control clients-form__input-entry" type="email" id="id_email" name="email"
             value="{% if object.email %}{{ object.email }}{% endif %}"
             maxlength="130" {% if is_details %} disabled {% endif %} {% if not is_details %} placeholder="example@domain.com" {% endif %}>
+        {% if form.errors %}
+          <small id="id_email" class="form-text text-danger">{{ form.email.errors }}</small>
+        {% endif %}
       </div>
 
 

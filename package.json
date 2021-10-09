@@ -18,6 +18,7 @@
     "assets": "gulp assets",
     "env": "python bin/gen --env",
     "shell": "python manage.py shell",
+    "shell_plus": "python manage.py shell_plus",
     "test": "pytest"
   },
   "repository": {
