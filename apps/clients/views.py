@@ -104,8 +104,10 @@ class ClientCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
         return context
 
     def form_valid(self, form):
+        # Ao criar, faz referencia ao usuário logado.
         form.instance.created_by_user = self.request.user.username
         form.instance.update_by = self.request.user.username
+         # Resgata mensagem de sucesso caso seja criado.
         messages.success(self.request, 'Salvo com sucesso.')
         return super().form_valid(form)
 
@@ -127,7 +129,9 @@ class ClientUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
         return context
 
     def form_valid(self, form):
+        # Ao atualizar, faz referencia ao usuário logado.
         form.instance.update_by = self.request.user.username
+        # Resgata mensagem de sucesso caso seja atualizado.
         messages.success(self.request, 'Atualizado com sucesso.')
         return super().form_valid(form)
 
