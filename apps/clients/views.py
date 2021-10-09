@@ -100,15 +100,15 @@ class ClientCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["media_url"] = settings.MEDIA_URL
-        context['PHOTO_ENABLE'] = settings.PHOTO_ENABLE
+        context["PHOTO_ENABLE"] = settings.PHOTO_ENABLE
         return context
 
     def form_valid(self, form):
         # Ao criar, faz referencia ao usuário logado.
         form.instance.created_by_user = self.request.user.username
         form.instance.update_by = self.request.user.username
-         # Resgata mensagem de sucesso caso seja criado.
-        messages.success(self.request, 'Salvo com sucesso.')
+        # Resgata mensagem de sucesso caso seja criado.
+        messages.success(self.request, "Salvo com sucesso.")
         return super().form_valid(form)
 
 
@@ -132,7 +132,7 @@ class ClientUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
         # Ao atualizar, faz referencia ao usuário logado.
         form.instance.update_by = self.request.user.username
         # Resgata mensagem de sucesso caso seja atualizado.
-        messages.success(self.request, 'Atualizado com sucesso.')
+        messages.success(self.request, "Atualizado com sucesso.")
         return super().form_valid(form)
 
 

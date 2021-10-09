@@ -5,4 +5,5 @@
 [x] adicionar usuário criado ao grupo
 [x] implementar mensagens se sucesso.
 [ ] modificar a estrutura
-[ ] quem cadastrou o cliente e alterou?
+[x] quem cadastrou o cliente e alterou?
+[ ] editar footer erro
