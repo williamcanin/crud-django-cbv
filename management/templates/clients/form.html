@@ -64,32 +64,27 @@
     <hr/>
     <div class="row pb-3">
 
-      <!-- <div class="form-group col-md-2 pb-3">
-        <label for="id">Autor: </label>
-        <input type="text" name="created_by_user" class="form-control" value="{{ object.created_by_user }}" disabled>
-      </div>
-
-      <div class="form-group col-md-2 pb-3">
-        <label for="id">Atualizado por: </label>
-        <input type="text" name="update_by" class="form-control" value="{{ object.update_by }}" disabled>
-      </div> -->
-
       {% if object.id %}
-        <div class="form-group col-md-2">
+        <div class="form-group col-md-1">
           <label for="id">ID</label>
           <input type="text" class="form-control clients-form__input-entry clients-form__input-id"
           name="id" value="{{ object.id }}" maxlength="8" disabled>
         </div>
       {% endif %}
 
+      <div class="form-group col-md-2">
+        <label for="id">Criado por: </label>
+        <input type="text" class="form-control" value="{{ object.created_by_user }}" disabled>
+      </div>
 
-      <!-- { % if PHOTO_ENABLE % } -->
-      <div class="form-group col-md-5">
+      <div class="form-group col-md-2">
+        <label for="id">Ultima atualização por: </label>
+        <input type="text" class="form-control" value="{{ object.update_by }}" disabled>
+      </div>
 
+      <div class="form-group col-md-4">
         <label for="id">Foto</label>
-
         <div class="row">
-
           {% if object.photo %}
             <div class="col-md-1 clients-listing__photo-open">
               <img class="rounded-circle clients-form__photo-thumb"
@@ -102,45 +97,7 @@
               <input class="form-control" type="file" accept="images/*" name="photo" id="id_photo">
             </div>
           {% endif %}
-
         </div>
-
-      </div>
-      <!-- { % endif % } -->
-
-      <div class="form-group col-md-5">
-        {% if not is_details %}
-
-          {{ form.cpf_or_cnpj }}
-
-        {% else %}
-
-          <select name="cpf_or_cnpj" class="form-select clients-form__cpf_or_cnpj" id="id_cpf_or_cnpj"  disabled>
-            <option>{{ object.get_cpf_or_cnpj_display }}</option>
-          </select>
-
-        {% endif %}
-
-        {% if object.cpf_or_cnpj == "cnpj" %}
-
-          <input class="form-control clients-form__input-entry clients-form__input-cpf-cnpj" type="text"
-            data-mask="00.000.000/0000-00" id="id_cpf_cnpj" name="cpf_cnpj"
-            value="{% if object.cpf_cnpj %}{{ object.cpf_cnpj }}{% endif %}" maxlength="15"
-            {% if not is_details %} placeholder="Apenas números" {% endif %} {% if is_details %} disabled {% endif %}>
-
-        {% else %}
-
-          <input class="form-control clients-form__input-entry clients-form__input-cpf-cnpj" type="text"
-            data-mask="000.000.000-00" id="id_cpf_cnpj" name="cpf_cnpj"
-            value="{% if object.cpf_cnpj %}{{ object.cpf_cnpj }}{% endif %}" maxlength="15"
-            {% if not is_details %} placeholder="Apenas números" {% endif %} {% if is_details %} disabled {% endif %}>
-
-        {% endif %}
-
-        {% if form.errors %}
-          <small id="id_cpf_cnpj" class="form-text text-danger">{{ form.cpf_cnpj.errors }}</small>
-        {% endif %}
-
       </div>
 
     </div>
@@ -148,7 +105,7 @@
 
 
 
-    <div class="row">
+    <div class="row pb-3">
 
       <div class="form-group col-md-4">
         <label for="name">Nome</label>
@@ -163,6 +120,34 @@
             id="id_birth_date" name="birth_date"
             value="{% if object.birth_date %}{{ object.birth_date|date:"Y-m-d" }}{% endif %}" maxlength="15"
             placeholder="Apenas números" required {% if is_details %} disabled {% endif %}>
+      </div>
+
+      <div class="form-group col-md-3">
+
+        {% if not is_details %}
+          {{ form.cpf_or_cnpj }}
+        {% else %}
+          <select name="cpf_or_cnpj" class="form-select clients-form__cpf_or_cnpj" id="id_cpf_or_cnpj"  disabled>
+            <option>{{ object.get_cpf_or_cnpj_display }}</option>
+          </select>
+        {% endif %}
+
+        {% if object.cpf_or_cnpj == "cnpj" %}
+          <input class="form-control clients-form__input-entry clients-form__input-cpf-cnpj" type="text"
+            data-mask="00.000.000/0000-00" id="id_cpf_cnpj" name="cpf_cnpj"
+            value="{% if object.cpf_cnpj %}{{ object.cpf_cnpj }}{% endif %}" maxlength="15"
+            {% if not is_details %} placeholder="Apenas números" {% endif %} {% if is_details %} disabled {% endif %}>
+        {% else %}
+          <input class="form-control clients-form__input-entry clients-form__input-cpf-cnpj" type="text"
+            data-mask="000.000.000-00" id="id_cpf_cnpj" name="cpf_cnpj"
+            value="{% if object.cpf_cnpj %}{{ object.cpf_cnpj }}{% endif %}" maxlength="15"
+            {% if not is_details %} placeholder="Apenas números" {% endif %} {% if is_details %} disabled {% endif %}>
+        {% endif %}
+
+        {% if form.errors %}
+          <small id="id_cpf_cnpj" class="form-text text-danger">{{ form.cpf_cnpj.errors }}</small>
+        {% endif %}
+
       </div>
 
       <div class="form-group col-md-2">
