@@ -1,7 +1,7 @@
 import re
 from django.db import models
 from contextlib import suppress
-# from django.conf import settings
+from django.conf import settings
 from django.contrib.auth.models import User
 from apps.core.places import STATES_BRAZIL
 
@@ -11,10 +11,10 @@ CHOICE_CPF_CNPJ = (("cpf", "CPF"), ("cnpj", "CNPJ"))
 
 class ClientModel(models.Model):
     # objects = None
-    created_by_user = models.ForeignKey(
-        User, on_delete=models.CASCADE,
-        related_name="created_by", default=User
-    )
+    # created_by_user = models.ForeignKey(
+    #     User, on_delete=models.DO_NOTHING,
+    #     related_name="created_by", default=User, blank=True
+    # )
     name = models.CharField("Nome", max_length=150, null=True)
     email = models.EmailField(max_length=254, unique=True, error_messages={'unique': "Este e-mail já está registrado."})
     birth_date = models.DateField("Data de Nascimento", null=True)
@@ -39,7 +39,8 @@ class ClientModel(models.Model):
     cell_phone = models.CharField("CEL", max_length=15, null=True)
     phone = models.CharField("Fone", max_length=15, blank=True)
     city = models.CharField("Cidade", max_length=80, null=True)
-    update_by = models.CharField("Atualizado pelo usuário", max_length=30, null=True, blank=True)
+    created_by_user = models.CharField("Criado por", max_length=30, blank=True)
+    update_by = models.CharField("Atualizado pelo usuário", max_length=30, blank=True)
     created_at = models.DateTimeField("Data de Criação", auto_now_add=True, null=True)
     update_at = models.DateTimeField("Data de atualização", auto_now=True, null=True)
 

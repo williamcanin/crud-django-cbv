@@ -5,12 +5,13 @@ from django.contrib import messages
 
 class ClientAdmin(admin.ModelAdmin):
     exclude = []
-    # readonly_fields = ("cpf",)
+    readonly_fields = ("created_by_user", "update_by")
     fieldsets = (
         ("Clients Data", {
             "fields": (
-                ("created_by_user", "name", "email"), ("birth_date", "city", "district"),
-                ("address", "cep", "rg"), ("cell_phone", "phone"), ("photo", "cpf_cnpj", "update_by")
+                ("name", "email"), ("birth_date", "city", "district"),
+                ("address", "cep", "rg"), ("cell_phone", "phone"), ("photo", "cpf_cnpj", "created_by_user"),
+                ("update_by")
             ),
         }),
     )
@@ -21,7 +22,7 @@ class ClientAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         # Modifica apenas na criação
         if not change:
-            obj.created_by_user = request.user
+            obj.created_by_user = request.user.username
 
         # Modifica na atualização e criação
         obj.update_by = request.user.username

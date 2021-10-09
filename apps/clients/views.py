@@ -104,22 +104,10 @@ class ClientCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
         return context
 
     def form_valid(self, form):
-        form.instance.created_by_user = self.request.user
-        # self.object.created_by_user = self.request.user
+        form.instance.created_by_user = self.request.username
         form.instance.update_by = self.request.user.username
         messages.success(self.request, 'Salvo com sucesso.')
         return super().form_valid(form)
-
-    # def form_valid(self, form):
-    #     """If the form is valid, save the associated model."""
-    #     self.object = form.save(commit=False)
-    #     self.object.created_by = self.request.user.username
-    #     self.object.save()
-    #     return super().form_valid(form)
-
-    # def post(self, request, *args, **kwargs):
-    #     self.update_by = self.request.user.username
-    #     return super().post(request, *args, **kwargs)
 
 
 class ClientUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
@@ -128,13 +116,6 @@ class ClientUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     permission_required = "clients.change_clientmodel"
     model = ClientModel
     form_class = ClientForm
-    # fields = '__all__'
-    # success_url = reverse_lazy('client_details')
-
-    def form_valid(self, form):
-        form.instance.update_by = self.request.user.username
-        messages.success(self.request, 'Atualizado com sucesso.')
-        return super().form_valid(form)
 
     def get_success_url(self):
         pk = self.kwargs["pk"]
@@ -144,6 +125,11 @@ class ClientUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
         context = super().get_context_data(**kwargs)
         context["media_url"] = settings.MEDIA_URL
         return context
+
+    def form_valid(self, form):
+        form.instance.update_by = self.request.user.username
+        messages.success(self.request, 'Atualizado com sucesso.')
+        return super().form_valid(form)
 
 
 class ClientDetails(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
