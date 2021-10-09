@@ -83,7 +83,7 @@
       </div>
 
       <div class="form-group col-md-4">
-        <label for="id">Foto</label>
+        <label for="id">Foto:</label>
         <div class="row">
           {% if object.photo %}
             <div class="col-md-1 clients-listing__photo-open">
@@ -108,14 +108,14 @@
     <div class="row pb-3">
 
       <div class="form-group col-md-4">
-        <label for="name">Nome</label>
+        <label for="name">Nome:</label>
         <input class="form-control clients-form__input-entry" type="text" id="id_name" name="name"
             value="{% if object.name %}{{ object.name | title }}{% endif %}"
             maxlength="70" required {% if is_details %} disabled {% endif %}>
       </div>
 
       <div class="form-group col-md-2">
-        <label for="birth_date">Data de Nascimento</label>
+        <label for="birth_date">Data de Nascimento:</label>
         <input class="form-control clients-form__input-entry" type="date"
             id="id_birth_date" name="birth_date"
             value="{% if object.birth_date %}{{ object.birth_date|date:"Y-m-d" }}{% endif %}" maxlength="15"
@@ -151,7 +151,7 @@
       </div>
 
       <div class="form-group col-md-2">
-        <label for="rg">RG</label>
+        <label for="rg">RG:</label>
         <input class="form-control clients-form__input-entry" type="text" id="id_rg" name="rg"
             value="{% if object.rg %}{{ object.rg }}{% endif %}" maxlength="15" {% if is_details %} disabled {% endif %} required>
         {% if form.errors %}
@@ -162,13 +162,10 @@
     </div>
 
 
-
-
-
     <div class="row">
 
       <div class="form-group col-md-2">
-        <label for="cep">CEP</label>
+        <label for="cep">CEP:</label>
         <div class="input-group mb-3">
 
           <input type="text" class="form-control clients-form__input-entry" data-mask="00000-000" placeholder="00000-000"
@@ -184,21 +181,21 @@
       </div>
 
       <div class="form-group col-md-4">
-        <label for="address">Endereço</label>
+        <label for="address">Endereço:</label>
         <input class="form-control clients-form__input-entry" type="text" id="id_address" name="address"
             value="{% if object.address %}{{ object.address | title }}{% endif %}"
             maxlength="30" required {% if is_details %} disabled {% endif %}>
       </div>
 
       <div class="form-group col-md-3">
-        <label for="city">Cidade</label>
+        <label for="city">Cidade:</label>
         <input class="form-control clients-form__input-entry" type="text" id="id_city" name="city"
             value="{% if object.city %}{{ object.city | title }}{% endif %} {{ city_cep }}"
             maxlength="30" required {% if is_details %} disabled {% endif %}>
       </div>
 
       <div class="form-group col-md-3">
-        <label for="district">Bairro</label>
+        <label for="district">Bairro:</label>
         <input class="form-control clients-form__input-entry" type="text" id="id_district" name="district"
             value="{% if object.district %}{{ object.district | title }}{% endif %}"
             maxlength="30" required {% if is_details %} disabled {% endif %}>
@@ -207,33 +204,22 @@
     </div>
 
 
-
-
-
-
-
     <div class="row">
 
       <div class="form-group col-md-2">
-        <label for="state">Estado</label>
-
+        <label for="state">Estado:</label>
         {% if not is_details %}
-
           {{ form.state }}
-
         {% else %}
-
           <select name="state" class="form-select" id="id_state" disabled>
             <option selected>{{ object.get_state_display }}</option>
           </select>
-
         {% endif %}
-
       </div>
 
 
       <div class="form-group col-md-3">
-        <label for="email">E-Mail</label>
+        <label for="email">E-Mail:</label>
         <input class="form-control clients-form__input-entry" type="email" id="id_email" name="email"
             value="{% if object.email %}{{ object.email }}{% endif %}"
             maxlength="130" {% if is_details %} disabled {% endif %} {% if not is_details %} placeholder="example@domain.com" {% endif %}>
@@ -244,7 +230,7 @@
 
 
       <div class="form-group col-md-2">
-        <label for="cell_phone">Celular</label>
+        <label for="cell_phone">Celular:</label>
         <input class="form-control clients-form__input-entry" type="text" id="id_cell_phone" name="cell_phone"
             value="{% if object.cell_phone %}{{ object.cell_phone }}{% endif %}" data-mask="(00) 00000-0000"
             maxlength="16" required {% if is_details %} disabled {% endif %} {% if not is_details %} placeholder="(00) 00000-0000" {% endif %}>
@@ -252,7 +238,7 @@
 
 
       <div class="form-group col-md-2">
-        <label for="phone">Telefone</label>
+        <label for="phone">Telefone:</label>
         <input class="form-control clients-form__input-entry" type="text" id="id_phone" name="phone"
             value="{% if object.phone %}{{ object.phone }}{% endif %}" data-mask="(00) 0000-0000"
             maxlength="16" {% if is_details %} disabled {% endif %} {% if not is_details %} placeholder="(00) 0000-0000" {% endif %}>
