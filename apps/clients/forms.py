@@ -20,7 +20,8 @@ class ClientForm(forms.ModelForm):
             "cep",
             "cell_phone",
             "phone",
-            "city"
+            "city",
+            "update_by"
         )
 
         widgets = {

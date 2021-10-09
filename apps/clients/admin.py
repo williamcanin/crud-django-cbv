@@ -10,7 +10,7 @@ class ClientAdmin(admin.ModelAdmin):
         ("Clients Data", {
             "fields": (
                 ("created_by_user", "name", "email"), ("birth_date", "city", "district"),
-                ("address", "cep", "rg"), ("cell_phone", "phone"), ("photo", "cpf_cnpj")
+                ("address", "cep", "rg"), ("cell_phone", "phone"), ("photo", "cpf_cnpj", "update_by")
             ),
         }),
     )
@@ -19,7 +19,12 @@ class ClientAdmin(admin.ModelAdmin):
     search_fields = ("id", "name")
 
     def save_model(self, request, obj, form, change):
-        obj.created_by_user = request.user
+        # Modifica apenas na criação
+        if not change:
+            obj.created_by_user = request.user
+
+        # Modifica na atualização e criação
+        obj.update_by = request.user.username
         messages.add_message(request, messages.SUCCESS, 'Salvado com sucesso.')
         return super().save_model(request, obj, form, change)
 
