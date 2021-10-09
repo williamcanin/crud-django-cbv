@@ -104,7 +104,7 @@ class ClientCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
         return context
 
     def form_valid(self, form):
-        form.instance.created_by_user = self.request.username
+        form.instance.created_by_user = self.request.user.username
         form.instance.update_by = self.request.user.username
         messages.success(self.request, 'Salvo com sucesso.')
         return super().form_valid(form)
