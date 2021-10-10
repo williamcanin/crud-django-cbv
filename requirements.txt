@@ -4,8 +4,9 @@ atomicwrites==1.4.0; python_version >= "3.6" and python_full_version < "3.0.0" a
 attrs==21.2.0; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.5.0" and python_version >= "3.6"
 backcall==0.2.0; python_version >= "3.7"
 black==21.9b0; python_full_version >= "3.6.2"
-click==8.0.2; python_version >= "3.6" and python_full_version >= "3.6.2"
+click==8.0.3; python_version >= "3.6" and python_full_version >= "3.6.2"
 colorama==0.4.4; sys_platform == "win32" and python_version >= "3.7" and python_full_version >= "3.6.2" and platform_system == "Windows"
+coverage==6.0.1; python_version >= "3.6"
 decorator==5.1.0; python_version >= "3.7"
 dj-database-url==0.5.0
 django-cleanup==5.2.0
