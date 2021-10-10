@@ -1,8 +1,9 @@
 [tool.poetry]
 name = "crud-django-cbv"
 version = "0.1.0"
-description = ""
-authors = ["William Canin <william.costa.canin@gmail.com>"]
+description = "Registration control system"
+authors = ["William C. Canin <william.costa.canin@gmail.com>"]
+license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -15,7 +16,6 @@ Pillow = "^8.3.2"
 django-cleanup = "^5.2.0"
 psycopg2 = "^2.9.1"
 
-
 [tool.poetry.dev-dependencies]
 flake8 = "^3.9.2"
 pytest = "^6.2.5"
@@ -24,7 +24,6 @@ django-extensions = "^3.1.3"
 ipython = "^7.27.0"
 django-debug-toolbar = "^3.2.2"
 black = "^21.8b0"
-
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
