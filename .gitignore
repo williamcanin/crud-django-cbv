@@ -7,7 +7,7 @@
 .idea/
 .vscode/
 **/*/__pycache__
-**/*/staticfiles/
+# **/*/staticfiles/
 !**/*/staticfiles/.gitkeep
 **/*/media/
 !**/*/media/default.png
