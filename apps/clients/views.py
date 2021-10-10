@@ -14,7 +14,6 @@ from .forms import ClientForm
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib import messages
 
-
 # def get_cep(instance, name: str, context: dict):
 #     import requests
 #
