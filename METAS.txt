@@ -7,3 +7,9 @@
 [ ] modificar a estrutura
 [x] quem cadastrou o cliente e alterou?
 [ ] editar footer erro
+
+
+$ rm -rf htmlcov .coverage
+$ coverage run -m pytest
+$ coverage html
+$ python -m http.server --directory htmlcov
