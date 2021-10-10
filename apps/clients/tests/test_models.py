@@ -1,7 +1,12 @@
+import re
 from apps.clients.models import ClientModel
 
 
-def test_clientmodel_str():
+def test_ClientModel_str():
 
-    savior = ClientModel(name="jesus")
-    assert savior.__str__() == "jesus".title()
+    obj = ClientModel(name="django")
+    assert obj.__str__() == "django".title()
+
+
+def test_ClientModel_cpf_cnpj():
+    pass
