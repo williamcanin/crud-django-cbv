@@ -7,8 +7,6 @@
 .idea/
 .vscode/
 **/*/__pycache__
-**/*/staticfiles/
-!**/*/staticfiles/.gitkeep
 **/*/media/
 !**/*/media/default.png
 package-lock.json
@@ -24,6 +22,8 @@ node_modules/
 
 ## Comment this block to send on the Heroku -----
 apps/clients/migrations/*_initial.py
+**/*/staticfiles/
+!**/*/staticfiles/.gitkeep
 **/*/static/js/
 **/*/static/css/
 **/*/static/webfonts/
