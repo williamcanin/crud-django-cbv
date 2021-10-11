@@ -34,11 +34,17 @@ def test_ClientModel_str():
 
 
 @pytest.mark.django_db
-def test_only_numbers_cpf_cnpj(instance):
+def test_only_numbers(instance):
     instance.save()
     cpf_only_number = re.sub("[^0-9]", "", instance.cpf_cnpj)
-    finder = ClientModel.objects.filter(cpf_cnpj=cpf_only_number)
-    assert True if finder else False
+    finder_cpf = ClientModel.objects.filter(cpf_cnpj=cpf_only_number)
+    assert True if finder_cpf else False
+    phone_only_number = re.sub("[^0-9]", "", instance.phone)
+    finder_phone = ClientModel.objects.filter(phone=phone_only_number)
+    assert True if finder_phone else False
+    cell_phone_only_number = re.sub("[^0-9]", "", instance.cell_phone)
+    finder_cell_phone = ClientModel.objects.filter(cell_phone=cell_phone_only_number)
+    assert True if finder_cell_phone else False
 
 
 @pytest.mark.django_db
