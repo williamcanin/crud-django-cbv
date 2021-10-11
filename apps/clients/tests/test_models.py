@@ -34,7 +34,7 @@ def test_ClientModel_str():
 
 
 @pytest.mark.django_db
-def test_ClientModel_cpf_cnpj(instance):
+def test_only_numbers_cpf_cnpj(instance):
     instance.save()
     cpf_only_number = re.sub("[^0-9]", "", instance.cpf_cnpj)
     finder = ClientModel.objects.filter(cpf_cnpj=cpf_only_number)
