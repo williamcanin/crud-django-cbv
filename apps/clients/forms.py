@@ -2,7 +2,7 @@ from django import forms
 from .models import ClientModel
 
 
-class ClientForm(forms.ModelForm):  # pragma: no cover
+class ClientForm(forms.ModelForm):  # pragma: no coverage
     class Meta:
         model = ClientModel
         fields = (
