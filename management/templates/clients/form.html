@@ -103,14 +103,14 @@
             </div>
 
             <div class="form-group col-md-4">
-              <label for="name">Nome:</label>
-              <input class="form-control clients-form__input-entry" type="text" id="id_name" name="name"
-                  value="{% if object.name %}{{ object.name | title }}{% endif %}"
+              <label for="name_corporate">Nome/Razão Social:</label>
+              <input class="form-control clients-form__input-entry" type="text" id="id_name_corporate" name="name_corporate"
+                  value="{% if object.name_corporate %}{{ object.name_corporate | title }}{% endif %}"
                   maxlength="70" required {% if is_details %} disabled {% endif %}>
             </div>
 
             <div class="form-group col-md-2">
-              <label for="birth_date">Data de Nascimento:</label>
+              <label for="birth_date">Data de Nasc/Abert:</label>
               <input class="form-control clients-form__input-entry" type="date"
                   id="id_birth_date" name="birth_date"
                   value="{% if object.birth_date %}{{ object.birth_date|date:"Y-m-d" }}{% endif %}" maxlength="15"

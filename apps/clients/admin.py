@@ -9,15 +9,15 @@ class ClientAdmin(admin.ModelAdmin):
     fieldsets = (
         ("Clients Data", {
             "fields": (
-                ("name", "email"), ("birth_date", "city", "district"),
+                ("name_corporate", "email"), ("birth_date", "city", "district"),
                 ("address", "cep", "rg"), ("cell_phone", "phone"), ("photo", "cpf_cnpj", "created_by_user"),
                 ("update_by")
             ),
         }),
     )
-    list_display = ("id", "name", "email", "address", "district",
+    list_display = ("id", "name_corporate", "email", "address", "district",
                     "city", "cell_phone", "phone", "cpf_cnpj")
-    search_fields = ("id", "name")
+    search_fields = ("id", "name_corporate")
 
     def save_model(self, request, obj, form, change):
         # Modifica apenas na criação

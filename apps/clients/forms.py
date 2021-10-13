@@ -7,7 +7,7 @@ class ClientForm(forms.ModelForm):  # pragma: no coverage
         model = ClientModel
         fields = (
             "client_type",
-            "name",
+            "name_corporate",
             "email",
             "birth_date",
             "district",
@@ -24,7 +24,7 @@ class ClientForm(forms.ModelForm):  # pragma: no coverage
         )
 
         widgets = {
-            "state": forms.Select(attrs={"class": "form-select"}),
+            "state": forms.Select(attrs={"class": "form-select clients-form__states"}),
             "client_type": forms.Select(
                 attrs={"class": "form-select clients-form__client_type"}
             )

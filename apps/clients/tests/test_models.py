@@ -7,12 +7,12 @@ from apps.clients.models import ClientModel
 @pytest.mark.django_db
 def instance():
     data = ClientModel.objects.create(
-        name="William Canin",
+        name_corporate="William Canin",
         email="xpto@example.com",
         birth_date="1988-04-25",
         district="São Paulo",
         state="SP",
-        cpf_or_cnpj="cpf",
+        client_type="cpf",
         cpf_cnpj="123.456.789-00",
         address="Rua XYZ",
         photo="images/upload/default.jpg",
@@ -21,6 +21,7 @@ def instance():
         cell_phone="14000000000",
         phone="1400000000",
         city="São Paulo",
+        obs="Cliente muito prestigiado.",
         created_by_user="william",
         update_by="william"
     )
@@ -29,7 +30,7 @@ def instance():
 
 
 def test_ClientModel_str():
-    obj = ClientModel(name="django")
+    obj = ClientModel(name_corporate="django")
     assert obj.__str__() == "django".title()
 
 

@@ -76,8 +76,8 @@ class ClientList(LoginRequiredMixin, ListView):
                 records = self.model.objects.filter(cpf_cnpj=q)
             elif s_type == "id":
                 records = self.model.objects.filter(id=q)
-            elif s_type == "name":
-                records = self.model.objects.filter(name__icontains=q)
+            elif s_type == "name_corporate":
+                records = self.model.objects.filter(name_corporate__icontains=q)
 
         return records
 

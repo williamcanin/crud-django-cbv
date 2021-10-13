@@ -34,7 +34,7 @@
         <div class="input-group">
           <select name="s_type" class="form-select form-select-sm clients-listing__search-select">
             <option value="id">ID</option>
-            <option value="name">Nome</option>
+            <option value="name_corporate">Nome/Razão Social</option>
             <option value="cpf">CPF</option>
             <option value="cnpj">CNPJ</option>
           </select>
@@ -72,7 +72,7 @@
     <thead class="client__thead">
       <tr>
         <th scope="col">ID</th>
-        <th scope="col">Nome</th>
+        <th scope="col">Nome/Razão Social</th>
         <th scope="col">CPF/CNPJ</th>
         <th scope="col">E-mail</th>
         <th scope="col">Celular</th>
@@ -85,11 +85,11 @@
           <th scope="row">{{ client.id }}</th>
 
           <td>
-            {{ client.name | title }}
+            {{ client.name_corporate | title }}
           </td>
 
           <td>
-            {% if client.cpf_or_cnpj == "cpf" %}
+            {% if client.client_type == "cpf" %}
             <span data-mask="CPF: 000.000.000-00">{{ client.cpf_cnpj }}</span>
             {% else %}
             <span data-mask="CNPJ: 00.000.000/0000-00">{{ client.cpf_cnpj }}</span>

@@ -11,7 +11,7 @@ CHOICE_CPF_CNPJ = (("cpf", "CPF"), ("cnpj", "CNPJ"))
 
 
 class ClientModel(models.Model):
-    name = models.CharField("Nome", max_length=150, null=True)
+    name_corporate = models.CharField("Nome/Razão Social", max_length=150, null=True)
     email = models.EmailField(
         max_length=254,
         unique=True,
@@ -42,6 +42,9 @@ class ClientModel(models.Model):
     rg = models.CharField(
         "RG",
         max_length=15,
+        unique=True,
+        null=True,
+        blank=True,
         error_messages={"unique": "Este RG já está registrado."},
     )
     cep = models.CharField("CEP", max_length=15, null=True)

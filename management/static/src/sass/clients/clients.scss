@@ -117,13 +117,15 @@
   }
   &__client_type {
     max-width: 100px !important;
-    cursor: pointer;
   }
   &__input-cpf-cnpj {
     max-width: 250px !important;
   }
+  &__states {
+    min-width: 200px;
+  }
   &__observations {
-    min-height: 150px;
     width: 100%;
+    min-height: 130px !important;
   }
 }
