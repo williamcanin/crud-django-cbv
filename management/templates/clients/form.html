@@ -83,13 +83,24 @@
               <input type="text" class="form-control" value="{{ object.update_by }}" disabled>
             </div>
 
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row pb-3">
+      <div class="card">
+        <h5 class="card-header">Dados pessoais</h5>
+        <div class="card-body">
+
+          <div class="row pb-3">
             <div class="form-group col-md-4">
               <label for="id">Foto:</label>
               <div class="row">
                 {% if object.photo %}
                   <div class="col-md-1 clients-listing__photo-open">
                     <img class="rounded-circle clients-form__photo-thumb"
-                    src="{{ media_url }}{{ object.photo }}" alt="" width="34" >
+                    src="{{ media_url }}{{ object.photo }}" alt="{{ object.photo }}" width="100" >
                   </div>
                 {% endif %}
 
@@ -101,42 +112,37 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
 
-    <div class="row pb-3">
-      <div class="card">
-        <h5 class="card-header">Dados pessoais</h5>
-        <div class="card-body">
           <div class="row">
             <div class="form-group col-md-3">
+              <label for="id_cpf_cnpj">Tipo de cliente:</label>
+              <div class="input-group">
+                {% if not is_details %}
+                  {{ form.client_type }}
+                {% else %}
+                  <select name="client_type" class="form-select clients-form__client_type" id="id_client_type"  disabled>
+                    <option>{{ object.get_client_type_display }}</option>
+                  </select>
+                {% endif %}
 
-              {% if not is_details %}
-                {{ form.client_type }}
-              {% else %}
-                <select name="client_type" class="form-select clients-form__client_type" id="id_client_type"  disabled>
-                  <option>{{ object.get_client_type_display }}</option>
-                </select>
-              {% endif %}
+                {% if object.client_type == "cnpj" %}
+                  <input class="form-control clients-form__input-entry clients-form__input-cpf-cnpj" type="text"
+                    data-mask="00.000.000/0000-00" id="id_cpf_cnpj" name="cpf_cnpj"
+                    value="{% if object.cpf_cnpj %}{{ object.cpf_cnpj }}{% endif %}" maxlength="15"
+                    {% if not is_details %} placeholder="Apenas números" {% endif %} {% if is_details %} disabled {% endif %}>
+                {% else %}
+                  <input class="form-control clients-form__input-entry clients-form__input-cpf-cnpj" type="text"
+                    data-mask="000.000.000-00" id="id_cpf_cnpj" name="cpf_cnpj"
+                    value="{% if object.cpf_cnpj %}{{ object.cpf_cnpj }}{% endif %}" maxlength="15"
+                    {% if not is_details %} placeholder="Apenas números" {% endif %} {% if is_details %} disabled {% endif %}>
+                {% endif %}
 
-              {% if object.client_type == "cnpj" %}
-                <input class="form-control clients-form__input-entry clients-form__input-cpf-cnpj" type="text"
-                  data-mask="00.000.000/0000-00" id="id_cpf_cnpj" name="cpf_cnpj"
-                  value="{% if object.cpf_cnpj %}{{ object.cpf_cnpj }}{% endif %}" maxlength="15"
-                  {% if not is_details %} placeholder="Apenas números" {% endif %} {% if is_details %} disabled {% endif %}>
-              {% else %}
-                <input class="form-control clients-form__input-entry clients-form__input-cpf-cnpj" type="text"
-                  data-mask="000.000.000-00" id="id_cpf_cnpj" name="cpf_cnpj"
-                  value="{% if object.cpf_cnpj %}{{ object.cpf_cnpj }}{% endif %}" maxlength="15"
-                  {% if not is_details %} placeholder="Apenas números" {% endif %} {% if is_details %} disabled {% endif %}>
-              {% endif %}
-
-              {% if form.errors %}
-                <small id="id_cpf_cnpj" class="form-text text-danger">{{ form.cpf_cnpj.errors }}</small>
-              {% endif %}
-
+                {% if form.errors %}
+                  <small id="id_cpf_cnpj" class="form-text text-danger">{{ form.cpf_cnpj.errors }}</small>
+                {% endif %}
+              </div>
             </div>
+
             <div class="form-group col-md-4">
               <label for="name">Nome:</label>
               <input class="form-control clients-form__input-entry" type="text" id="id_name" name="name"
