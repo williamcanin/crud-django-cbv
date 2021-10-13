@@ -61,102 +61,109 @@
     <!-- Forms -->
     <hr/>
     <div class="row pb-3">
+      <div class="card">
+        <h5 class="card-header">Registros automáticos</h5>
+        <div class="card-body">
+          <div class="row">
+            {% if object.id %}
+              <div class="form-group col-md-1">
+                <label for="id">ID</label>
+                <input type="text" class="form-control clients-form__input-entry clients-form__input-id"
+                name="id" value="{{ object.id }}" maxlength="8" disabled>
+              </div>
+            {% endif %}
 
-      {% if object.id %}
-        <div class="form-group col-md-1">
-          <label for="id">ID</label>
-          <input type="text" class="form-control clients-form__input-entry clients-form__input-id"
-          name="id" value="{{ object.id }}" maxlength="8" disabled>
-        </div>
-      {% endif %}
-
-      <div class="form-group col-md-2">
-        <label for="id">Criado por: </label>
-        <input type="text" class="form-control" value="{{ object.created_by_user }}" disabled>
-      </div>
-
-      <div class="form-group col-md-2">
-        <label for="id">Ultima atualização por: </label>
-        <input type="text" class="form-control" value="{{ object.update_by }}" disabled>
-      </div>
-
-      <div class="form-group col-md-4">
-        <label for="id">Foto:</label>
-        <div class="row">
-          {% if object.photo %}
-            <div class="col-md-1 clients-listing__photo-open">
-              <img class="rounded-circle clients-form__photo-thumb"
-              src="{{ media_url }}{{ object.photo }}" alt="" width="34" >
+            <div class="form-group col-md-2">
+              <label for="id">Criado por: </label>
+              <input type="text" class="form-control" value="{{ object.created_by_user }}" disabled>
             </div>
-          {% endif %}
 
-          {% if not is_details %}
-            <div class="col-md">
-              <input class="form-control" type="file" accept="images/*" name="photo" id="id_photo">
+            <div class="form-group col-md-2">
+              <label for="id">Ultima atualização por: </label>
+              <input type="text" class="form-control" value="{{ object.update_by }}" disabled>
             </div>
-          {% endif %}
+
+            <div class="form-group col-md-4">
+              <label for="id">Foto:</label>
+              <div class="row">
+                {% if object.photo %}
+                  <div class="col-md-1 clients-listing__photo-open">
+                    <img class="rounded-circle clients-form__photo-thumb"
+                    src="{{ media_url }}{{ object.photo }}" alt="" width="34" >
+                  </div>
+                {% endif %}
+
+                {% if not is_details %}
+                  <div class="col-md">
+                    <input class="form-control" type="file" accept="images/*" name="photo" id="id_photo">
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-
     </div>
-
 
     <div class="row pb-3">
+      <div class="card">
+        <h5 class="card-header">Dados pessoais</h5>
+        <div class="card-body">
+          <div class="row">
+            <div class="form-group col-md-3">
 
-      <div class="form-group col-md-4">
-        <label for="name">Nome:</label>
-        <input class="form-control clients-form__input-entry" type="text" id="id_name" name="name"
-            value="{% if object.name %}{{ object.name | title }}{% endif %}"
-            maxlength="70" required {% if is_details %} disabled {% endif %}>
+              {% if not is_details %}
+                {{ form.client_type }}
+              {% else %}
+                <select name="client_type" class="form-select clients-form__client_type" id="id_client_type"  disabled>
+                  <option>{{ object.get_client_type_display }}</option>
+                </select>
+              {% endif %}
+
+              {% if object.client_type == "cnpj" %}
+                <input class="form-control clients-form__input-entry clients-form__input-cpf-cnpj" type="text"
+                  data-mask="00.000.000/0000-00" id="id_cpf_cnpj" name="cpf_cnpj"
+                  value="{% if object.cpf_cnpj %}{{ object.cpf_cnpj }}{% endif %}" maxlength="15"
+                  {% if not is_details %} placeholder="Apenas números" {% endif %} {% if is_details %} disabled {% endif %}>
+              {% else %}
+                <input class="form-control clients-form__input-entry clients-form__input-cpf-cnpj" type="text"
+                  data-mask="000.000.000-00" id="id_cpf_cnpj" name="cpf_cnpj"
+                  value="{% if object.cpf_cnpj %}{{ object.cpf_cnpj }}{% endif %}" maxlength="15"
+                  {% if not is_details %} placeholder="Apenas números" {% endif %} {% if is_details %} disabled {% endif %}>
+              {% endif %}
+
+              {% if form.errors %}
+                <small id="id_cpf_cnpj" class="form-text text-danger">{{ form.cpf_cnpj.errors }}</small>
+              {% endif %}
+
+            </div>
+            <div class="form-group col-md-4">
+              <label for="name">Nome:</label>
+              <input class="form-control clients-form__input-entry" type="text" id="id_name" name="name"
+                  value="{% if object.name %}{{ object.name | title }}{% endif %}"
+                  maxlength="70" required {% if is_details %} disabled {% endif %}>
+            </div>
+
+            <div class="form-group col-md-2">
+              <label for="birth_date">Data de Nascimento:</label>
+              <input class="form-control clients-form__input-entry" type="date"
+                  id="id_birth_date" name="birth_date"
+                  value="{% if object.birth_date %}{{ object.birth_date|date:"Y-m-d" }}{% endif %}" maxlength="15"
+                  placeholder="Apenas números" required {% if is_details %} disabled {% endif %}>
+            </div>
+
+            <div class="form-group col-md-2">
+              <label for="rg">RG:</label>
+              <input class="form-control clients-form__input-entry" type="text" id="id_rg" name="rg"
+                  value="{% if object.rg %}{{ object.rg }}{% endif %}" maxlength="15" {% if is_details %} disabled {% endif %} required>
+              {% if form.errors %}
+                <small id="id_rg" class="form-text text-danger">{{ form.rg.errors }}</small>
+              {% endif %}
+            </div>
+          </div>
+        </div>
       </div>
-
-      <div class="form-group col-md-2">
-        <label for="birth_date">Data de Nascimento:</label>
-        <input class="form-control clients-form__input-entry" type="date"
-            id="id_birth_date" name="birth_date"
-            value="{% if object.birth_date %}{{ object.birth_date|date:"Y-m-d" }}{% endif %}" maxlength="15"
-            placeholder="Apenas números" required {% if is_details %} disabled {% endif %}>
-      </div>
-
-      <div class="form-group col-md-3">
-
-        {% if not is_details %}
-          {{ form.cpf_or_cnpj }}
-        {% else %}
-          <select name="cpf_or_cnpj" class="form-select clients-form__cpf_or_cnpj" id="id_cpf_or_cnpj"  disabled>
-            <option>{{ object.get_cpf_or_cnpj_display }}</option>
-          </select>
-        {% endif %}
-
-        {% if object.cpf_or_cnpj == "cnpj" %}
-          <input class="form-control clients-form__input-entry clients-form__input-cpf-cnpj" type="text"
-            data-mask="00.000.000/0000-00" id="id_cpf_cnpj" name="cpf_cnpj"
-            value="{% if object.cpf_cnpj %}{{ object.cpf_cnpj }}{% endif %}" maxlength="15"
-            {% if not is_details %} placeholder="Apenas números" {% endif %} {% if is_details %} disabled {% endif %}>
-        {% else %}
-          <input class="form-control clients-form__input-entry clients-form__input-cpf-cnpj" type="text"
-            data-mask="000.000.000-00" id="id_cpf_cnpj" name="cpf_cnpj"
-            value="{% if object.cpf_cnpj %}{{ object.cpf_cnpj }}{% endif %}" maxlength="15"
-            {% if not is_details %} placeholder="Apenas números" {% endif %} {% if is_details %} disabled {% endif %}>
-        {% endif %}
-
-        {% if form.errors %}
-          <small id="id_cpf_cnpj" class="form-text text-danger">{{ form.cpf_cnpj.errors }}</small>
-        {% endif %}
-
-      </div>
-
-      <div class="form-group col-md-2">
-        <label for="rg">RG:</label>
-        <input class="form-control clients-form__input-entry" type="text" id="id_rg" name="rg"
-            value="{% if object.rg %}{{ object.rg }}{% endif %}" maxlength="15" {% if is_details %} disabled {% endif %} required>
-        {% if form.errors %}
-          <small id="id_rg" class="form-text text-danger">{{ form.rg.errors }}</small>
-        {% endif %}
-      </div>
-
     </div>
-
 
     <div class="row">
 
@@ -241,6 +248,14 @@
       </div>
 
 
+    </div>
+
+    <div class="row pt-3">
+      <div class="form-group col">
+        <label for="ObsTextarea">Observações</label>
+          <textarea name="obs" class="form-control" placeholder="Escreva uma observação para este Cliente"
+          id="ObsTextarea" {% if is_details %} disabled {% endif %}>{% if object.obs %}{{ object.obs }}{% endif %}</textarea>
+      </div>
     </div>
 
   </form>

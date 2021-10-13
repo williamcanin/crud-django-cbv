@@ -11,11 +11,6 @@ CHOICE_CPF_CNPJ = (("cpf", "CPF"), ("cnpj", "CNPJ"))
 
 
 class ClientModel(models.Model):
-    # objects = None
-    # created_by_user = models.ForeignKey(
-    #     User, on_delete=models.DO_NOTHING,
-    #     related_name="created_by", default=User, blank=True
-    # )
     name = models.CharField("Nome", max_length=150, null=True)
     email = models.EmailField(
         max_length=254,
@@ -27,7 +22,7 @@ class ClientModel(models.Model):
     state = models.CharField(
         "Estados", max_length=25, choices=STATES_BRAZIL, default="default"
     )
-    cpf_or_cnpj = models.CharField(
+    client_type = models.CharField(
         "CPF/CNPJ", max_length=10, choices=CHOICE_CPF_CNPJ, default="cpf"
     )
     cpf_cnpj = models.CharField(
@@ -47,13 +42,13 @@ class ClientModel(models.Model):
     rg = models.CharField(
         "RG",
         max_length=15,
-        unique=True,
         error_messages={"unique": "Este RG já está registrado."},
     )
     cep = models.CharField("CEP", max_length=15, null=True)
     cell_phone = models.CharField("CEL", max_length=15, null=True)
     phone = models.CharField("Fone", max_length=15, blank=True)
     city = models.CharField("Cidade", max_length=80, null=True)
+    obs = models.TextField("Observações", null=True, blank=True)
     created_by_user = models.CharField("Criado por", max_length=30)
     update_by = models.CharField("Ultima atualização por", max_length=30)
     created_at = models.DateTimeField("Data de Criação", auto_now_add=True, null=True)

@@ -6,12 +6,12 @@ class ClientForm(forms.ModelForm):  # pragma: no coverage
     class Meta:
         model = ClientModel
         fields = (
+            "client_type",
             "name",
             "email",
             "birth_date",
             "district",
             "state",
-            "cpf_or_cnpj",
             "cpf_cnpj",
             "address",
             "photo",
@@ -19,12 +19,13 @@ class ClientForm(forms.ModelForm):  # pragma: no coverage
             "cep",
             "cell_phone",
             "phone",
-            "city"
+            "city",
+            "obs"
         )
 
         widgets = {
             "state": forms.Select(attrs={"class": "form-select"}),
-            "cpf_or_cnpj": forms.Select(
-                attrs={"class": "form-select clients-form__cpf_or_cnpj"}
+            "client_type": forms.Select(
+                attrs={"class": "form-select clients-form__client_type"}
             )
         }

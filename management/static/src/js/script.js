@@ -46,8 +46,8 @@ $(".clients-listing__search-select").change(function() {
 });
 
 // Change input CPF/CNPJ mask
-$(".clients-form__cpf_or_cnpj").change(function() {
-  const select = $('.clients-form__cpf_or_cnpj option:selected').val();
+$(".clients-form__client_type").change(function() {
+  const select = $('.clients-form__client_type option:selected').val();
   const input = $('.clients-form__input-cpf-cnpj');
   if (select === "cpf") {
     input.val('');

@@ -1,7 +1,7 @@
-body a, body button, body input {
+body a, body button, body input, body textarea {
   outline: none !important;
 }
-body a:focus, body a:visited, body a:active, body a:hover, body button:focus, body button:visited, body button:active, body button:hover, body input:focus, body input:visited, body input:active, body input:hover {
+body a:focus, body a:visited, body a:active, body a:hover, body button:focus, body button:visited, body button:active, body button:hover, body input:focus, body input:visited, body input:active, body input:hover, body textarea:focus, body textarea:visited, body textarea:active, body textarea:hover {
   box-shadow: none !important;
 }
 
@@ -143,7 +143,7 @@ body a:focus, body a:visited, body a:active, body a:hover, body button:focus, bo
 .clients-form__photo-thumb {
   cursor: pointer;
 }
-.clients-form__cpf_or_cnpj {
+.clients-form__client_type {
   max-width: 100px !important;
 }
 .clients-form__input-cpf-cnpj {
