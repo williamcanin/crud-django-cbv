@@ -10,12 +10,12 @@ class ClientAdmin(admin.ModelAdmin):
         ("Clients Data", {
             "fields": (
                 ("name_corporate", "email"), ("birth_date", "city", "district"),
-                ("address", "cep", "rg"), ("cell_phone", "phone"), ("photo", "cpf_cnpj", "created_by_user"),
-                ("update_by")
+                ("address", "complement_address", "number_address"), ("cep", "rg", "cell_phone"), ("phone", "photo", "cpf_cnpj"),
+                ("created_by_user", "update_by")
             ),
         }),
     )
-    list_display = ("id", "name_corporate", "email", "address", "district",
+    list_display = ("id", "name_corporate", "email", "address", "number_address", "complement_address", "district",
                     "city", "cell_phone", "phone", "cpf_cnpj")
     search_fields = ("id", "name_corporate")
 

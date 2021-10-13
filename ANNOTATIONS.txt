@@ -7,7 +7,6 @@
 [ ] modificar a estrutura
 [x] quem cadastrou o cliente e alterou?
 [ ] editar footer erro
-[ ] usar cpf/cnpj separados
 
 
 $ rm -rf htmlcov .coverage

@@ -15,7 +15,7 @@
     <!-- Forms -->
     <div class="row pb-3">
       <div class="card">
-        <h5 class="card-header">Registros automáticos</h5>
+        <h5 class="card-header">Registros automáticos (Read only)</h5>
         <div class="card-body">
           <div class="row">
             {% if object.id %}
@@ -120,7 +120,7 @@
             <div class="form-group col-md-2">
               <label for="rg">RG:</label>
               <input class="form-control clients-form__input-entry" type="text" id="id_rg" name="rg"
-                  value="{% if object.rg %}{{ object.rg }}{% endif %}" maxlength="15" {% if is_details %} disabled {% endif %} required>
+                  value="{% if object.rg %}{{ object.rg }}{% endif %}" maxlength="15" {% if is_details %} disabled {% endif %}>
               {% if form.errors %}
                 <small id="id_rg" class="form-text text-danger">{{ form.rg.errors }}</small>
               {% endif %}
@@ -188,6 +188,21 @@
                   maxlength="30" required {% if is_details %} disabled {% endif %}>
             </div>
 
+            <div class="form-group col-md-1">
+              <label for="number_address">Número:</label>
+              <input class="form-control clients-form__input-entry" type="text" id="id_number_address" name="number_address"
+                  value="{% if object.number_address %}{{ object.number_address | title }}{% endif %}"
+                  maxlength="10" required {% if is_details %} disabled {% endif %}>
+            </div>
+
+            <div class="form-group col-md-2">
+              <label for="complement_address">Complemento:</label>
+              <input class="form-control clients-form__input-entry" type="text" id="id_complement_address" name="complement_address"
+                  value="{% if object.complement_address %}{{ object.complement_address | title }}{% endif %}"
+                  maxlength="20" required {% if is_details %} disabled {% endif %}>
+            </div>
+
+
             <div class="form-group col-md-3">
               <label for="city">Cidade:</label>
               <input class="form-control clients-form__input-entry" type="text" id="id_city" name="city"
@@ -195,15 +210,15 @@
                   maxlength="30" required {% if is_details %} disabled {% endif %}>
             </div>
 
+          </div>
+
+          <div class="row">
             <div class="form-group col-md-3">
               <label for="district">Bairro:</label>
               <input class="form-control clients-form__input-entry" type="text" id="id_district" name="district"
                   value="{% if object.district %}{{ object.district | title }}{% endif %}"
                   maxlength="30" required {% if is_details %} disabled {% endif %}>
             </div>
-          </div>
-
-          <div class="row">
             <div class="form-group col-md-2">
               <label for="state">Estado:</label>
               {% if not is_details %}

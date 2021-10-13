@@ -17,6 +17,8 @@ class ClientForm(forms.ModelForm):  # pragma: no coverage
             "photo",
             "rg",
             "cep",
+            "complement_address",
+            "number_address",
             "cell_phone",
             "phone",
             "city",
