@@ -11,6 +11,7 @@
           {% if form.errors %}
           <div class="alert alert-danger" role="alert">
             {{ form.username.errors }}
+            {{ form.email.errors }}
             {{ form.password.errors }}
             {{ form.password2.errors }}
           </div>

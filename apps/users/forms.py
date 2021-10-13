@@ -2,17 +2,25 @@ from django import forms
 from django.contrib.auth.models import User, Permission
 from django.contrib.auth.forms import UserCreationForm
 from contextlib import suppress
+from django.core.exceptions import ValidationError
 
 
-class UserRegisterForm(UserCreationForm):
+class UserRegisterForm(UserCreationForm):  # pragma: no coverage
     PERM_VIEWS = [
         'Can view Client',
     ]
-    email = forms.EmailField()
+    email = forms.EmailField(max_length=100)
 
     class Meta:
         model = User
         fields = ['username', 'email', 'first_name', 'last_name']
+
+    # Validar email se existe
+    def clean_email(self):
+        get_email = self.cleaned_data['email']
+        if User.objects.filter(email=get_email).exists():
+            raise ValidationError(f"O email {get_email} já está em uso.")
+        return get_email
 
     def save(self, commit=True):
         user = super().save(commit=False)
