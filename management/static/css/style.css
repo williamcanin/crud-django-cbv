@@ -150,3 +150,7 @@ body a:focus, body a:visited, body a:active, body a:hover, body button:focus, bo
 .clients-form__input-cpf-cnpj {
   max-width: 250px !important;
 }
+.clients-form__observations {
+  min-height: 150px;
+  width: 100%;
+}
