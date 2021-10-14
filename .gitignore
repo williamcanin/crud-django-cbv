@@ -7,7 +7,6 @@
 .idea/
 .vscode/
 **/*/__pycache__
-**/*/media/images_bak/
 **/*/media/images/
 !**/*/media/default.png
 package-lock.json
