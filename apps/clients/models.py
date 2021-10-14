@@ -32,7 +32,9 @@ class ClientModel(models.Model):
         error_messages={"unique": "Este CPF/CNPF já está registrado."},
     )
     address = models.CharField("Endereço", max_length=250, null=True)
-    complement_address = models.CharField("Complemento", max_length=20, null=True, blank=True)
+    complement_address = models.CharField(
+        "Complemento", max_length=20, null=True, blank=True
+    )
     number_address = models.CharField("Número", max_length=10)
     photo = models.ImageField(
         "Imagem",

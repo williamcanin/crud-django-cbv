@@ -8,18 +8,18 @@ from django.urls import reverse_lazy
 
 
 class SignUpView(SuccessMessageMixin, CreateView):
-    template_name = 'users/register.html'
-    success_url = reverse_lazy('sign-in')
+    template_name = "users/register.html"
+    success_url = reverse_lazy("sign-in")
     form_class = UserRegisterForm
     success_message = "Seu perfil foi criado com sucesso, basta fazer o login :)"
 
     def dispatch(self, *args, **kwargs):
         if self.request.user.is_authenticated:
-            return redirect('/')
+            return redirect("/")
         return super().dispatch(*args, **kwargs)
 
 
 class ChangePasswordView(SuccessMessageMixin, LoginRequiredMixin, PasswordChangeView):
-    template_name = 'users/password_change.html'
-    success_url = reverse_lazy('home_page')
+    template_name = "users/password_change.html"
+    success_url = reverse_lazy("home_page")
     success_message = "Senha alterada com sucesso!"

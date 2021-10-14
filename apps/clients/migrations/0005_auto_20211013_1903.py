@@ -6,17 +6,19 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('clients', '0004_alter_clientmodel_rg'),
+        ("clients", "0004_alter_clientmodel_rg"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='clientmodel',
-            name='name',
+            model_name="clientmodel",
+            name="name",
         ),
         migrations.AddField(
-            model_name='clientmodel',
-            name='name_corporate',
-            field=models.CharField(max_length=150, null=True, verbose_name='Nome/Razão Social'),
+            model_name="clientmodel",
+            name="name_corporate",
+            field=models.CharField(
+                max_length=150, null=True, verbose_name="Nome/Razão Social"
+            ),
         ),
     ]

@@ -6,13 +6,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('clients', '0005_auto_20211013_1903'),
+        ("clients", "0005_auto_20211013_1903"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='clientmodel',
-            name='complement',
-            field=models.CharField(blank=True, max_length=20, null=True, verbose_name='Complemento'),
+            model_name="clientmodel",
+            name="complement",
+            field=models.CharField(
+                blank=True, max_length=20, null=True, verbose_name="Complemento"
+            ),
         ),
     ]

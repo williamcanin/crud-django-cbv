@@ -24,7 +24,7 @@ def instance():
         city="São Paulo",
         obs="Cliente muito prestigiado.",
         created_by_user="william",
-        update_by="william"
+        update_by="william",
     )
 
     return data

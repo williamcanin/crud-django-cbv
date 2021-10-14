@@ -6,18 +6,22 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('clients', '0002_rename_cpf_or_cnpj_clientmodel_client_type'),
+        ("clients", "0002_rename_cpf_or_cnpj_clientmodel_client_type"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='clientmodel',
-            name='obs',
-            field=models.TextField(blank=True, null=True, verbose_name='Observações'),
+            model_name="clientmodel",
+            name="obs",
+            field=models.TextField(blank=True, null=True, verbose_name="Observações"),
         ),
         migrations.AlterField(
-            model_name='clientmodel',
-            name='rg',
-            field=models.CharField(error_messages={'unique': 'Este RG já está registrado.'}, max_length=15, verbose_name='RG'),
+            model_name="clientmodel",
+            name="rg",
+            field=models.CharField(
+                error_messages={"unique": "Este RG já está registrado."},
+                max_length=15,
+                verbose_name="RG",
+            ),
         ),
     ]

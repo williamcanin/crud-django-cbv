@@ -22,12 +22,12 @@ class ClientForm(forms.ModelForm):  # pragma: no coverage
             "cell_phone",
             "phone",
             "city",
-            "obs"
+            "obs",
         )
 
         widgets = {
             "state": forms.Select(attrs={"class": "form-select clients-form__states"}),
             "client_type": forms.Select(
                 attrs={"class": "form-select clients-form__client_type"}
-            )
+            ),
         }

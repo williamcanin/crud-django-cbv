@@ -6,19 +6,19 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('clients', '0006_clientmodel_complement'),
+        ("clients", "0006_clientmodel_complement"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='clientmodel',
-            old_name='complement',
-            new_name='complement_address',
+            model_name="clientmodel",
+            old_name="complement",
+            new_name="complement_address",
         ),
         migrations.AddField(
-            model_name='clientmodel',
-            name='number_address',
-            field=models.CharField(default=1, max_length=10, verbose_name='Número'),
+            model_name="clientmodel",
+            name="number_address",
+            field=models.CharField(default=1, max_length=10, verbose_name="Número"),
             preserve_default=False,
         ),
     ]
