@@ -59,6 +59,7 @@ jobs:
     - name: Tests
       env:
         SECRET_KEY: ${{ env.SECRET_KEY }}
+        ALLOWED_HOSTS: ${{ env.ALLOWED_HOSTS }}
       run: |
         poetry run python manage.py makemigrations
         poetry run python manage.py migrate
