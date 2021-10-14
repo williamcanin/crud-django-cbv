@@ -57,9 +57,11 @@ $(".clients-form__client_type").change(function() {
   if (select === "cpf") {
     input.val('');
     input.mask('000.000.000-00');
+    $("#id_rg").attr('disabled', false);
   } else if (select === "cnpj") {
     input.val('');
     input.mask('00.000.000/0000-00');
+    $("#id_rg").attr('disabled', true);
   } else {
     input.unmask();
   }

@@ -7,6 +7,7 @@
 [ ] modificar a estrutura
 [x] quem cadastrou o cliente e alterou?
 [x] editar footer erro
+[ ] está deletando a imagem default.png
 
 
 $ rm -rf htmlcov .coverage
