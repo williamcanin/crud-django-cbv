@@ -19,7 +19,7 @@ FOR i IN 1..200 LOOP
         city
     ) VALUES (
         'William ' || i,
-        'my-email@gmail.com',
+        'my-email@gmail.com' || i,
         '1990-11-09',
         'Centro',
         'SP',
@@ -27,10 +27,10 @@ FOR i IN 1..200 LOOP
         '44444444444',
         'Rua XYZ',
         'images/upload/pPSojlIT_400x400_LOTGyMO.jpg',
-        '55555555555',
+        '5555555555'|| i,
         '16400035',
-        '55149924792',
-        '5514992479',
+        '551499247'|| i,
+        '55149924'|| i,
         'Lins'
     );
 END LOOP;
