@@ -27,6 +27,12 @@ To development:
 $ npm run dev
 ```
 
+## Create new apps
+
+```shell
+$ npm run app <NAME APP>
+```
+
 
 ## Heroku
 
