@@ -45,9 +45,11 @@ jobs:
       run: |
         poetry run black apps/ --check
     - name: Run makemigrations
-      run: python manage.py makemigrations
+      run: |
+        poetry run python manage.py makemigrations
     - name: Run migrations
-      run: python manage.py migrate
+      run: |
+        poetry run python manage.py migrate
     - name: Test with pytest
       run: |
         poetry run pytest
