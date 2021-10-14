@@ -30,7 +30,7 @@ SECRET_KEY = decouple.config('SECRET_KEY')
 # SECRET_KEY = environ.Env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = decouple.config('DEBUG', default=False, cast=bool)
+DEBUG = decouple.config('DEBUG', default=False, cast=bool)
 
 
 ALLOWED_HOSTS = decouple.config('ALLOWED_HOSTS', cast=decouple.Csv())
