@@ -11,10 +11,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 import os
-import environ
 import decouple
 import django_heroku
-# from dj_database_url import parse as dburl
+from dj_database_url import parse as dburl
 from pathlib import Path
 
 
@@ -90,37 +89,41 @@ WSGI_APPLICATION = 'management.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 ######################################################
-# USING DATABASE_URL
+# DATABASE - USING DATABASE_URL
 ######################################################
 
-# def default_database():
-#     from pathlib import Path
+def default_database():
+    from pathlib import Path
 
-#     try:
-#         DB_URL = decouple.config('DATABASE_URL')
-#         DB_URL = f"{DB_URL.split(':')[0].title()}SQL"
-#         print(f"Using database: {DB_URL}")
-#     except decouple.UndefinedValueError:
-#         print("Using database: SQLite3")
-#         # Creating path for database SQLite3
-#         Path(os.path.join(BASE_DIR, 'database')).mkdir(parents=True, exist_ok=True)
-#
-#     return f"sqlite:///{os.path.join(BASE_DIR, 'database/database.sqlite3')}"
-#
-# DATABASES = {
-#     'default': decouple.config('DATABASE_URL', default=default_database(), cast=dburl)
-# }
+    try:
+        decouple.config('DATABASE_URL')
+    except decouple.UndefinedValueError:
+        # Creating path for database SQLite3
+        Path(os.path.join(BASE_DIR, 'database')).mkdir(parents=True, exist_ok=True)
+
+    return f"sqlite:///{os.path.join(BASE_DIR, 'database/database.sqlite3')}"
+
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': decouple.config('DB_NAME'),
-        'USER': decouple.config('DB_USER'),
-        'PASSWORD': decouple.config('DB_PASSWORD'),
-        'HOST': decouple.config('DB_HOST'),
-        'PORT': decouple.config('DB_PORT'),
-    }
+    'default': decouple.config('DATABASE_URL', default=default_database(), cast=dburl)
 }
+
+
+######################################################
+# DATABASE - GITHUB ACTIONS
+######################################################
+
+if os.environ.get('GITHUB_WORKFLOW'):
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': decouple.config('DB_NAME'),
+            'USER': decouple.config('DB_USER'),
+            'PASSWORD': decouple.config('DB_PASSWORD'),
+            'HOST': decouple.config('DB_HOST'),
+            'PORT': decouple.config('DB_PORT'),
+        }
+    }
 
 # Password validation.
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
