@@ -4,6 +4,7 @@
 *.sqlite3
 .pytest_cache
 .tox
+.Identifier
 .idea/
 .vscode/
 **/*/__pycache__
