@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 import os
+import environ
 import decouple
 import django_heroku
 # from dj_database_url import parse as dburl
@@ -26,9 +27,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = decouple.config('SECRET_KEY')
+# SECRET_KEY = environ.Env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = decouple.config('DEBUG', default=False, cast=bool)
+# DEBUG = decouple.config('DEBUG', default=False, cast=bool)
+
 
 ALLOWED_HOSTS = decouple.config('ALLOWED_HOSTS', cast=decouple.Csv())
 
