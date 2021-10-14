@@ -91,7 +91,7 @@ def default_database():
     from pathlib import Path
 
     try:
-        DB_URL = decouple.config('DATABASE_URL')
+        DB_URL = decouple.config('DATABASE_URL', cast=dburl)
         DB_URL = f"{DB_URL.split(':')[0].title()}SQL"
         print(f"Using database: {DB_URL}")
     except decouple.UndefinedValueError:
@@ -106,6 +106,7 @@ DATABASES = {
     'default': decouple.config('DATABASE_URL', default=default_database(), cast=dburl)
 }
 
+# Config to GitHub Actions
 # if os.environ.get('GITHUB_WORKFLOW'):
 #     DATABASES = {
 #         'default': {
