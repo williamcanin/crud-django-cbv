@@ -88,9 +88,9 @@ WSGI_APPLICATION = 'management.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-######################################################
-# DATABASE - USING DATABASE_URL
-######################################################
+#########################################################
+# DATABASE - USING DATABASE_URL (PRODUCTION AND HEROKU)
+#########################################################
 
 def default_database():
     from pathlib import Path
