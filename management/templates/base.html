@@ -15,7 +15,7 @@
 </head>
 <body>
 
-    <header class="border-bottom">
+    <header class="border-bottom fixed-top navigation">
       <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
           <a class="navbar-brand" href="/">
@@ -68,7 +68,7 @@
     </header>
 
     <!-- Content -->
-    <div class="container py-5">
+    <div class="container main">
 
       {% if messages %}
         {% for message in messages %}
@@ -81,7 +81,7 @@
       {% block content %}{% endblock %}
     </div>
 
-    <!-- { % include 'footer/footer.html' % } -->
+    {% include 'footer/footer.html' %}
 
     <!-- Scripts -->
     <script src="{% static 'js/vendors.min.js' %}"></script>

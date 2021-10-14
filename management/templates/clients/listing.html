@@ -14,12 +14,12 @@
       <form method="GET" class="clients-listing__form-actions">
 
         {% if perms.clients.add_clientmodel %}
-          <a class="btn btn-outline-success" href="{% url 'client_new' %}">
+          <a class="btn btn-success" href="{% url 'client_new' %}">
             <i class="fas fa-user-plus"></i> Adicionar
           </a>
         {% endif %}
 
-        <a class="btn btn-outline-primary" href="{% url 'client_read' %}">
+        <a class="btn btn-primary" href="{% url 'client_read' %}">
           <i class="fas fa-sync"></i> Atualizar
         </a>
 

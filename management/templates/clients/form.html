@@ -252,35 +252,35 @@
 
       {% if not is_details %}
 
-        <button type="submit" class="btn btn-outline-success">
+        <button type="submit" class="btn btn-success">
           <i class="fas fa-save"></i> Salvar
         </button>
 
         {% if object.id %}
-          <a class="btn btn-outline-secondary" href="{% url 'client_details' object.id %}">
+          <a class="btn btn-secondary" href="{% url 'client_details' object.id %}">
             <i class="fas fa-ban"></i> Cancelar
           </a>
         {% else %}
-          <a class="btn btn-outline-secondary" href="{% url 'client_read' %}">
+          <a class="btn btn-secondary" href="{% url 'client_read' %}">
             <i class="fas fa-ban"></i> Cancelar
           </a>
         {% endif %}
 
       {% else %}
 
-        <a class="btn btn-outline-primary" href="{% url 'client_read' %}">
+        <a class="btn btn-primary" href="{% url 'client_read' %}">
           <i class="fas fa-file-alt"></i> Clientes
         </a>
 
         {% if perms.clients.change_clientmodel %}
-          <a class="btn btn-outline-success" href="{% url 'client_update' object.id %}">
+          <a class="btn btn-success" href="{% url 'client_update' object.id %}">
             <i class="fas fa-pencil-alt"></i> Editar
           </a>
         {% endif %}
 
         {% if perms.clients.delete_clientmodel %}
           {% if object.id %}
-            <button type="button" class="btn btn-outline-danger clients-btn-delete" data-toggle="modal"
+            <button type="button" class="btn btn-danger clients-btn-delete" data-toggle="modal"
             data-target="#confirmDeleteModal">
               <span data-target="{% url 'client_delete' object.id %}">Deletar</span>
             </button>
