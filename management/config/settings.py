@@ -86,6 +86,9 @@ WSGI_APPLICATION = 'management.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+######################################################
+# USING DATABASE_URL
+######################################################
 
 # def default_database():
 #     from pathlib import Path
@@ -98,26 +101,12 @@ WSGI_APPLICATION = 'management.wsgi.application'
 #         print("Using database: SQLite3")
 #         # Creating path for database SQLite3
 #         Path(os.path.join(BASE_DIR, 'database')).mkdir(parents=True, exist_ok=True)
-
+#
 #     return f"sqlite:///{os.path.join(BASE_DIR, 'database/database.sqlite3')}"
-
-
+#
 # DATABASES = {
 #     'default': decouple.config('DATABASE_URL', default=default_database(), cast=dburl)
 # }
-
-# Config to GitHub Actions
-# if os.environ.get('GITHUB_WORKFLOW'):
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.postgresql',
-#             'NAME': 'github_actions',
-#             'USER': 'postgres',
-#             'PASSWORD': 'postgres',
-#             'HOST': '127.0.0.1',
-#             'PORT': '5432',
-#         }
-#     }
 
 DATABASES = {
     'default': {

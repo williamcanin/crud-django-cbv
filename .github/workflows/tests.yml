@@ -15,7 +15,7 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: github_actions
+          POSTGRES_DB: cbv
         ports:
           - 5432:5432
         # needed because the postgres container does not provide a healthcheck
@@ -42,18 +42,6 @@ jobs:
     - name: Lint with Black
       run: |
         poetry run black apps/ --check
-    # - name: Create file .env
-    #   run: |
-    #     poetry run python bin/gen --env
-    # - name: Run makemigrations
-    #   run: |
-    #     poetry run python manage.py makemigrations
-    # - name: Run migrations
-    #   run: |
-    #     poetry run python manage.py migrate
-    # - name: Test with pytest
-    #   run: |
-    #     poetry run pytest
     - name: Tests
       env:
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
