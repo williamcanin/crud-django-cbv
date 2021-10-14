@@ -125,9 +125,6 @@ select {
 .clients-listing__search-select {
   max-width: 170px;
 }
-.clients-listing__photo-thumb {
-  cursor: pointer;
-}
 .clients-listing__not_found_text {
   color: #df4141;
 }
@@ -162,6 +159,9 @@ select {
   cursor: pointer;
   width: 120px;
   height: 120px;
+  border: 3px solid #afaeae;
+  padding: 1px;
+  box-shadow: 0px 0px 8px 0px #8f8f8f;
 }
 .clients-form__client_type {
   max-width: 100px !important;

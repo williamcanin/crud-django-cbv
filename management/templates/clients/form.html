@@ -63,9 +63,10 @@
               {% endif %}
 
               {% if not is_details %}
-              <label for="id_photo" class="border p-1 rounded-2 bg-default clients-form__btn-edit-photo">
+              <label for="client__upload-photo" class="border p-1 rounded-2 bg-default clients-form__btn-edit-photo">
                 <span class="fas fa-pencil-alt" aria-hidden="true">&nbsp;Alterar</span>
-                <input class="form-control" type="file" accept="images/*" name="photo" id="id_photo" style="display:none">
+                <input id="client__upload-photo" class="form-control" type="file" accept="images/*"
+                name="photo" style="display:none">
               </label>
               {% endif %}
             </div>
