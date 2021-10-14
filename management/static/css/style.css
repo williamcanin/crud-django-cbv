@@ -106,13 +106,10 @@ select {
   border: 1px solid #2a2a2a !important;
 }
 .clients-listing__search-select {
-  max-width: 90px;
+  max-width: 170px;
 }
 .clients-listing__photo-thumb {
   cursor: pointer;
-}
-.clients-listing__photo-open {
-  max-width: 40px;
 }
 .clients-listing__not_found_text {
   color: #df4141;
@@ -146,6 +143,8 @@ select {
 }
 .clients-form__photo-thumb {
   cursor: pointer;
+  width: 120px;
+  height: 120px;
 }
 .clients-form__client_type {
   max-width: 100px !important;
@@ -159,4 +158,13 @@ select {
 .clients-form__observations {
   width: 100%;
   min-height: 130px !important;
+}
+.clients-form__btn-edit-photo {
+  width: 90px;
+  padding: 1px;
+  background-color: white;
+  position: absolute;
+  margin-top: 75px;
+  margin-left: -40px;
+  cursor: pointer;
 }

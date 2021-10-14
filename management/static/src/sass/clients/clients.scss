@@ -1,4 +1,9 @@
 // Records clients
+
+.clients {
+  &__photo-open {}
+}
+
 .clients-listing {
   .clickable-row {
     cursor: pointer;
@@ -55,7 +60,7 @@
     }
   }
   &__search-select {
-    max-width: 90px;
+    max-width: 170px;
   }
   &__photo-full {}
   &__data-number-wrapper {}
@@ -63,9 +68,7 @@
   &__photo-thumb {
     cursor: pointer;
   }
-  &__photo-open {
-    max-width: 40px;
-  }
+  &__photo-open {}
   &__not_found_text {
       color: #df4141;
   }
@@ -108,17 +111,15 @@
 // Forms clients
 .clients-form {
   &__header {
-    // position: fixed;
-    // top: 0;
-    // width: 400px;
-    // margin-top: -20px;
-    // margin-left: 25%;
     .btn {
       min-width: 105px !important;
     }
   }
   &__photo-thumb {
     cursor: pointer;
+    $size: 120px;
+    width: $size;
+    height: $size;
   }
   &__client_type {
     max-width: 100px !important;
@@ -132,5 +133,14 @@
   &__observations {
     width: 100%;
     min-height: 130px !important;
+  }
+  &__btn-edit-photo {
+    width: 90px;
+    padding: 1px;
+    background-color: white;
+    position: absolute;
+    margin-top: 75px;
+    margin-left: -40px;
+    cursor: pointer;
   }
 }

@@ -19,10 +19,14 @@ const popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
 })
 
 // Open image in modal
-$(".clients-listing__photo-open").on("click", function() {
-  $('.clients-listing__photo-full').attr('src', $(this).find('img').attr('src'));
+$(".modal__open-photo").on("click", function() {
+  $('.clients-listing__photo-full').attr('src', $(this).attr('src'));
   $('#ModalPhotoView').modal('show');
 });
+
+// $(".clients-form__btn-edit-photo").on("click", function() {
+//   $(".modal__open-photo").attr('src', $("#id_photo").val())
+// });
 
 // Add path delete registry
 $(".clients-btn-delete").on("click", function() {
