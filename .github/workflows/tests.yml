@@ -44,6 +44,9 @@ jobs:
     - name: Lint with Black
       run: |
         poetry run black apps/ --check
+    - name: Create file .env
+      run: |
+        poetry run python bin/gen --env
     - name: Run makemigrations
       run: |
         poetry run python manage.py makemigrations
