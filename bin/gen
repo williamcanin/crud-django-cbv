@@ -64,6 +64,11 @@ class Env:
     DEBUG=True
     SECRET_KEY={get_random_string(50, PATTERN)}
     ALLOWED_HOSTS=.localhost, 127.0.0.1
+    # DB_NAME=
+    # DB_USER=
+    # DB_PASSWORD=
+    # DB_HOST=
+    # DB_PORT=
     # DATABASE_URL=postgres://USER:PASSWORD@HOST:PORT/NAME
     # DEFAULT_FROM_EMAIL=
     # EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackend
