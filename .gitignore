@@ -7,7 +7,7 @@
 .idea/
 .vscode/
 **/*/__pycache__
-**/*/media/upload/
+**/*/media/images/
 !**/*/media/default.png
 package-lock.json
 poetry.lock
