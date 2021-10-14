@@ -24,6 +24,11 @@
     .fa-edit {
       color: #1283a0;
     }
+    .tbl_item {
+      &:hover {
+        background-color: #d5dce2;
+      }
+    }
   }
   &__btns{
     &:hover{}
