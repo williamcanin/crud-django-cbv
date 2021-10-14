@@ -6,7 +6,7 @@
 [x] implementar mensagens se sucesso.
 [ ] modificar a estrutura
 [x] quem cadastrou o cliente e alterou?
-[ ] editar footer erro
+[x] editar footer erro
 
 
 $ rm -rf htmlcov .coverage
