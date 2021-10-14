@@ -91,7 +91,7 @@ def default_database():
     from pathlib import Path
 
     try:
-        DB_URL = decouple.config('DATABASE_URL', cast=dburl)
+        DB_URL = decouple.config('DATABASE_URL')
         DB_URL = f"{DB_URL.split(':')[0].title()}SQL"
         print(f"Using database: {DB_URL}")
     except decouple.UndefinedValueError:
