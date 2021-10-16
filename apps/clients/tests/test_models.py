@@ -17,6 +17,7 @@ def instance():
         complement_address="Rua XYZ",
         number_address="1478",
         photo="images/upload/default.jpg",
+        sex="m",
         rg="00.000.000-0",
         cep="16400-035",
         cell_phone="14000000000",
