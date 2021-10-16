@@ -5,7 +5,7 @@ from contextlib import suppress
 from django.core.exceptions import ValidationError
 
 
-class UserRegisterForm(UserCreationForm):  # pragma: no coverage
+class UserRegisterForm(UserCreationForm):
     PERM_VIEWS = [
         "Can view Client",
     ]
