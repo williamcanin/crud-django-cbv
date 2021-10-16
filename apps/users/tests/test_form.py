@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.test import Client
 from django.contrib.auth.models import User
 from apps.users.forms import UserRegisterForm
-from apps.users.views import SignUpView
+# from apps.users.views import SignUpView
 
 
 def test_user_not_auth():

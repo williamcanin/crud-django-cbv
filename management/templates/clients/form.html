@@ -120,6 +120,16 @@
 
           <div class="row">
             <div class="form-group col-md-2">
+              <label for="sex">Sexo:</label>
+              {% if is_details %}
+                <select name="sex" class="form-select clients-form__sex" id="id_sex" disabled>
+                  <option value="{{ object.sex }}" selected>{{ object.get_sex_display }}</option>
+                </select>
+              {% else %}
+                {{ form.sex }}
+              {% endif %}
+            </div>
+            <div class="form-group col-md-2">
               <label for="rg">RG:</label>
               <input class="form-control clients-form__input-entry" type="text" id="id_rg" name="rg"
                   value="{% if object.rg %}{{ object.rg }}{% endif %}" maxlength="15"
@@ -228,7 +238,7 @@
                 {{ form.state }}
               {% else %}
                 <select name="state" class="form-select" id="id_state" disabled>
-                  <option selected>{{ object.get_state_display }}</option>
+                  <option value="{{ object.state }}" selected>{{ object.get_state_display }}</option>
                 </select>
               {% endif %}
             </div>

@@ -58,10 +58,14 @@ $(".clients-form__client_type").on("change", function() {
     input.val('');
     input.mask('000.000.000-00');
     $("#id_rg").attr('disabled', false);
+    $("#id_sex").attr('disabled', false);
   } else if (select === "cnpj") {
     input.val('');
     input.mask('00.000.000/0000-00');
     $("#id_rg").attr('disabled', true);
+    $("#id_rg").val('');
+    $("#id_sex").attr('disabled', true);
+    $("#id_sex").val("undefined");
   } else {
     input.unmask();
   }

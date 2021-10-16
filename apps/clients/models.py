@@ -8,6 +8,7 @@ from apps.core.places import STATES_BRAZIL
 
 
 CHOICE_CPF_CNPJ = (("cpf", "CPF"), ("cnpj", "CNPJ"))
+CHOICE_SEX = (("undefined", "Selecione o sexo"), ("f", "Feminino"), ("m", "Masculino"))
 
 
 class ClientModel(models.Model):
@@ -25,6 +26,7 @@ class ClientModel(models.Model):
     client_type = models.CharField(
         "CPF/CNPJ", max_length=10, choices=CHOICE_CPF_CNPJ, default="cpf"
     )
+    sex = models.CharField("Sexo", max_length=10, choices=CHOICE_SEX, default="undefined")
     cpf_cnpj = models.CharField(
         "CPF/CNPJ",
         max_length=18,

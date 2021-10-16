@@ -15,6 +15,7 @@ class ClientForm(forms.ModelForm):  # pragma: no coverage
             "cpf_cnpj",
             "address",
             "photo",
+            "sex",
             "rg",
             "cep",
             "complement_address",
@@ -27,6 +28,7 @@ class ClientForm(forms.ModelForm):  # pragma: no coverage
 
         widgets = {
             "state": forms.Select(attrs={"class": "form-select clients-form__states"}),
+            "sex": forms.Select(attrs={"class": "form-select clients-form__sex"}),
             "client_type": forms.Select(
                 attrs={"class": "form-select clients-form__client_type"}
             ),
