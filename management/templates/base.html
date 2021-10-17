@@ -26,7 +26,8 @@
             <!-- Clients -->
             <ul class="navbar-nav pe-3">
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuRegisters" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuRegisters" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
                   Cadastros
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuRegisters">
@@ -47,7 +48,17 @@
             <div class="dropdown text-end">
               <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
               data-bs-toggle="dropdown" aria-expanded="false">
-                <span>Olá, {{ user.first_name }} {{ user.last_name }}!</span>
+                {% if user.first_name and user.last_name %}
+                  <span>Olá, <strong>{{ user.first_name }} {{ user.last_name }}</strong>!</span>
+                {% else %}
+                  <span>
+                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover"
+                    data-bs-trigger="hover focus" data-bs-content="Seu username está a mostra. Adicione um Nome e Sobrenome no seu profile.">
+                      <i class="fa fa-info-circle" aria-hidden="true" style="color: red;"></i>
+                    </span>
+                    Olá, <strong>"{{ user.username }}"</strong> !
+                  </span>
+                {% endif %}
               </a>
               <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
                 {% if user.is_superuser %}
@@ -61,8 +72,8 @@
           {% else %}
 
             <form class="form-inline my-2 my-lg-0">
-              <a href="{% url 'sign-in' %}" class="btn btn-outline-secondary">Conecte-se</a>
-              <a href="{% url 'sign-up' %}" class="btn btn-primary ml-2">Inscrever-se</a>
+              <a href="{% url 'sign-in' %}" class="btn btn-success">Conecte-se</a>
+              <a href="{% url 'sign-up' %}" class="btn btn-primary">Inscrever-se</a>
             </form>
 
           {% endif %}

@@ -17,8 +17,11 @@ select {
 }
 
 .navigation {
-  background-color: white;
+  background-color: #f1f1f1;
   margin-bottom: 50px;
+}
+.navigation .nav-link {
+  color: #000;
 }
 
 .main {
@@ -127,7 +130,7 @@ select {
 }
 .clients-listing__search-select, .clients-listing__data-number {
   border: 1px solid #2a2a2a !important;
-  max-width: 120px;
+  max-width: 150px;
   cursor: pointer;
 }
 .clients-listing__search-select:focus, .clients-listing__search-select:visited, .clients-listing__search-select:active, .clients-listing__data-number:focus, .clients-listing__data-number:visited, .clients-listing__data-number:active {

@@ -1,3 +1,5 @@
+# Fazer:
+
 [x] Corrigir erro de data que não carrega (formato)
 [x] Usar checkbox/combobox para CPF/CNPJ
 [ ] Fazer modelo de país/estado/cidade
@@ -9,13 +11,13 @@
 [x] editar footer erro
 [ ] está deletando a imagem default.png
 [ ] criar profile do usuário
+[ ] seletor de registros fixo
 
+
+
+# Coverage
 
 $ rm -rf htmlcov .coverage
 $ coverage run -m pytest
 $ coverage html
 $ python -m http.server --directory htmlcov
-
-
-obj = ClientModel(name="William", email="william@gmail.com", birth_date="1988-01-01", district="xxxx", state="sp", cpf_or_cnpj="cpf", cpf_cnpj="123.456.789-00", address="Rua X", photo="", rg="33.145.1458-2", cep="16440-000", cell_phone="14996479426", phone="1496478513", city="Sabino", created_by_user="william", update_by="william")
-obj.save()
