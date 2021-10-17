@@ -25,10 +25,10 @@ class UserRegisterForm(UserCreationForm):
     def save(self, commit=True):
         user = super().save(commit=False)
         # Save datas in Capitalize
-        user.first_name = self.cleaned_data['first_name'].title()
-        user.last_name = self.cleaned_data['last_name'].title()
+        user.first_name = self.cleaned_data["first_name"].title()
+        user.last_name = self.cleaned_data["last_name"].title()
         # Save data in lower text
-        user.email = self.cleaned_data['email'].lower()
+        user.email = self.cleaned_data["email"].lower()
         # Assign password
         user.set_password(self.cleaned_data["password1"])
 
