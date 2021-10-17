@@ -30,7 +30,11 @@
                   Cadastros
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuRegisters">
-                  <li><a class="dropdown-item" href="{% url 'client_read' %}">Clientes</a></li>
+                  <li>
+                    <a class="dropdown-item" href="{% url 'client_read' %}">
+                      <i class="fa fa-users" aria-hidden="true"></i> Clientes
+                    </a>
+                  </li>
                 </ul>
               </li>
             </ul>
@@ -43,7 +47,7 @@
             <div class="dropdown text-end">
               <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
               data-bs-toggle="dropdown" aria-expanded="false">
-                {{ user.username }}
+                <span>Olá, {{ user.first_name }} {{ user.last_name }}!</span>
               </a>
               <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
                 {% if user.is_superuser %}
