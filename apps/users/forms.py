@@ -1,9 +1,62 @@
 from django import forms
 from django.contrib.auth.models import User, Permission
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from contextlib import suppress
 from django.core.exceptions import ValidationError
+from .models import UserCustom
 
+
+class UserCreationFormCustom(UserCreationForm):
+    PERM_VIEWS = [
+        "Can view Client",
+    ]
+
+    class Meta:
+        model = UserCustom
+        fields = ["first_name", "last_name"]
+        label = {"username": "Username/E-Mail"}
+
+    def clean_email(self):
+        get_email = self.cleaned_data["username"]
+        if UserCustom.objects.filter(email=get_email).exists():
+            raise ValidationError(f"O email {get_email} já está em uso.")
+        return get_email
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        # Save datas in Capitalize
+        user.first_name = self.cleaned_data["first_name"].title()
+        user.last_name = self.cleaned_data["last_name"].title()
+        # Save data in lower text
+        user.email = self.cleaned_data["username"].lower()
+        # Assign password
+        user.set_password(self.cleaned_data["password1"])
+
+        if commit:
+            user.save()
+
+            # Add permissions to here user
+            if self.PERM_VIEWS:
+                for perm in self.PERM_VIEWS:
+                    with suppress(Exception):
+                        permission = Permission.objects.get(name=perm)
+                        user.user_permissions.add(permission)
+
+            # Add user to group "read_only"
+            # with suppress(Exception):
+            # read_only = Group.objects.get(name='read_only')
+            # user.groups.add(read_only)
+
+        return user
+
+
+class UserChangeFormCustom(UserChangeForm):
+    class Meta:
+        model = UserCustom
+        fields = {'first_name', 'last_name'}
+
+
+# Default
 
 class UserRegisterForm(UserCreationForm):
     PERM_VIEWS = [

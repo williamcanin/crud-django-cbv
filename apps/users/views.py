@@ -1,4 +1,4 @@
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm, UserCreationFormCustom
 from django.views.generic.edit import CreateView
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.messages.views import SuccessMessageMixin
@@ -10,7 +10,7 @@ from django.urls import reverse_lazy
 class SignUpView(SuccessMessageMixin, CreateView):
     template_name = "users/register.html"
     success_url = reverse_lazy("sign-in")
-    form_class = UserRegisterForm
+    form_class = UserCreationFormCustom
     success_message = "Seu perfil foi criado com sucesso, basta fazer o login :)"
 
     def dispatch(self, *args, **kwargs):

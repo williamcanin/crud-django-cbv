@@ -209,5 +209,7 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 # Expira em 10 minutos
 # SESSION_COOKIE_AGE = 10 * 60
 
+AUTH_USER_MODEL = "users.UserCustom"
+
 # Heroku settings
 django_heroku.settings(locals())
