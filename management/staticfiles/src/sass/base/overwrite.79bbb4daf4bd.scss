@@ -1,0 +1,11 @@
+// Overwrite
+.btn {
+  outline: none !important;
+  &:focus, &:visited, &:active {
+    box-shadow: none !important;
+  }
+}
+
+select {
+  cursor: pointer;
+}
