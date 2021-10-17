@@ -5,12 +5,15 @@
 {% block head %}{% endblock %}
 
 {% block content %}
+{% load client_tags %}
 
 <div class="clients-listing">
+  <p class="h2 text-center pb-5">Tabela de Clientes<p></p>
+  <hr>
   <div class="row clients-listing__header">
 
     <!-- Buttons -->
-    <div class="col-md-4 clients-listing__header-col">
+    <div class="col-md-3 clients-listing__header-col">
       <form method="GET" class="clients-listing__form-actions">
 
         {% if perms.clients.add_clientmodel %}
@@ -29,7 +32,7 @@
 
 
     <!-- Search -->
-    <div class="col-md-8 clients-listing__header-col">
+    <div class="col-md-7 clients-listing__header-col">
       <form method="GET">
         <div class="input-group">
           <select name="s_type" class="form-select form-select-sm clients-listing__search-select">
@@ -42,6 +45,22 @@
           data-mask="0000000" placeholder="Digite e aperte Enter" required>
         </div>
       </form>
+    </div>
+
+
+    <div class="col-md-2">
+      {% clients_legend as legend %}
+      <div class="text-right clients-listing__legend">
+        <label for="">{{ legend.title }}:</label>
+        <div class="clients-listing__legend-cpf">
+          <i class="fa fa-square" aria-hidden="true"></i>
+          {{ legend.cpf }}
+        </div>
+        <div class="clients-listing__legend-cnpj">
+          <i class="fa fa-square" aria-hidden="true"></i>
+          {{ legend.cnpj }}
+        </div>
+      </div>
     </div>
   </div>
 
@@ -81,7 +100,11 @@
 
     <tbody>
       {% for client in object_list %}
-        <tr class="tbl_item clickable-row" data-href="{% url 'client_details' client.id %}">
+        {% if client.client_type == "cnpj" %}
+          <tr class="tbl_item clickable-row clients-listing__item-cnpj" data-href="{% url 'client_details' client.id %}">
+        {% else %}
+          <tr class="tbl_item clickable-row clients-listing__item-cpf" data-href="{% url 'client_details' client.id %}">
+        {% endif %}
           <th scope="row">{{ client.id }}</th>
 
           <td>

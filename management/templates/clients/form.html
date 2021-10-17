@@ -13,6 +13,8 @@
   <form method="POST" id="form_client" enctype="multipart/form-data">
     {% csrf_token %}
 
+    <p class="h2 text-center">Cadastro de Clientes<p>
+
     <!-- Forms -->
     <div class="row pb-3">
       <div class="card">
@@ -102,7 +104,11 @@
             </div>
 
             <div class="form-group col-md-4">
-              <label for="name_corporate">Nome/Razão Social:</label>
+              {% if object.client_type == "cnpj" %}
+                <label for="name_corporate">Razão Social:</label>
+              {% else %}
+                <label for="name_corporate">Nome:</label>
+              {% endif %}
               <input class="form-control clients-form__input-entry" type="text" id="id_name_corporate" name="name_corporate"
                   value="{% if object.name_corporate %}{{ object.name_corporate | title }}{% endif %}"
                   maxlength="70" required {% if is_details %} disabled {% endif %}>

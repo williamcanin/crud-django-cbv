@@ -1,10 +1,22 @@
-// Records clients
-
-.clients {
-  &__photo-open {}
-}
-
 .clients-listing {
+  $cnpj-color: #c0d8ee;
+  $cpf-color: #a8ceb9;
+  &__item-cnpj {
+    background-color: $cnpj-color;
+  }
+  &__item-cpf {
+    background-color: $cpf-color;
+  }
+  &__legend-cpf {
+    i {
+      color: $cpf-color;
+    }
+  }
+  &__legend-cnpj {
+    i {
+      color: $cnpj-color;
+    }
+  }
   .clickable-row {
     cursor: pointer;
   }
