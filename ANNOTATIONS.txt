@@ -4,10 +4,11 @@
 [x] erro acessar o sign-up com usuario logado
 [x] adicionar usuário criado ao grupo
 [x] implementar mensagens se sucesso.
-[ ] modificar a estrutura
+[x] modificar a estrutura
 [x] quem cadastrou o cliente e alterou?
 [x] editar footer erro
 [ ] está deletando a imagem default.png
+[ ] criar profile do usuário
 
 
 $ rm -rf htmlcov .coverage
