@@ -27,6 +27,9 @@ node_modules/
 ## Comment this block to send on the Heroku -----
 apps/clients/migrations/
 apps/clients/migrations/*_initial.py
+apps/users/migrations/*_initial.py
+apps/core/migrations/*_initial.py
+apps/home/migrations/*_initial.py
 **/*/staticfiles/
 !**/*/staticfiles/.gitkeep
 **/*/static/js/
