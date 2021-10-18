@@ -190,7 +190,7 @@ select {
 }
 
 .sign-up {
-  width: 40% !important;
+  max-width: 600px;
   margin: 0 auto;
   background-color: white;
   padding: 20px;

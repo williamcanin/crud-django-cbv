@@ -37,20 +37,32 @@ class UserCreationFormCustom(UserCreationForm):
     class Meta:
         model = UserCustom
         fields = ["username", "first_name", "last_name"]
-        label = {"username": "Username/E-Mail"}
+        labels = {"username": "E-Mail"}
 
     # __init__ Django Crispy
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_method = "POST"
-        self.helper.add_input(Submit("btn-register", "Enviar", css_class="w-100"))
+        self.helper.form_show_labels = True
+        self.helper.layout = Layout(
+            Row(
+                Column("username", css_class="mb-3"),
+                Column("first_name", css_class="mb-3"),
+                Column("last_name", css_class="mb-3"),
+                Column("password1", css_class="mb-3"),
+                Column("password2", css_class="mb-3"),
+                ButtonHolder(
+                    Submit('submit', 'Entrar', css_class='btn btn-primary w-100'),
+                )
+            )
+        )
 
-    def clean_email(self):
-        get_email = self.cleaned_data["username"]
-        if UserCustom.objects.filter(email=get_email).exists():
-            raise ValidationError(f"O email {get_email} já está em uso.")
-        return get_email
+    # def clean_email(self):
+    #     get_email = self.cleaned_data["username"]
+    #     if UserCustom.objects.filter(email=get_email).exists():
+    #         raise ValidationError(f"O email {get_email} já está em uso.")
+    #     return get_email
 
     def save(self, commit=True):
         user = super().save(commit=False)
