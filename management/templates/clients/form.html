@@ -8,6 +8,7 @@
 {% load client_tags %}
 {% buttons_action  as btns %}
 
+
 <div class="clients-form">
 
   <form method="POST" id="form_client" enctype="multipart/form-data">
@@ -29,12 +30,12 @@
               </div>
             {% endif %}
 
-            <div class="form-group col-md-2">
+            <div class="form-group col-md-3">
               <label for="created_by_user">Criado por: </label>
               <input type="text" id="created_by_user" class="form-control" value="{{ object.created_by_user }}" disabled>
             </div>
 
-            <div class="form-group col-md-2">
+            <div class="form-group col-md-3">
               <label for="update_by">Ultima atualização por: </label>
               <input type="text" id="update_by" class="form-control" value="{{ object.update_by }}" disabled>
             </div>
