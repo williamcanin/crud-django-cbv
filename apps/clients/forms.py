@@ -35,6 +35,7 @@ class ClientForm(forms.ModelForm):  # pragma: no coverage
             "client_type": forms.Select(
                 attrs={"class": "form-select clients-form__client_type"}
             ),
+            "birth_date": forms.TextInput(attrs={"type": "date"}),
         }
 
     # def __init__(self, **kwargs):

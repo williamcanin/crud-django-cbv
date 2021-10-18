@@ -8,6 +8,7 @@
 {% load client_tags %}
 {% buttons_action  as btns %}
 
+{% load crispy_forms_tags %}
 
 <div class="clients-form">
 
@@ -57,6 +58,7 @@
         <div class="card-body">
 
           <div class="row pb-3">
+
             <div class="form-group col-md-2">
               {% if object.photo %}
                 <img class="rounded-circle clients-form__photo-thumb modal__open-photo"
@@ -104,7 +106,7 @@
               </div>
             </div>
 
-            <div class="form-group col-md-4">
+            <!-- <div class="form-group col-md-4">
               {% if object.client_type == "cnpj" %}
                 <label for="name_corporate">Razão Social:</label>
               {% else %}
@@ -113,14 +115,36 @@
               <input class="form-control clients-form__input-entry" type="text" id="id_name_corporate" name="name_corporate"
                   value="{% if object.name_corporate %}{{ object.name_corporate | title }}{% endif %}"
                   maxlength="70" required {% if is_details %} disabled {% endif %}>
-            </div>
+            </div> -->
 
-            <div class="form-group col-md-2">
+						<div class="form-group col-md-4">
+							{% if object.name_corporate and is_details %}
+								{% if object.client_type == "cnpj" %}
+									<label>Razão Social:</label>
+								{% else %}
+									<label>Nome:</label>
+								{% endif %}
+								<input class="form-control" type="text" value="{{ object.name_corporate | title }}" disabled>
+							{% else %}
+								{{ form.name_corporate|as_crispy_field }}
+							{% endif %}
+						</div>
+
+            <!-- <div class="form-group col-md-2">
               <label for="birth_date">Data de Nasc/Abert:</label>
               <input class="form-control clients-form__input-entry" type="date"
                   id="id_birth_date" name="birth_date"
                   value="{% if object.birth_date %}{{ object.birth_date|date:"Y-m-d" }}{% endif %}" maxlength="15"
                   placeholder="Apenas números" required {% if is_details %} disabled {% endif %}>
+            </div> -->
+
+						<div class="form-group col-md-2">
+							{% if object.birth_date and is_details %}
+              	<label>Data de Nasc/Abert:</label>
+								<input class="form-control" type="date" value="{{ object.birth_date | date:'Y-m-d' }}" disabled>
+							{% else %}
+								{{ form.birth_date|as_crispy_field }}
+							{% endif %}
             </div>
 
           </div>
