@@ -7,8 +7,7 @@ from contextlib import suppress
 from django.contrib.auth.forms import AuthenticationForm
 from .models import UserCustom
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit
-from crispy_forms.layout import Column, Row, ButtonHolder
+from .layouts import layout_user_create, layout_auth
 
 
 class AuthenticationFormCustom(AuthenticationForm):
@@ -18,15 +17,7 @@ class AuthenticationFormCustom(AuthenticationForm):
         self.helper = FormHelper()
         self.helper.form_method = "POST"
         self.helper.form_show_labels = True
-        self.helper.layout = Layout(
-            Row(
-                Column("username", css_class="mb-3"),
-                Column("password", css_class="mb-3"),
-                ButtonHolder(
-                    Submit('submit', 'Entrar', css_class='btn btn-primary w-100'),
-                )
-            )
-        )
+        self.helper.layout = layout_auth
 
 
 class UserCreationFormCustom(UserCreationForm):
@@ -45,18 +36,7 @@ class UserCreationFormCustom(UserCreationForm):
         self.helper = FormHelper()
         self.helper.form_method = "POST"
         self.helper.form_show_labels = True
-        self.helper.layout = Layout(
-            Row(
-                Column("username", css_class="mb-3"),
-                Column("first_name", css_class="mb-3"),
-                Column("last_name", css_class="mb-3"),
-                Column("password1", css_class="mb-3"),
-                Column("password2", css_class="mb-3"),
-                ButtonHolder(
-                    Submit('submit', 'Entrar', css_class='btn btn-primary w-100'),
-                )
-            )
-        )
+        self.helper.layout = layout_user_create
 
     # def clean_email(self):
     #     get_email = self.cleaned_data["username"]
