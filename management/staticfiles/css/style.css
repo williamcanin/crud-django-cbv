@@ -16,6 +16,11 @@ select {
   cursor: pointer;
 }
 
+.card {
+  border-radius: 10px;
+  border: 1px solid #bebebe;
+}
+
 .navigation {
   background-color: #f1f1f1;
   margin-bottom: 50px;
@@ -52,28 +57,6 @@ select {
 }
 .error-template__actions .btn {
   margin-right: 10px;
-}
-.form-signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: auto;
-}
-.form-signin .checkbox {
-  font-weight: 400;
-}
-.form-signin .form-floating:focus-within {
-  z-index: 2;
-}
-.form-signin input[type=text] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-.form-signin input[type=password] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
 }
 
 .clients-listing__item-cnpj {
@@ -199,4 +182,21 @@ select {
   margin-top: 75px;
   margin-left: -40px;
   cursor: pointer;
+}
+
+.sign-in__body {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.sign-up {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #bebebe;
+}
+.sign-up__body .form-group {
+  margin-bottom: 15px;
 }
