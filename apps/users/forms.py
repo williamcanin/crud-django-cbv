@@ -1,8 +1,10 @@
 # from django import forms
 from django.contrib.auth.models import Permission
+
 # from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from contextlib import suppress
+
 # from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import AuthenticationForm
 from .models import UserCustom
@@ -75,7 +77,7 @@ class UserCreationFormCustom(UserCreationForm):
 class UserChangeFormCustom(UserChangeForm):
     class Meta:
         model = UserCustom
-        fields = {'first_name', 'last_name'}
+        fields = {"first_name", "last_name"}
 
 
 # # Not customized

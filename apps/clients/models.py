@@ -27,7 +27,12 @@ class ClientModel(models.Model):
         "CPF/CNPJ", max_length=10, choices=CHOICE_CPF_CNPJ, default="cpf"
     )
     sex = models.CharField(
-        "Sexo", max_length=10, choices=CHOICE_SEX, default="undefined", null=True, blank=True
+        "Sexo",
+        max_length=10,
+        choices=CHOICE_SEX,
+        default="undefined",
+        null=True,
+        blank=True,
     )
     cpf_cnpj = models.CharField(
         "CPF/CNPJ",

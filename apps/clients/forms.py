@@ -40,4 +40,3 @@ class ClientForm(forms.ModelForm):  # pragma: no coverage
 
     # def __init__(self, **kwargs):
     #     super().__init__(**kwargs)
-
