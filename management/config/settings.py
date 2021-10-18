@@ -44,10 +44,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'django_extensions',
     'apps.clients',
     'apps.home',
     'apps.users',
+
 ]
 
 MIDDLEWARE = [
@@ -209,7 +211,11 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 # Expira em 10 minutos
 # SESSION_COOKIE_AGE = 10 * 60
 
+# Remova o AUTH_USER_MODEL para não usar o gerenciamento de usuário customizado.
 AUTH_USER_MODEL = "users.UserCustom"
+
+# Crispy using Bootstrap4
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Heroku settings
 django_heroku.settings(locals())

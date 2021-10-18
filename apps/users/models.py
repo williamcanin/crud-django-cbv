@@ -1,3 +1,6 @@
+# Comment out all this code if you don't want to use custom.
+# The custom uses email for login instead of user.
+
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 
@@ -31,6 +34,8 @@ class UserManagerCustom(BaseUserManager):
 
 class UserCustom(AbstractUser):
     email = models.EmailField('E-mail', unique=True)
+    first_name = models.CharField('Primeiro nome', max_length=100, error_messages={"required": "Not null"})
+    last_name = models.CharField('Ultimo nome', max_length=100, error_messages={"required": "Not null"})
     # cell_phone = models.CharField('Celular', max_length=18)
     is_staff = models.BooleanField('Membro', default=True)
 

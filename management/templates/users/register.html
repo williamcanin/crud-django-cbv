@@ -1,6 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% load crispy_forms_tags %}
+
+<div class="sign-up">
+  <div class="sign-up__header">
+    <p class="h2 text-center"> Registrar-se</p>
+  </div>
+  <div class="sign-up__body">
+    {% crispy form %}
+  </div>
+</div>
+
+
+<!--
   <div class="row justify-content-center">
     <div class="col-5">
       <div class="card">
@@ -8,49 +21,44 @@
 
           <h2 class="text-center">Inscrever-se</h2>
 
-          {% if form.errors %}
-          <div class="alert alert-danger" role="alert">
-            {{ form.username.errors }}
-            {{ form.email.errors }}
-            {{ form.password.errors }}
-            {{ form.password2.errors }}
-          </div>
-          {% endif %}
-
-
           <form method="POST">
             {% csrf_token %}
 
             <div class="form-group pb-3">
-              <label for="id_username">Nome de usuário</label>
-              <input type="text" name="username" id="id_username" class="form-control"
-              placeholder="Username" maxlength="15" required>
-              <small id="usernameHelp" class="form-text text-muted">Obrigatório. 15 caracteres ou menos. Letras, dígitos e _ apenas.</small>
+              <label for="id_email">Username/E-mail</label>
+              <input type="email" name="username" id="id_email" class="form-control" aria-describedby="emailHelp"
+              placeholder="Enter email" required>
+              <small id="emailHelp" class="form-text text-muted">Nunca compartilharemos seu e-mail com mais ninguém.</small>
+              {% if form.username.errors %}
+                <small class="form-text text-danger">{{ form.username.errors }}</small>
+              {% endif %}
             </div>
 
             <div class="form-group pb-3">
               <label for="id_first_name">Primeiro nome</label>
               <input type="text" name="first_name" id="id_first_name" class="form-control"
-              placeholder="First name" maxlength="30" required>
+              placeholder="First name" maxlength="30">
+              {% if form.first_name.errors %}
+                <small class="form-text text-danger">{{ form.first_name.errors }}</small>
+              {% endif %}
             </div>
 
             <div class="form-group pb-3">
               <label for="id_last_name">Ultimo nome</label>
               <input type="text" name="last_name" id="id_last_name" class="form-control"
-              placeholder="First name" maxlength="30" required>
-            </div>
-
-            <div class="form-group pb-3">
-              <label for="id_email">Endereço de e-mail</label>
-              <input type="email" name="email" id="id_email" class="form-control" aria-describedby="emailHelp"
-              placeholder="Enter email" required>
-              <small id="emailHelp" class="form-text text-muted">Nunca compartilharemos seu e-mail com mais ninguém.</small>
+              placeholder="First name" maxlength="30">
+              {% if form.last_name.errors %}
+                <small class="form-text text-danger">{{ form.last_name.errors }}</small>
+              {% endif %}
             </div>
 
             <div class="form-group">
               <label for="id_password1">Senha</label>
               <input type="password" name="password1" id="id_password1" class="form-control"
               id="exampleInputPassword1" placeholder="Password" required>
+              {% if form.password1.errors %}
+                <small class="form-text text-danger">{{ form.password1.errors }}</small>
+              {% endif %}
               <small id="passwordHelp" class="form-text text-muted">
                 <ul>
                   <li>Sua senha deve conter pelo menos 8 caracteres.</li>
@@ -64,6 +72,9 @@
               <label for="id_password2">Confirmar senha</label>
               <input type="password" name="password2" id="id_password2" class="form-control"
               id="exampleInputPasswordConfirm1" placeholder="Password" required>
+              {% if form.password2.errors %}
+                <small class="form-text text-danger">{{ form.password2.errors }}</small>
+              {% endif %}
             </div>
 
             <button type="submit" class="btn btn-primary" id="id_signup" >Enviar</button>
@@ -72,5 +83,6 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
+
 {% endblock %}

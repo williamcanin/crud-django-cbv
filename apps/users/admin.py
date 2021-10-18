@@ -1,6 +1,8 @@
+# Coment admin.py for default
+
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .forms import UserCreationForm, UserChangeFormCustom, UserCreationFormCustom
+from .forms import UserChangeFormCustom, UserCreationFormCustom
 from .models import UserCustom
 
 

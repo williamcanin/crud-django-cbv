@@ -15,7 +15,7 @@ def test_user_not_auth():
 @pytest.mark.django_db
 def test_auth_user():
     data = {
-        "username": "williamcanin",
+        "username": "william.costa.canin@gmail.com",
         "first_name": "William",
         "last_name": "Canin",
         "email": "william.costa.canin_x@gmail.com",
@@ -37,7 +37,7 @@ def test_auth_user():
 @pytest.mark.django_db
 def test_auth_email():
     user1 = {
-        "username": "williamcanin",
+        "username": "william@gmail.com",
         "first_name": "William",
         "last_name": "Canin",
         "email": "william@gmail.com",
@@ -46,7 +46,7 @@ def test_auth_email():
     }
 
     user2 = {
-        "username": "williamcanin2",
+        "username": "william@gmail.com",
         "first_name": "William",
         "last_name": "Canin",
         "email": "william@gmail.com",

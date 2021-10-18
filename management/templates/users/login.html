@@ -6,28 +6,41 @@
 
 {% block content %}
 {% load static %}
-<main class="text-center form-signin">
+{% load crispy_forms_tags %}
+
+<div class="sign-in">
+  <div class="text-center sign-in__header">
+    <img class="mb-4 rounded-circle" src="{% static 'images/logo.svg' %}" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 fw-normal">Por favor, conecte-se</h1>
+  </div>
+  <div class="sign-in__body">
+    <div class="card">
+      <div class="card-body">
+        {% crispy form %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <main class="text-center form-signin">
   <form method="POST" novalidate>
     {% csrf_token %}
     <img class="mb-4 rounded-circle" src="{% static 'images/logo.svg' %}" alt="" width="72" height="72">
     <h1 class="h3 mb-3 fw-normal">Por favor, conecte-se</h1>
 
     <div class="form-floating">
-      <input type="text" name="username" class="form-control" id="floatingInput" placeholder="Username" autocapitalize="none" autocomplete="username" maxlength="150" required>
-      <label for="floatingInput">Usuário</label>
+      <input type="text" name="username" class="form-control" id="floatingInput" placeholder="E-Mail"
+      autocapitalize="none" autocomplete="username" required>
+      <label for="floatingInput">E-Mail</label>
     </div>
     <div class="form-floating">
-      <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" autocomplete="current-password" required>
+      <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password"
+      autocomplete="current-password" required>
       <label for="floatingPassword">Senha</label>
     </div>
-    <!-- <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Remember me
-      </label>
-      <a href="" class="btn btn-link">Esqueceu sua senha?</a>
-    </div> -->
     <button class="w-100 btn btn-lg btn-primary" type="submit">Entrar</button>
   </form>
-</main>
+</main> -->
 
 {% endblock %}

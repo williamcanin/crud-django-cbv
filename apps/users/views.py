@@ -1,10 +1,18 @@
-from .forms import UserRegisterForm, UserCreationFormCustom
+from .forms import UserCreationFormCustom
+from .forms import AuthenticationFormCustom
 from django.views.generic.edit import CreateView
-from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.views import PasswordChangeView, LoginView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
+
+
+class SignInView(LoginView):
+    template_name = "users/login.html"
+    success_url = reverse_lazy("home_page")
+    form_class = AuthenticationFormCustom
+    redirect_authenticated_user = True
 
 
 class SignUpView(SuccessMessageMixin, CreateView):

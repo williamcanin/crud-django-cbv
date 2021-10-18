@@ -1,16 +1,10 @@
 from django.urls import path
-from django.contrib.auth.views import LoginView, LogoutView
-from .views import SignUpView, ChangePasswordView
+from django.contrib.auth.views import LogoutView
+from .views import SignUpView, ChangePasswordView, SignInView
 
 
 urlpatterns = [
-    path(
-        "sign-in/",
-        LoginView.as_view(
-            redirect_authenticated_user=True, template_name="users/login.html"
-        ),
-        name="sign-in",
-    ),
+    path("sign-in/", SignInView.as_view(), name="sign-in"),
     path("sign-up/", SignUpView.as_view(), name="sign-up"),
     path("logout/", LogoutView.as_view(), name="logout"),
     path(
