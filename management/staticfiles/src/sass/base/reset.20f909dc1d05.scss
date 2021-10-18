@@ -1,9 +1,0 @@
-// Reset
-body {
-  a,button,input, textarea, select {
-    outline: none !important;
-    &:focus, &:visited, &:active, &:hover {
-        box-shadow: none !important;
-    }
-  }
-}
