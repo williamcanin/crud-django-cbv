@@ -5,10 +5,13 @@
 {% block head %}{% endblock %}
 
 {% block content %}
-{% load client_tags %}
-{% buttons_action  as btns %}
 
+<!-- Loads -->
+{% load client_tags %}
 {% load crispy_forms_tags %}
+
+<!-- Sets -->
+
 
 <div class="clients-form">
 
@@ -62,7 +65,7 @@
             <div class="form-group col-md-2">
               {% if object.photo %}
                 <img class="rounded-circle clients-form__photo-thumb modal__open-photo"
-              src="{{ media_url }}{{ object.photo }}" alt="{{ object.photo }}">
+              src="{{ media_url }}{{ object.photo }}" alt="{{ object.photo | default_if_none:'' }}">
               {% else %}
                 <img class="rounded-circle clients-form__photo-thumb modal__open-photo"
               src="{{ media_url }}default.png" alt="{{ object.photo }}">
@@ -77,73 +80,50 @@
               {% endif %}
             </div>
 
+
             <div class="form-group col-md-3">
-              <label for="id_cpf_cnpj">Cliente Físico/Juridico:</label>
+              <label>Cliente Físico/Juridico:</label>
               <div class="input-group">
-                {% if not is_details %}
-                  {{ form.client_type }}
+                {% if is_details %}
+									<select class="form-select clients-form__client_type" disabled>
+										<option>{{ object.get_client_type_display }}</option>
+									</select>
                 {% else %}
-                  <select name="client_type" class="form-select clients-form__client_type" id="id_client_type"  disabled>
-                    <option>{{ object.get_client_type_display }}</option>
-                  </select>
+									{{ form.client_type | as_crispy_field }}
                 {% endif %}
-
-                {% if object.client_type == "cnpj" %}
-                  <input class="form-control clients-form__input-entry clients-form__input-cpf-cnpj" type="text"
-                    data-mask="00.000.000/0000-00" id="id_cpf_cnpj" name="cpf_cnpj"
-                    value="{% if object.cpf_cnpj %}{{ object.cpf_cnpj }}{% endif %}" maxlength="15"
-                    {% if not is_details %} placeholder="Apenas números" {% endif %} {% if is_details %} disabled {% endif %}>
-                {% else %}
-                  <input class="form-control clients-form__input-entry clients-form__input-cpf-cnpj" type="text"
-                    data-mask="000.000.000-00" id="id_cpf_cnpj" name="cpf_cnpj"
-                    value="{% if object.cpf_cnpj %}{{ object.cpf_cnpj }}{% endif %}" maxlength="15"
-                    {% if not is_details %} placeholder="Apenas números" {% endif %} {% if is_details %} disabled {% endif %}>
-                {% endif %}
-
-                {% if form.errors %}
-                  <small id="id_cpf_cnpj" class="form-text text-danger">{{ form.cpf_cnpj.errors }}</small>
-                {% endif %}
+								{% client_mask_cpf_cnpj object.client_type as mask_cpf_cnpj %}
+								{% if is_details %}
+									<input class="form-control clients-form__input-cpf-cnpj" type="text"
+                    data-mask="{{ mask_cpf_cnpj }}" value="{{ object.cpf_cnpj }}" disabled>
+								{% else %}
+									{{ form.cpf_cnpj | as_crispy_field }}
+								{% endif %}
+                <!-- {% if form.cpf_cnpj.errors %}
+                  <small class="form-text text-danger">{{ form.cpf_cnpj.errors }}</small>
+                {% endif %} -->
               </div>
             </div>
 
-            <!-- <div class="form-group col-md-4">
-              {% if object.client_type == "cnpj" %}
-                <label for="name_corporate">Razão Social:</label>
-              {% else %}
-                <label for="name_corporate">Nome:</label>
-              {% endif %}
-              <input class="form-control clients-form__input-entry" type="text" id="id_name_corporate" name="name_corporate"
-                  value="{% if object.name_corporate %}{{ object.name_corporate | title }}{% endif %}"
-                  maxlength="70" required {% if is_details %} disabled {% endif %}>
-            </div> -->
-
-						<div class="form-group col-md-4">
-							{% if object.name_corporate and is_details %}
-								{% if object.client_type == "cnpj" %}
-									<label>Razão Social:</label>
-								{% else %}
-									<label>Nome:</label>
-								{% endif %}
-								<input class="form-control" type="text" value="{{ object.name_corporate | title }}" disabled>
+						<div class="col-md-4">
+							{% if object.client_type == "cnpj" %}
+								<label>Razão Social:</label>
 							{% else %}
-								{{ form.name_corporate|as_crispy_field }}
+								<label>Nome:</label>
+							{% endif %}
+							{% if object.name_corporate and is_details %}
+								<input class="form-control" type="text" value="{{ object.name_corporate | title | default_if_none:'' }}" disabled>
+							{% else %}
+								{{ form.name_corporate | as_crispy_field }}
 							{% endif %}
 						</div>
 
-            <!-- <div class="form-group col-md-2">
-              <label for="birth_date">Data de Nasc/Abert:</label>
-              <input class="form-control clients-form__input-entry" type="date"
-                  id="id_birth_date" name="birth_date"
-                  value="{% if object.birth_date %}{{ object.birth_date|date:"Y-m-d" }}{% endif %}" maxlength="15"
-                  placeholder="Apenas números" required {% if is_details %} disabled {% endif %}>
-            </div> -->
-
 						<div class="form-group col-md-2">
+							<label>Data Nasc/Abert:</label>
 							{% if object.birth_date and is_details %}
               	<label>Data de Nasc/Abert:</label>
 								<input class="form-control" type="date" value="{{ object.birth_date | date:'Y-m-d' }}" disabled>
 							{% else %}
-								{{ form.birth_date|as_crispy_field }}
+								{{ form.birth_date | as_crispy_field }}
 							{% endif %}
             </div>
 
@@ -151,50 +131,56 @@
 
           <div class="row">
             <div class="form-group col-md-2">
-              <label for="sex">Sexo:</label>
+              <label>Sexo:</label>
               {% if is_details %}
-                <select name="sex" class="form-select clients-form__sex" id="id_sex" disabled>
+                <select class="form-select clients-form__sex" disabled>
                   <option value="{{ object.sex }}" selected>{{ object.get_sex_display }}</option>
                 </select>
               {% else %}
-                {{ form.sex }}
+                {{ form.sex | as_crispy_field }}
               {% endif %}
             </div>
+
             <div class="form-group col-md-2">
-              <label for="rg">RG:</label>
-              <input class="form-control clients-form__input-entry" type="text" id="id_rg" name="rg"
-                  value="{% if object.rg %}{{ object.rg }}{% endif %}" maxlength="15"
-                  {% if is_details or object.client_type == "cnpj" %} disabled {% endif %}>
+              <label>RG:</label>
+							{% if is_details %}
+              	<input class="form-control" type="text" value="{{ object.rg | default_if_none:'' }}" disabled>
+							{% else %}
+								{{ form.rg | as_crispy_field }}
+							{% endif %}
               {% if form.errors %}
                 <small id="id_rg" class="form-text text-danger">{{ form.rg.errors }}</small>
               {% endif %}
             </div>
 
             <div class="form-group col-md-3">
-              <label for="email">E-Mail:</label>
-              <input class="form-control clients-form__input-entry" type="email" id="id_email" name="email"
-                  value="{% if object.email %}{{ object.email }}{% endif %}"
-                  maxlength="130" {% if is_details %} disabled {% endif %}
-                  {% if not is_details %} placeholder="example@domain.com" {% endif %}>
-              {% if form.errors %}
-                <small id="id_email" class="form-text text-danger">{{ form.email.errors }}</small>
-              {% endif %}
+              <label>E-Mail:</label>
+							{% if is_details %}
+              	<input class="form-control" type="text" value="{{ object.email | default_if_none:'' }}" disabled>
+							{% else %}
+								{{ form.email | as_crispy_field }}
+							{% endif %}
+            </div>
+
+            <div class="form-group col-md-2">
+              <label>Celular:</label>
+							{% if is_details %}
+              	<input class="form-control" type="text"  data-mask="(00) 00000-0000"
+								value="{{ object.cell_phone | default_if_none:'' }}" disabled>
+							{% else %}
+								{{ form.cell_phone | as_crispy_field }}
+							{% endif %}
             </div>
 
 
             <div class="form-group col-md-2">
-              <label for="cell_phone">Celular:</label>
-              <input class="form-control clients-form__input-entry" type="text" id="id_cell_phone" name="cell_phone"
-                  value="{% if object.cell_phone %}{{ object.cell_phone }}{% endif %}" data-mask="(00) 00000-0000"
-                  maxlength="16" required {% if is_details %} disabled {% endif %} {% if not is_details %} placeholder="(00) 00000-0000" {% endif %}>
-            </div>
-
-
-            <div class="form-group col-md-2">
-              <label for="phone">Telefone:</label>
-              <input class="form-control clients-form__input-entry" type="text" id="id_phone" name="phone"
-                  value="{% if object.phone %}{{ object.phone }}{% endif %}" data-mask="(00) 0000-0000"
-                  maxlength="16" {% if is_details %} disabled {% endif %} {% if not is_details %} placeholder="(00) 0000-0000" {% endif %}>
+              <label>Telefone:</label>
+							{% if is_details %}
+              	<input class="form-control" type="text"  data-mask="(00) 0000-0000"
+								value="{{ object.phone | default_if_none:'' }}" disabled>
+							{% else %}
+								{{ form.phone | as_crispy_field }}
+							{% endif %}
             </div>
           </div>
 
@@ -203,75 +189,84 @@
     </div>
 
     <!-- Endereços -->
+		{% client_html_obj_disable is_details as disabled %}
     <div class="row pb-3">
       <div class="card">
         <h5 class="card-header">Endereços</h5>
         <div class="card-body">
           <div class="row">
+
             <div class="form-group col-md-2">
-              <label for="cep">CEP:</label>
+              <label>CEP:</label>
               <div class="input-group mb-3">
-
-                <input type="text" class="form-control clients-form__input-entry" data-mask="00000-000" placeholder="00000-000"
-                aria-label="00000-000" aria-describedby="search_cep" id="id_cep" name="cep"
-                value="{% if object.cep %}{{ object.cep }}{% endif %}" maxlength="10" required {% if is_details %} disabled {% endif %}>
-
-                <button class="btn btn-primary" type="button" id="search_cep" {% if is_details %} disabled {% endif %}
-                  data-message="CEP Não encontrado!">
+                <input type="text" class="form-control" data-mask="00000-000" placeholder="00000-000"
+                id="id_cep" name="cep" value="{{ object.cep | default_if_none:'' }}"
+								required {{ disabled }}>
+                <button class="btn btn-primary" type="button" id="search_cep" {{ disabled }}>
                   <i class="fa fa-search" aria-hidden="true"></i>
                 </button>
-
               </div>
             </div>
 
             <div class="form-group col-md-4">
-              <label for="address">Endereço:</label>
-              <input class="form-control clients-form__input-entry" type="text" id="id_address" name="address"
-                  value="{% if object.address %}{{ object.address | title }}{% endif %}"
-                  maxlength="30" required {% if is_details %} disabled {% endif %}>
+              <label for="address">Logradouro:</label>
+							{% if is_details %}
+								<input class="form-control" type="text" value="{{ object.address | default_if_none:'' }}" {{ disabled }}>
+							{% else %}
+								{{ form.address | as_crispy_field }}
+							{% endif %}
             </div>
 
             <div class="form-group col-md-1">
-              <label for="number_address">Número:</label>
-              <input class="form-control clients-form__input-entry" type="text" id="id_number_address" name="number_address"
-              data-mask="000000" placeholder="00000"
-              value="{% if object.number_address %}{{ object.number_address | title }}{% endif %}"
-              maxlength="12" required {% if is_details %} disabled {% endif %}>
+              <label>Número:</label>
+							{% if is_details %}
+								<input class="form-control" type="text" value="{{ object.number_address | default_if_none:'' }}" {{ disabled }}>
+							{% else %}
+								{{ form.number_address | as_crispy_field }}
+							{% endif %}
             </div>
 
             <div class="form-group col-md-2">
-              <label for="complement_address">Complemento:</label>
-              <input class="form-control clients-form__input-entry" type="text" id="id_complement_address" name="complement_address"
-                  value="{% if object.complement_address %}{{ object.complement_address | title }}{% endif %}"
-                  maxlength="20" required {% if is_details %} disabled {% endif %}>
+              <label>Complemento:</label>
+							{% if is_details %}
+								<input class="form-control" type="text" value="{{ object.complement_address | default_if_none:'' }}" {{ disabled }}>
+							{% else %}
+								{{ form.complement_address | as_crispy_field }}
+							{% endif %}
             </div>
 
 
             <div class="form-group col-md-3">
-              <label for="city">Cidade:</label>
-              <input class="form-control clients-form__input-entry" type="text" id="id_city" name="city"
-                  value="{% if object.city %}{{ object.city | title }}{% endif %} {{ city_cep }}"
-                  maxlength="30" required {% if is_details %} disabled {% endif %}>
+              <label>Cidade:</label>
+							{% if is_details %}
+								<input class="form-control" type="text" value="{{ object.city | default_if_none:'' }}" {{ disabled }}>
+							{% else %}
+								{{ form.city | as_crispy_field }}
+							{% endif %}
             </div>
 
           </div>
 
           <div class="row">
             <div class="form-group col-md-3">
-              <label for="district">Bairro:</label>
-              <input class="form-control clients-form__input-entry" type="text" id="id_district" name="district"
-                  value="{% if object.district %}{{ object.district | title }}{% endif %}"
-                  maxlength="30" required {% if is_details %} disabled {% endif %}>
+              <label>Bairro:</label>
+							{% if is_details %}
+								<input class="form-control" type="text" value="{{ object.district | default_if_none:'' }}" {{ disabled }}>
+							{% else %}
+								{{ form.district | as_crispy_field }}
+							{% endif %}
             </div>
 
             <div class="form-group col-md-2">
               <label for="state">Estado:</label>
-              {% if not is_details %}
-                {{ form.state }}
+              {% if is_details %}
+								<select class="form-select" {{ disabled }}>
+									<option value="{{ object.state | default_if_none:'' }}" selected>
+										{{ object.get_state_display }}
+									</option>
+								</select>
               {% else %}
-                <select name="state" class="form-select" id="id_state" disabled>
-                  <option value="{{ object.state }}" selected>{{ object.get_state_display }}</option>
-                </select>
+								{{ form.state | as_crispy_field }}
               {% endif %}
             </div>
           </div>
@@ -285,8 +280,12 @@
         <h5 class="card-header">Observações</h5>
         <div class="card-body">
           <div class="form-group col">
-            <textarea class="form-control clients-form__observations" name="obs" placeholder="Escreva uma observação para este Cliente"
-            {% if is_details %} disabled {% endif %}>{% if object.obs %}{{ object.obs }}{% endif %}</textarea>
+						{% if is_details %}
+							<textarea class="form-control clients-form__observations" placeholder="Escreva uma observação para este Cliente"
+            	{{ disabled }}>{{ object.obs | default_if_none:'' }}</textarea>
+						{% else %}
+							{{ form.obs | as_crispy_field }}
+						{% endif %}
           </div>
         </div>
       </div>
@@ -300,16 +299,16 @@
       {% if not is_details %}
 
         <button type="submit" class="btn btn-success">
-          <i class="fas fa-save"></i> {{ btns.4 }}
+          <i class="fas fa-save"></i> Salvar
         </button>
 
         {% if object.id %}
           <a class="btn btn-secondary" href="{% url 'client_details' object.id %}">
-            <i class="fas fa-ban"></i> {{ btns.3 }}
+            <i class="fas fa-ban"></i> Cancelar
           </a>
         {% else %}
           <a class="btn btn-secondary" href="{% url 'client_read' %}">
-            <i class="fas fa-ban"></i> {{ btns.3 }}
+            <i class="fas fa-ban"></i> Cancelar
           </a>
         {% endif %}
 
@@ -321,7 +320,7 @@
 
         {% if perms.clients.change_clientmodel %}
           <a class="btn btn-success" href="{% url 'client_update' object.id %}">
-            <i class="fas fa-pencil-alt"></i> {{ btns.0 }}
+            <i class="fas fa-pencil-alt"></i> Editar
           </a>
         {% endif %}
 
@@ -329,7 +328,7 @@
           {% if object.id %}
             <button type="button" class="btn btn-danger clients-btn-delete" data-toggle="modal"
             data-target="#confirmDeleteModal">
-              <span data-target="{% url 'client_delete' object.id %}">{{ btns.1 }}</span>
+              <span data-target="{% url 'client_delete' object.id %}">Deletar</span>
             </button>
           {% endif %}
         {% endif %}

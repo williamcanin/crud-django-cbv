@@ -38,7 +38,7 @@ class ClientModel(models.Model):
         "CPF/CNPJ",
         max_length=18,
         unique=True,
-        error_messages={"unique": "Este CPF/CNPF já está registrado."},
+        error_messages={"unique": "Este CPF/CNPJ já está registrado."},
     )
     address = models.CharField("Endereço", max_length=250, null=True)
     complement_address = models.CharField(

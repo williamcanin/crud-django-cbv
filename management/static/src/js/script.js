@@ -51,21 +51,20 @@ $(".clients-listing__search-select").on("change", function() {
 });
 
 // Change input CPF/CNPJ mask
+if ($('.clients-form__client_type option:selected').val() === "cpf") {
+	$('.clients-form__input-cpf-cnpj').mask('000.000.000-00');
+} else if ($('.clients-form__client_type option:selected').val() === "cnpj") {
+	$('.clients-form__input-cpf-cnpj').mask('00.000.000/0000-00');
+}
 $(".clients-form__client_type").on("change", function() {
-  const select = $('.clients-form__client_type option:selected').val();
-  const input = $('.clients-form__input-cpf-cnpj');
+	const select = $('.clients-form__client_type option:selected').val();
+	const input = $('.clients-form__input-cpf-cnpj');
   if (select === "cpf") {
     input.val('');
     input.mask('000.000.000-00');
-    $("#id_rg").attr('disabled', false);
-    $("#id_sex").attr('disabled', false);
   } else if (select === "cnpj") {
     input.val('');
     input.mask('00.000.000/0000-00');
-    $("#id_rg").attr('disabled', true);
-    $("#id_rg").val('');
-    $("#id_sex").attr('disabled', true);
-    $("#id_sex").val("undefined");
   } else {
     input.unmask();
   }

@@ -1,24 +1,21 @@
 from django import forms
 from .models import ClientModel
-
-# from crispy_forms.helper import FormHelper
-# from crispy_forms.layout import Layout, Submit
-# from crispy_forms.layout import Column, Row, ButtonHolder
+from crispy_forms.helper import FormHelper
 
 
 class ClientForm(forms.ModelForm):  # pragma: no coverage
     class Meta:
         model = ClientModel
         fields = (
+            "photo",
             "client_type",
+            "cpf_cnpj",
             "name_corporate",
             "email",
             "birth_date",
             "district",
             "state",
-            "cpf_cnpj",
             "address",
-            "photo",
             "sex",
             "rg",
             "cep",
@@ -37,7 +34,16 @@ class ClientForm(forms.ModelForm):  # pragma: no coverage
                 attrs={"class": "form-select clients-form__client_type"}
             ),
             "birth_date": forms.TextInput(attrs={"type": "date"}),
+            "email": forms.TextInput(attrs={"placeholder": "my-email@example.com"}),
+            "cpf_cnpj": forms.TextInput(attrs={"class": "clients-form__input-cpf-cnpj"}),
+            "cell_phone": forms.TextInput(attrs={"data-mask": "(00) 00000-0000", "placeholder": "(00) 00000-0000"}),
+            "phone": forms.TextInput(attrs={"data-mask": "(00) 0000-0000", "placeholder": "(00) 0000-0000"}),
+            "obs": forms.Textarea(attrs={"placeholder": "Escreva uma observação para este Cliente"}),
+            "name_corporate": forms.TextInput(attrs={"placeholder": "Ex: Elvis Presley"}),
+            "rg": forms.TextInput(attrs={"placeholder": "Ex: 99.999.999-9"}),
         }
 
-    # def __init__(self, **kwargs):
-    #     super().__init__(**kwargs)
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.helper = FormHelper()
+        self.helper.form_show_labels = False

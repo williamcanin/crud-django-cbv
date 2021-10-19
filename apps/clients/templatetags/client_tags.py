@@ -4,14 +4,25 @@ register = template.Library()
 
 
 @register.simple_tag
-def buttons_action():
-    return ["Editar", "Delelar", "Adicionar", "Cancelar", "Salvar"]
-
-
-@register.simple_tag
 def clients_legend():
     return {
         "title": "Legendas",
         "cpf": "Pessoas Físicas (CPF)",
         "cnpj": "Pessoas Jurídicas (CNPJ)",
     }
+
+
+@register.simple_tag
+def client_mask_cpf_cnpj(obj):
+    if obj == "cpf":
+        return "000.000.000-00"
+    elif obj == "cnpj":
+        return "00.000.000/0000-00"
+    return ""
+
+
+@register.simple_tag
+def client_html_obj_disable(obj):
+    if obj:
+        return "disabled"
+    return ""
