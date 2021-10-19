@@ -1,3 +1,4 @@
+import re
 from django import forms
 from .models import ClientModel
 from crispy_forms.helper import FormHelper
@@ -47,3 +48,8 @@ class ClientForm(forms.ModelForm):  # pragma: no coverage
         super().__init__(**kwargs)
         self.helper = FormHelper()
         self.helper.form_show_labels = False
+
+    # Limpa a mascara antes de fazer a verificação com o banco de dados.
+    def clean_cpf_cnpj(self):
+        data = re.sub("[^0-9]", "", self.cleaned_data['cpf_cnpj'])
+        return data
