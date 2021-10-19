@@ -1,4 +1,4 @@
-# from django import forms
+from django import forms
 from django.contrib.auth.models import Permission
 
 # from django.contrib.auth.models import User
@@ -19,7 +19,12 @@ class AuthenticationFormCustom(AuthenticationForm):
         self.helper = FormHelper()
         self.helper.form_method = "POST"
         self.helper.form_show_labels = True
+        self.fields["username"].widget = forms.TextInput(attrs={"type": "email"})
         self.helper.layout = layout_auth
+
+    class Meta:
+        fields = ["username", "password"]
+        labels = {"username": "E-Maill"}
 
 
 class UserCreationFormCustom(UserCreationForm):
@@ -31,6 +36,9 @@ class UserCreationFormCustom(UserCreationForm):
         model = UserCustom
         fields = ["username", "first_name", "last_name"]
         labels = {"username": "E-Mail"}
+        widgets = {
+            "username": forms.TextInput(attrs={"type": "email"}),
+        }
 
     # __init__ Django Crispy
     def __init__(self, *args, **kwargs):

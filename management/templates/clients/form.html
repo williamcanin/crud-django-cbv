@@ -118,7 +118,6 @@
 						<div class="form-group col-md-2">
 							<label>Data Nasc/Abert:</label>
 							{% if object.birth_date and is_details %}
-              	<label>Data de Nasc/Abert:</label>
 								<input class="form-control" type="date" value="{{ object.birth_date | date:'Y-m-d' }}" disabled>
 							{% else %}
 								{{ form.birth_date | as_crispy_field }}
@@ -146,9 +145,9 @@
 							{% else %}
 								{{ form.rg | as_crispy_field }}
 							{% endif %}
-              {% if form.errors %}
+              <!-- {% if form.errors %}
                 <small id="id_rg" class="form-text text-danger">{{ form.rg.errors }}</small>
-              {% endif %}
+              {% endif %} -->
             </div>
 
             <div class="form-group col-md-3">

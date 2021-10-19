@@ -16,9 +16,9 @@ class ClientModel(models.Model):
     email = models.EmailField(
         max_length=254,
         unique=True,
-        error_messages={"unique": "Este e-mail já está registrado."}
+        error_messages={"unique": "Este e-mail já está registrado."},
     )
-    birth_date = models.DateField("Data de Nascimento", null=True)
+    birth_date = models.DateField("Data Nasc/Abert", null=True)
     district = models.CharField("Bairro", max_length=150, null=True)
     state = models.CharField(
         "Estados", max_length=25, choices=STATES_BRAZIL, default="default"
@@ -30,7 +30,7 @@ class ClientModel(models.Model):
         "CPF/CNPJ",
         max_length=20,
         unique=True,
-        error_messages={"unique": "Este dado já está registrado."}
+        error_messages={"unique": "Este CPF/CNPJ já está registrado."},
     )
     sex = models.CharField(
         "Sexo",
@@ -61,8 +61,23 @@ class ClientModel(models.Model):
         error_messages={"unique": "Este RG já está registrado."},
     )
     cep = models.CharField("CEP", max_length=15, null=True)
-    cell_phone = models.CharField("CEL", max_length=15, null=True)
-    phone = models.CharField("Fone", max_length=15, blank=True)
+    # As posiçoes dos parametros importam.
+    cell_phone = models.CharField(
+        "Cell Phone",
+        max_length=15,
+        unique=True,
+        null=True,
+        blank=True,
+        error_messages={"unique": "Este Celular já está registrado."},
+    )
+    phone = models.CharField(
+        "Fone",
+        max_length=15,
+        unique=True,
+        null=True,
+        blank=True,
+        error_messages={"unique": "Este Telefone já está registrado."},
+    )
     city = models.CharField("Cidade", max_length=80, null=True)
     obs = models.TextField("Observações", null=True, blank=True)
     created_by_user = models.CharField("Criado por", max_length=30)
@@ -89,6 +104,9 @@ class ClientModel(models.Model):
 
         # Remove hyphen and dot of CELL PHONE before save
         self.cell_phone = re.sub("[^0-9]", "", self.cell_phone)
+
+        # Remove hyphen and dot of CELL PHONE before save
+        self.phone = re.sub("[^0-9]", "", self.phone)
 
         # Remove old photo after adding new
         with suppress(Exception):

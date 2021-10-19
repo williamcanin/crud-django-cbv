@@ -41,6 +41,7 @@
             <option value="name_corporate">Nome/Razão Social</option>
             <option value="cpf">CPF</option>
             <option value="cnpj">CNPJ</option>
+						<option value="email">E-Mail</option>
           </select>
           <input type="text" class="form-control clients-listing__search-input"  name="q"
           data-mask="0000000" placeholder="Digite e aperte Enter" required>
@@ -52,7 +53,6 @@
     <div class="col-md-2">
       {% clients_legend as legend %}
       <div class="text-right clients-listing__legend">
-        <label for="">{{ legend.title }}:</label>
         <div class="clients-listing__legend-cpf">
           <i class="fa fa-square" aria-hidden="true"></i>
           {{ legend.cpf }}
@@ -91,6 +91,7 @@
 
     <thead class="client__thead">
       <tr>
+				<th scope="col">Tipo</th>
         <th scope="col">ID</th>
         <th scope="col">Nome/Razão Social</th>
         <th scope="col">CPF/CNPJ</th>
@@ -100,12 +101,21 @@
     </thead>
 
     <tbody>
+
       {% for client in object_list %}
-        {% if client.client_type == "cnpj" %}
-          <tr class="tbl_item clickable-row clients-listing__item-cnpj" data-href="{% url 'client_details' client.id %}">
-        {% else %}
-          <tr class="tbl_item clickable-row clients-listing__item-cpf" data-href="{% url 'client_details' client.id %}">
-        {% endif %}
+				<tr class="tbl_item clickable-row" data-href="{% url 'client_details' client.id %}">
+					<td>
+						{% if client.client_type == "cpf" %}
+							<div class="clients-listing__legend-cpf">
+								<i class="fa fa-square" aria-hidden="true"></i>
+							</div>
+						{% else %}
+							<div class="clients-listing__legend-cnpj">
+								<i class="fa fa-square" aria-hidden="true"></i>
+							</div>
+						{% endif %}
+					</td>
+
           <th scope="row">{{ client.id }}</th>
 
           <td>
@@ -182,7 +192,7 @@
 
 
 {% if not object_list %}
-  <p class="h4 font-weight-light clients-listing__not_found_text text-center">Pesquisa sem resultados.</p>
+  <p class="h4 font-weight-light clients-listing__not_found_text text-center">Sem registro.</p>
 {% endif %}
 
 </div>

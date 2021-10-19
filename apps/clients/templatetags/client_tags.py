@@ -6,7 +6,6 @@ register = template.Library()
 @register.simple_tag
 def clients_legend():
     return {
-        "title": "Legendas",
         "cpf": "Pessoas Físicas (CPF)",
         "cnpj": "Pessoas Jurídicas (CNPJ)",
     }
@@ -23,6 +22,6 @@ def client_mask_cpf_cnpj(obj):
 
 @register.simple_tag
 def client_html_obj_disable(obj):
-    if obj:
+    if obj is True:
         return "disabled"
     return ""

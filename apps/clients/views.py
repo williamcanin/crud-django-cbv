@@ -78,6 +78,8 @@ class ClientList(LoginRequiredMixin, ListView):
                 records = self.model.objects.filter(id=q)
             elif s_type == "name_corporate":
                 records = self.model.objects.filter(name_corporate__icontains=q)
+            elif s_type == "email":
+                records = self.model.objects.filter(email=q)
 
         return records
 

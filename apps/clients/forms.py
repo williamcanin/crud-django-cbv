@@ -36,11 +36,21 @@ class ClientForm(forms.ModelForm):  # pragma: no coverage
             ),
             "birth_date": forms.TextInput(attrs={"type": "date"}),
             "email": forms.TextInput(attrs={"placeholder": "my-email@example.com"}),
-            "cpf_cnpj": forms.TextInput(attrs={"class": "clients-form__input-cpf-cnpj"}),
-            "cell_phone": forms.TextInput(attrs={"data-mask": "(00) 00000-0000", "placeholder": "(00) 00000-0000"}),
-            "phone": forms.TextInput(attrs={"data-mask": "(00) 0000-0000", "placeholder": "(00) 0000-0000"}),
-            "obs": forms.Textarea(attrs={"placeholder": "Escreva uma observação para este Cliente"}),
-            "name_corporate": forms.TextInput(attrs={"placeholder": "Ex: Elvis Presley"}),
+            "cpf_cnpj": forms.TextInput(
+                attrs={"class": "clients-form__input-cpf-cnpj"}
+            ),
+            "cell_phone": forms.TextInput(
+                attrs={"data-mask": "(00) 00000-0000", "placeholder": "(00) 00000-0000"}
+            ),
+            "phone": forms.TextInput(
+                attrs={"data-mask": "(00) 0000-0000", "placeholder": "(00) 0000-0000"}
+            ),
+            "obs": forms.Textarea(
+                attrs={"placeholder": "Escreva uma observação para este Cliente"}
+            ),
+            "name_corporate": forms.TextInput(
+                attrs={"placeholder": "Ex: Elvis Presley"}
+            ),
             "rg": forms.TextInput(attrs={"placeholder": "Ex: 99.999.999-9"}),
         }
 
@@ -51,5 +61,13 @@ class ClientForm(forms.ModelForm):  # pragma: no coverage
 
     # Limpa a mascara antes de fazer a verificação com o banco de dados.
     def clean_cpf_cnpj(self):
-        data = re.sub("[^0-9]", "", self.cleaned_data['cpf_cnpj'])
+        data = re.sub("[^0-9]", "", self.cleaned_data["cpf_cnpj"])
+        return data
+
+    def clean_cell_phone(self):
+        data = re.sub("[^0-9]", "", self.cleaned_data["cell_phone"])
+        return data
+
+    def clean_phone(self):
+        data = re.sub("[^0-9]", "", self.cleaned_data["phone"])
         return data
