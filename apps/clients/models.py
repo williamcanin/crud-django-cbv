@@ -28,9 +28,9 @@ class ClientModel(models.Model):
     )
     cpf_cnpj = models.CharField(
         "CPF/CNPJ",
-        max_length=18,
+        max_length=20,
         unique=True,
-        error_messages={"unique": "Este CPF/CNPJ já está registrado."},
+        error_messages={"unique": "Este dado já está registrado."}
     )
     sex = models.CharField(
         "Sexo",

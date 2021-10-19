@@ -13,7 +13,7 @@
   <hr>
   <div class="row clients-listing__header">
 
-    <!-- Buttons -->
+
     <div class="col-md-3 clients-listing__header-col">
       <form method="GET" class="clients-listing__form-actions">
 
@@ -32,7 +32,7 @@
 
 
 
-    <!-- Search -->
+
     <div class="col-md-7 clients-listing__header-col">
       <form method="GET">
         <div class="input-group">
@@ -67,7 +67,7 @@
 
 
 
-  <!-- Selector -->
+
   <div class="row clients-listing__data-number-wrapper pt-5">
     <div class="col">
         <form method="GET" class="clients-listing__data-number-form">
@@ -86,7 +86,7 @@
 
 
 
-  <!-- Table -->
+
   <table id="tbl_listing" class="table table-responsive table-striped table-hover clients-listing__table">
 
     <thead class="client__thead">
@@ -136,7 +136,7 @@
 
 
 
-<!-- Paginator -->
+
 {% if object_list.has_other_pages %}
   <nav class="clients-listing__pagination">
     <ul class="pagination pagination-lg justify-content-center">
@@ -180,11 +180,11 @@
   </nav>
   {% endif %}
 
-<!-- No results -->
+
 {% if not object_list %}
   <p class="h4 font-weight-light clients-listing__not_found_text text-center">Pesquisa sem resultados.</p>
 {% endif %}
 
-</div> <!-- End clients-listing -->
+</div>
 
 {% endblock %}
