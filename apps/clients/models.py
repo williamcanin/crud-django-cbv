@@ -92,7 +92,7 @@ class ClientModel(models.Model):
         db_table = "tbl_clients"
         verbose_name = "Client"
         verbose_name_plural = "Clients"
-        ordering = ["id"]
+        ordering = ["-id"]
 
     def save(self, *args, **kwargs):
 
@@ -119,5 +119,7 @@ class ClientModel(models.Model):
     def delete(self, *args, **kwargs):
 
         # Before deleting the record, remove the photo for the record
-        self.photo.delete()
+        obj = ClientModel.objects.get(id=self.id)
+        if obj.photo != "default.png":
+            self.photo.delete()
         super(ClientModel, self).delete(*args, **kwargs)
