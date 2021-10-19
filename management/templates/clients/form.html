@@ -94,7 +94,7 @@
 								{% client_mask_cpf_cnpj object.client_type as mask_cpf_cnpj %}
 								{% if is_details %}
 									<input class="form-control clients-form__input-cpf-cnpj" type="text"
-                    data-mask="{{ mask_cpf_cnpj }}" value="{{ object.cpf_cnpj }}" disabled>
+                    data-mask="{{ mask_cpf_cnpj }}" value="{{ object.cpf_cnpj | default_if_none:'' }}" disabled>
 								{% else %}
 									{{ form.cpf_cnpj | as_crispy_field }}
 								{% endif %}

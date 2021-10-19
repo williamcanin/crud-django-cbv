@@ -47,3 +47,11 @@ class ClientForm(forms.ModelForm):  # pragma: no coverage
         super().__init__(**kwargs)
         self.helper = FormHelper()
         self.helper.form_show_labels = False
+
+    # def save(self, commit=True):
+    #     user = super().save(commit=False)
+    #     if user.cpf_cnpj == self.cleaned_data["cpf_cnpj"]:
+    #         return ValueError("Dado existe")
+    #     if commit:
+    #         user.save()
+    #     return user

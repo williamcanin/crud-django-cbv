@@ -16,7 +16,7 @@ class ClientModel(models.Model):
     email = models.EmailField(
         max_length=254,
         unique=True,
-        error_messages={"unique": "Este e-mail já está registrado."},
+        error_messages={"unique": "Este e-mail já está registrado."}
     )
     birth_date = models.DateField("Data de Nascimento", null=True)
     district = models.CharField("Bairro", max_length=150, null=True)
@@ -26,6 +26,12 @@ class ClientModel(models.Model):
     client_type = models.CharField(
         "CPF/CNPJ", max_length=10, choices=CHOICE_CPF_CNPJ, default="cpf"
     )
+    cpf_cnpj = models.CharField(
+        "CPF/CNPJ",
+        max_length=18,
+        unique=True,
+        error_messages={"unique": "Este CPF/CNPJ já está registrado."},
+    )
     sex = models.CharField(
         "Sexo",
         max_length=10,
@@ -33,12 +39,6 @@ class ClientModel(models.Model):
         default="undefined",
         null=True,
         blank=True,
-    )
-    cpf_cnpj = models.CharField(
-        "CPF/CNPJ",
-        max_length=18,
-        unique=True,
-        error_messages={"unique": "Este CPF/CNPJ já está registrado."},
     )
     address = models.CharField("Endereço", max_length=250, null=True)
     complement_address = models.CharField(
