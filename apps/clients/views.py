@@ -14,6 +14,7 @@ from .forms import ClientForm
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib import messages
 from typing import Any, Union
+from django.utils.translation import gettext as _
 
 # Get CEP
 # def get_cep(instance, name: str, context: dict):
@@ -136,7 +137,7 @@ class ClientUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
         # Ao atualizar, faz referencia ao usuário logado.
         form.instance.update_by = self.request.user.username
         # Resgata mensagem de sucesso caso seja atualizado.
-        messages.success(self.request, "Atualizado com sucesso.")
+        messages.success(self.request, _("Atualizado com sucesso."))
         return super().form_valid(form)
 
 

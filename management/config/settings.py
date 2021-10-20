@@ -54,6 +54,8 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    # Add Middleware Translate
+    'django.middleware.locale.LocaleMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -79,6 +81,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 # My contexts (Core)
                 'apps.core.context_processors.users_count',
+                'apps.core.context_processors.get_lang_browser',
             ],
         },
     },
@@ -216,6 +219,10 @@ AUTH_USER_MODEL = "users.UserCustom"
 
 # Crispy using Bootstrap4
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, "locale"),
+)
 
 # Heroku settings
 django_heroku.settings(locals())
