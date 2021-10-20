@@ -279,8 +279,15 @@
         <div class="card-body">
           <div class="form-group col">
 						{% if is_details %}
-							<textarea class="form-control clients-form__observations" placeholder="Escreva uma observação para este Cliente"
-            	{{ disabled }}>{{ object.obs | default_if_none:'' }}</textarea>
+
+							{% if lang == "en" %}
+								{% with obs=object.obs_en %}{% endwith %}
+							{% else %}
+								{% with obs=object.obs_pt_br %}{% endwith %}
+							{% endif %}
+
+							<textarea class="form-control clients-form__observations" placeholder="{% trans 'Escreva uma nota para este cliente' %}"
+            	{{ disabled }}>{{ object.obs }}</textarea>
 						{% else %}
 							{{ form.obs | as_crispy_field }}
 						{% endif %}

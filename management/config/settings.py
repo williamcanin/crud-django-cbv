@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'modeltranslation',
     'crispy_forms',
     'django_extensions',
     'apps.clients',
@@ -223,6 +224,14 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, "locale"),
 )
+
+gettext = lambda s: s
+LANGUAGES = (
+    ('pt-br', gettext('Português')),
+    ('en', gettext('English')),
+)
+MODELTRANSLATION_LANGUAGES = ('pt-br', 'en')
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'pt-br'
 
 # Heroku settings
 django_heroku.settings(locals())
