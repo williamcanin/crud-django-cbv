@@ -4,16 +4,20 @@
 *.sqlite3
 .pytest_cache
 .tox
+.Identifier
 .idea/
 .vscode/
 **/*/__pycache__
 **/*/media/
+**/*/media/images/
 !**/*/media/default.png
 package-lock.json
 poetry.lock
 tmp/
 temp/
 venv/
+htmlcov/*
+.coverage
 .venv/
 node_modules/
 .ipynb_checkpoints
@@ -21,7 +25,14 @@ node_modules/
 # **/*/media/images/
 
 ## Comment this block to send on the Heroku -----
+apps/clients/migrations/
 apps/clients/migrations/*_initial.py
+apps/users/migrations/
+apps/users/migrations/*_initial.py
+apps/core/migrations/
+apps/core/migrations/*_initial.py
+apps/home/migrations/
+apps/home/migrations/*_initial.py
 **/*/staticfiles/
 !**/*/staticfiles/.gitkeep
 **/*/static/js/

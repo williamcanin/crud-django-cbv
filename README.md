@@ -1,3 +1,5 @@
+[![Tests](https://github.com/williamcanin/crud-django-cbv/actions/workflows/tests.yml/badge.svg)](https://github.com/williamcanin/crud-django-cbv/actions/workflows/tests.yml)
+
 ## Requirements
 
 * Python >= 3.9
@@ -23,6 +25,12 @@ To development:
 
 ```shell
 $ npm run dev
+```
+
+## Create new apps
+
+```shell
+$ npm run app <NAME APP>
 ```
 
 

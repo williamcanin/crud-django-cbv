@@ -16,7 +16,8 @@
     "dev": "gulp dev",
     "clean": "gulp clean",
     "assets": "gulp assets",
-    "env": "python bin/gen --env",
+    "env": "python management/config/create.py --env",
+    "app": "python management/config/create.py --app",
     "shell": "python manage.py shell",
     "shell_plus": "python manage.py shell_plus",
     "test": "pytest"

@@ -1,11 +1,3 @@
-// Enter your code JavaScript
-
-// Change input File label [DEPRECATED]
-// $(".custom-file-input").on("change", function() {
-//   filename = this.files[0].name
-//   $(".clients-form__choose-file-label").text(filename);
-// });
-
 // Close alert sucsess automatic
 $("#success-alert").hide();
 $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
@@ -19,9 +11,22 @@ const popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
 })
 
 // Open image in modal
-$(".clients-listing__photo-open").on("click", function() {
-  $('.clients-listing__photo-full').attr('src', $(this).find('img').attr('src'));
+$(".modal__open-photo").on("click", function() {
+  $('.clients-listing__photo-full').attr('src', $(this).attr('src'));
   $('#ModalPhotoView').modal('show');
+});
+
+// Temporarily change the image when it is uploaded.
+$("#client__upload-photo").on("change", function(){
+  if (this.files && this.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        $(".modal__open-photo").attr('src', e.target.result);
+        $(".modal__open-photo").hide();
+        $(".modal__open-photo").fadeIn(650);
+    }
+    reader.readAsDataURL(this.files[0]);
+  }
 });
 
 // Add path delete registry
@@ -31,7 +36,7 @@ $(".clients-btn-delete").on("click", function() {
 });
 
 // Change input search mask
-$(".clients-listing__search-select").change(function() {
+$(".clients-listing__search-select").on("change", function() {
   const select = $('.clients-listing__search-select option:selected').val();
   const busca = $('.clients-listing__search-input');
   if (select === "cpf") {
@@ -46,9 +51,14 @@ $(".clients-listing__search-select").change(function() {
 });
 
 // Change input CPF/CNPJ mask
-$(".clients-form__cpf_or_cnpj").change(function() {
-  const select = $('.clients-form__cpf_or_cnpj option:selected').val();
-  const input = $('.clients-form__input-cpf-cnpj');
+if ($('.clients-form__client_type option:selected').val() === "cpf") {
+	$('.clients-form__input-cpf-cnpj').mask('000.000.000-00');
+} else if ($('.clients-form__client_type option:selected').val() === "cnpj") {
+	$('.clients-form__input-cpf-cnpj').mask('00.000.000/0000-00');
+}
+$(".clients-form__client_type").on("change", function() {
+	const select = $('.clients-form__client_type option:selected').val();
+	const input = $('.clients-form__input-cpf-cnpj');
   if (select === "cpf") {
     input.val('');
     input.mask('000.000.000-00');
@@ -59,7 +69,6 @@ $(".clients-form__cpf_or_cnpj").change(function() {
     input.unmask();
   }
 });
-
 
 // Table line clickable
 $(".clickable-row").on("click", function() {

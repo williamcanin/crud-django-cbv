@@ -26,9 +26,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = decouple.config('SECRET_KEY')
+# SECRET_KEY = environ.Env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = decouple.config('DEBUG', default=False, cast=bool)
+
 
 ALLOWED_HOSTS = decouple.config('ALLOWED_HOSTS', cast=decouple.Csv())
 
@@ -42,10 +44,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'django_extensions',
     'apps.clients',
     'apps.home',
     'apps.users',
+
 ]
 
 MIDDLEWARE = [
@@ -86,16 +90,16 @@ WSGI_APPLICATION = 'management.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+#########################################################
+# DATABASE - USING DATABASE_URL (PRODUCTION AND HEROKU)
+#########################################################
 
 def default_database():
     from pathlib import Path
 
     try:
-        DB_URL = decouple.config('DATABASE_URL')
-        DB_URL = f"{DB_URL.split(':')[0].title()}SQL"
-        print(f"Using database: {DB_URL}")
+        decouple.config('DATABASE_URL')
     except decouple.UndefinedValueError:
-        print("Using database: SQLite3")
         # Creating path for database SQLite3
         Path(os.path.join(BASE_DIR, 'database')).mkdir(parents=True, exist_ok=True)
 
@@ -106,7 +110,24 @@ DATABASES = {
     'default': decouple.config('DATABASE_URL', default=default_database(), cast=dburl)
 }
 
-# Password validation
+
+######################################################
+# DATABASE - GITHUB ACTIONS
+######################################################
+
+if os.environ.get('GITHUB_WORKFLOW'):
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': decouple.config('DB_NAME'),
+            'USER': decouple.config('DB_USER'),
+            'PASSWORD': decouple.config('DB_PASSWORD'),
+            'HOST': decouple.config('DB_HOST'),
+            'PORT': decouple.config('DB_PORT'),
+        }
+    }
+
+# Password validation.
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -137,8 +158,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
@@ -191,6 +210,12 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 # Expira em 10 minutos
 # SESSION_COOKIE_AGE = 10 * 60
+
+# Remova o AUTH_USER_MODEL para não usar o gerenciamento de usuário customizado.
+AUTH_USER_MODEL = "users.UserCustom"
+
+# Crispy using Bootstrap4
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Heroku settings
 django_heroku.settings(locals())

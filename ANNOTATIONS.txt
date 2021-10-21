@@ -1,0 +1,24 @@
+# Fazer:
+
+[x] Corrigir erro de data que não carrega (formato)
+[x] Usar checkbox/combobox para CPF/CNPJ
+[ ] Fazer modelo de país/estado/cidade
+[x] erro acessar o sign-up com usuario logado
+[x] adicionar usuário criado ao grupo
+[x] implementar mensagens se sucesso.
+[x] modificar a estrutura
+[x] quem cadastrou o cliente e alterou?
+[x] editar footer erro
+[ ] está deletando a imagem default.png
+[ ] criar profile do usuário
+[ ] seletor de registros fixo
+[ ] campos input sendo apagados em erro de submit
+
+
+
+# Coverage
+
+$ rm -rf htmlcov .coverage
+$ coverage run -m pytest
+$ coverage html
+$ python -m http.server --directory htmlcov

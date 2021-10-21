@@ -1,25 +1,29 @@
 {% extends "base.html" %}
+{% load client_tags %}
 
-{% block title %} Listing {% endblock %}
+{% block title %} Tela de Clientes {% endblock %}
 
 {% block head %}{% endblock %}
 
 {% block content %}
 
+
 <div class="clients-listing">
+  <p class="h2 text-center pb-5">Tabela de Clientes<p></p>
+  <hr>
   <div class="row clients-listing__header">
 
-    <!-- Buttons -->
-    <div class="col-md-4 clients-listing__header-col">
+
+    <div class="col-md-3 clients-listing__header-col">
       <form method="GET" class="clients-listing__form-actions">
 
         {% if perms.clients.add_clientmodel %}
-          <a class="btn btn-outline-success" href="{% url 'client_new' %}">
+          <a class="btn btn-success" href="{% url 'client_new' %}">
             <i class="fas fa-user-plus"></i> Adicionar
           </a>
         {% endif %}
 
-        <a class="btn btn-outline-primary" href="{% url 'client_read' %}">
+        <a class="btn btn-primary" href="{% url 'client_read' %}">
           <i class="fas fa-sync"></i> Atualizar
         </a>
 
@@ -28,37 +32,53 @@
 
 
 
-    <!-- Search -->
-    <div class="col-md-8 clients-listing__header-col">
+
+    <div class="col-md-7 clients-listing__header-col">
       <form method="GET">
         <div class="input-group">
           <select name="s_type" class="form-select form-select-sm clients-listing__search-select">
             <option value="id">ID</option>
-            <option value="name">Nome</option>
+            <option value="name_corporate">Nome/Razão Social</option>
             <option value="cpf">CPF</option>
             <option value="cnpj">CNPJ</option>
+						<option value="email">E-Mail</option>
           </select>
           <input type="text" class="form-control clients-listing__search-input"  name="q"
           data-mask="0000000" placeholder="Digite e aperte Enter" required>
         </div>
       </form>
     </div>
+
+
+    <div class="col-md-2">
+      {% clients_legend as legend %}
+      <div class="text-right clients-listing__legend">
+        <div class="clients-listing__legend-cpf">
+          <i class="fa fa-square" aria-hidden="true"></i>
+          {{ legend.cpf }}
+        </div>
+        <div class="clients-listing__legend-cnpj">
+          <i class="fa fa-square" aria-hidden="true"></i>
+          {{ legend.cnpj }}
+        </div>
+      </div>
+    </div>
   </div>
 
 
 
-  <!-- Selector -->
+
   <div class="row clients-listing__data-number-wrapper pt-5">
     <div class="col">
         <form method="GET" class="clients-listing__data-number-form">
           <input type="hidden" name="page" value="">
           <select name="data_number" class="form-select form-select-sm
           clients-listing__data-number" onchange=this.form.submit()>
-            <option selected>Selecione</option>
-            <option value="10">10</option>
-            <option value="25">25</option>
-            <option value="50">50</option>
-            <option value="100">100</option>
+            <option selected>Qtde Registros</option>
+            <option value="10">10 registros</option>
+            <option value="25">25 registros</option>
+            <option value="50">50 registros</option>
+            <option value="100">100 registros</option>
           </select>
         </form>
     </div>
@@ -66,13 +86,14 @@
 
 
 
-  <!-- Table -->
+
   <table id="tbl_listing" class="table table-responsive table-striped table-hover clients-listing__table">
 
     <thead class="client__thead">
       <tr>
+				<th scope="col">Tipo</th>
         <th scope="col">ID</th>
-        <th scope="col">Nome</th>
+        <th scope="col">Nome/Razão Social</th>
         <th scope="col">CPF/CNPJ</th>
         <th scope="col">E-mail</th>
         <th scope="col">Celular</th>
@@ -80,16 +101,29 @@
     </thead>
 
     <tbody>
+
       {% for client in object_list %}
-        <tr class="tbl_item clickable-row" data-href="{% url 'client_details' client.id %}">
+				<tr class="tbl_item clickable-row" data-href="{% url 'client_details' client.id %}">
+					<td>
+						{% if client.client_type == "cpf" %}
+							<div class="clients-listing__legend-cpf">
+								<i class="fa fa-square" aria-hidden="true"></i>
+							</div>
+						{% else %}
+							<div class="clients-listing__legend-cnpj">
+								<i class="fa fa-square" aria-hidden="true"></i>
+							</div>
+						{% endif %}
+					</td>
+
           <th scope="row">{{ client.id }}</th>
 
           <td>
-            {{ client.name | title }}
+            {{ client.name_corporate | title }}
           </td>
 
           <td>
-            {% if client.cpf_or_cnpj == "cpf" %}
+            {% if client.client_type == "cpf" %}
             <span data-mask="CPF: 000.000.000-00">{{ client.cpf_cnpj }}</span>
             {% else %}
             <span data-mask="CNPJ: 00.000.000/0000-00">{{ client.cpf_cnpj }}</span>
@@ -112,7 +146,7 @@
 
 
 
-<!-- Paginator -->
+
 {% if object_list.has_other_pages %}
   <nav class="clients-listing__pagination">
     <ul class="pagination pagination-lg justify-content-center">
@@ -156,11 +190,11 @@
   </nav>
   {% endif %}
 
-<!-- No results -->
+
 {% if not object_list %}
-  <p class="font-weight-bold clients-listing__not_found_text">No results</p>
+  <p class="h4 font-weight-light clients-listing__not_found_text text-center">Sem registro.</p>
 {% endif %}
 
-</div> <!-- End clients-listing -->
+</div>
 
 {% endblock %}

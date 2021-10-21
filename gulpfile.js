@@ -27,6 +27,7 @@ function pathsConfig(AppName, vendorsRoot) {
       `${vendorsRoot}/@fortawesome/fontawesome-free/webfonts/*`,
     ],
     clean: [
+      `htmlcov`,
       `${AppName}/staticfiles`,
       `${AppName}/static/css`,
       `${AppName}/static/js`,

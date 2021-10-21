@@ -13,7 +13,9 @@ from .models import ClientModel
 from .forms import ClientForm
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib import messages
+from typing import Any, Union
 
+# Get CEP
 # def get_cep(instance, name: str, context: dict):
 #     import requests
 #
@@ -29,12 +31,13 @@ from django.contrib import messages
 #     return "CEP não encontrado."
 
 
-def is_validate(obj):
+def is_validate(obj) -> Union[Any, None]:
     """Função para verficar se o campo de pesquisa
     foi preenchido antes de mandar a busca"""
 
     if obj != "" and obj is not None:
         return obj.strip()
+    return None
 
 
 class ClientList(LoginRequiredMixin, ListView):
@@ -73,8 +76,10 @@ class ClientList(LoginRequiredMixin, ListView):
                 records = self.model.objects.filter(cpf_cnpj=q)
             elif s_type == "id":
                 records = self.model.objects.filter(id=q)
-            elif s_type == "name":
-                records = self.model.objects.filter(name__icontains=q)
+            elif s_type == "name_corporate":
+                records = self.model.objects.filter(name_corporate__icontains=q)
+            elif s_type == "email":
+                records = self.model.objects.filter(email=q)
 
         return records
 

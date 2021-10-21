@@ -1,9 +1,0 @@
-[x] Corrigir erro de data que não carrega (formato)
-[x] Usar checkbox/combobox para CPF/CNPJ
-[ ] Fazer modelo de país/estado/cidade
-[x] erro acessar o sign-up com usuario logado
-[x] adicionar usuário criado ao grupo
-[x] implementar mensagens se sucesso.
-[ ] modificar a estrutura
-[x] quem cadastrou o cliente e alterou?
-[ ] editar footer erro

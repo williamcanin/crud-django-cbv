@@ -1,0 +1,13 @@
+.sign-up {
+	max-width: 600px;
+	margin: 0 auto;
+	background-color: white;
+	padding: 20px;
+	border-radius: 10px;
+	border: 1px solid #bebebe;
+	&__body {
+		.form-group {
+			margin-bottom: 15px;
+		}
+	}
+}

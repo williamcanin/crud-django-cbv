@@ -1,0 +1,21 @@
+[run]
+source = .
+
+omit =
+    */__init__.py
+    */settings.py
+    */manage.py
+    */tests.py
+    */wsgi.py
+    */asgi.py
+    */apps.py
+    */urls.py
+    */admin.py
+    */migrations/*
+    */tests/*
+
+[report]
+exclude_lines =
+    pragma: no coverage
+    from
+    import

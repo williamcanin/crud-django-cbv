@@ -1,16 +1,11 @@
 .error-template {
-    padding: 40px 15px;
-    text-align: center;
-
-    &__details {}
-
-    &__actions {
-        margin-top:15px;
-        margin-bottom:15px;
-        .btn {
-            margin-right:10px;
-        }
-    }
-    &__btn-home {}
-    &__btn-support {}
+	padding: 40px 15px;
+	text-align: center;
+	&__actions {
+		margin-top:15px;
+		margin-bottom:15px;
+		.btn {
+			margin-right:10px;
+		}
+	}
 }
