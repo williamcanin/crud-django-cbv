@@ -3,6 +3,7 @@ from .models import ClientModel
 from django.contrib import messages
 
 
+@admin.register(ClientModel)
 class ClientAdmin(admin.ModelAdmin):
     exclude = []
     readonly_fields = ("created_by_user", "update_by")
@@ -30,4 +31,4 @@ class ClientAdmin(admin.ModelAdmin):
         return super().save_model(request, obj, form, change)
 
 
-admin.site.register(ClientModel, ClientAdmin)
+# admin.site.register(ClientModel, ClientAdmin)
