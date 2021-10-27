@@ -2,7 +2,7 @@
 
 ## About
 
-CRUD Django using Class Based-Views. Through NPM, the SASS preprocessor was used to write the stylesheet, Gulp to manage static file tasks like SASS, CSS and Javascript. The project also has setup to deploy on Heroku.
+CRUD Django using Class Based-Views. Through NPM, the SASS preprocessor was used to write the stylesheet, Gulp to manage static file tasks like SASS, CSS and Javascript. The server is the basis of Browser-Sync, with livereload for development. The project also has setup to deploy on Heroku.
 
 ## Requirements
 
