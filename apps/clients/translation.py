@@ -3,8 +3,8 @@ from .models import ClientModel
 
 
 class NewsClientModel(TranslationOptions):
-    fields = ('obs',)
-    required_languages = ('pt-br', 'en')
+    fields = ("obs",)
+    required_languages = ("pt-br", "en")
 
 
 translator.register(ClientModel, NewsClientModel)

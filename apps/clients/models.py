@@ -13,7 +13,9 @@ CHOICE_SEX = (("undefined", "Selecione o sexo"), ("f", "Feminino"), ("m", "Mascu
 
 
 class ClientModel(models.Model):
-    name_corporate = models.CharField(verbose_name=_("Nome/Razão Social"), max_length=150, null=True)
+    name_corporate = models.CharField(
+        verbose_name=_("Nome/Razão Social"), max_length=150, null=True
+    )
     email = models.EmailField(
         max_length=254,
         unique=True,

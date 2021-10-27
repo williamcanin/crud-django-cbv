@@ -8,6 +8,4 @@ def users_count(request):
 
 
 def get_lang_browser(request):
-    return {
-        "lang": translation.get_language()
-    }
+    return {"lang": translation.get_language()}
