@@ -1,5 +1,9 @@
 [![Tests](https://github.com/williamcanin/crud-django-cbv/actions/workflows/tests.yml/badge.svg)](https://github.com/williamcanin/crud-django-cbv/actions/workflows/tests.yml)
 
+## About
+
+CRUD Django using Class Based-Views. Through NPM, the SASS preprocessor was used to write the stylesheet, Gulp to manage static file tasks like SASS, CSS and Javascript. The project also has setup to deploy on Heroku.
+
 ## Requirements
 
 * Python >= 3.9
