@@ -4,6 +4,16 @@
 
 CRUD Django using Class Based-Views. Through NPM, the SASS preprocessor was used to write the stylesheet, Gulp to manage static file tasks like SASS, CSS and Javascript. The server is the basis of Browser-Sync, with livereload for development. The project also has setup to deploy on Heroku.
 
+**Other project features:**
+
+* Login authentication
+* Login by email and password.
+* Translation of the template to English language according to the browser language.
+* Permission for a specific user to make changes to records
+* and more
+
+> Note: The project is undergoing changes, new features and improvements.
+
 ## Requirements
 
 * Python >= 3.9
