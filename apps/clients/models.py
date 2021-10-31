@@ -5,6 +5,7 @@ from contextlib import suppress
 # from django.conf import settings
 # from django.contrib.auth.models import User
 from apps.core.places import STATES_BRAZIL
+from django.utils.translation import gettext_lazy as _
 
 
 CHOICE_CPF_CNPJ = (("cpf", "CPF"), ("cnpj", "CNPJ"))
@@ -12,14 +13,16 @@ CHOICE_SEX = (("undefined", "Selecione o sexo"), ("f", "Feminino"), ("m", "Mascu
 
 
 class ClientModel(models.Model):
-    name_corporate = models.CharField("Nome/Razão Social", max_length=150, null=True)
+    name_corporate = models.CharField(
+        verbose_name=_("Nome/Razão Social"), max_length=150, null=True
+    )
     email = models.EmailField(
         max_length=254,
         unique=True,
         error_messages={"unique": "Este e-mail já está registrado."},
     )
     birth_date = models.DateField("Data Nasc/Abert", null=True)
-    district = models.CharField("Bairro", max_length=150, null=True)
+    district = models.CharField(verbose_name=_("Bairro"), max_length=150, null=True)
     state = models.CharField(
         "Estados", max_length=25, choices=STATES_BRAZIL, default="default"
     )

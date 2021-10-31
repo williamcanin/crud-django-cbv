@@ -9,10 +9,10 @@
 [x] modificar a estrutura
 [x] quem cadastrou o cliente e alterou?
 [x] editar footer erro
-[ ] está deletando a imagem default.png
+[x] está deletando a imagem default.png
 [ ] criar profile do usuário
 [ ] seletor de registros fixo
-[ ] campos input sendo apagados em erro de submit
+[x] campos input sendo apagados em erro de submit (Usando Crispy)
 
 
 

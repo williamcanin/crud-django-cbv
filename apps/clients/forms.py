@@ -2,6 +2,7 @@ import re
 from django import forms
 from .models import ClientModel
 from crispy_forms.helper import FormHelper
+from django.utils.translation import gettext_lazy as _
 
 
 class ClientForm(forms.ModelForm):  # pragma: no coverage
@@ -46,7 +47,7 @@ class ClientForm(forms.ModelForm):  # pragma: no coverage
                 attrs={"data-mask": "(00) 0000-0000", "placeholder": "(00) 0000-0000"}
             ),
             "obs": forms.Textarea(
-                attrs={"placeholder": "Escreva uma observação para este Cliente"}
+                attrs={"placeholder": _("Escreva uma nota para este cliente")}
             ),
             "name_corporate": forms.TextInput(
                 attrs={"placeholder": "Ex: Elvis Presley"}

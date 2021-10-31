@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% load client_tags %}
 
 {% block title %} Tela de Clientes {% endblock %}
@@ -9,7 +10,7 @@
 
 
 <div class="clients-listing">
-  <p class="h2 text-center pb-5">Tabela de Clientes<p></p>
+  <p class="h2 text-center pb-5">{% trans 'Tabela de Clientes' %}<p></p>
   <hr>
   <div class="row clients-listing__header">
 
@@ -29,8 +30,6 @@
 
       </form>
     </div>
-
-
 
 
     <div class="col-md-7 clients-listing__header-col">

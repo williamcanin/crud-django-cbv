@@ -1,0 +1,55 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-10-20 10:21-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: apps/clients/forms.py:50 management/templates/clients/form.html:288
+msgid "Escreva uma nota para este cliente"
+msgstr "Write a note for this customer"
+
+#: apps/clients/models.py:16
+msgid "Nome/Razão Social"
+msgstr "Name/Social"
+
+#: apps/clients/models.py:23
+msgid "Bairro"
+msgstr "Neighborhood"
+
+#: apps/clients/views.py:140
+msgid "Atualizado com sucesso."
+msgstr "Updated successfully."
+
+#: management/config/settings.py:230
+msgid "Português"
+msgstr ""
+
+#: management/config/settings.py:231
+msgid "English"
+msgstr ""
+
+#: management/templates/clients/form.html:278
+msgid "Observações"
+msgstr "Comments"
+
+#: management/templates/clients/listing.html:13
+msgid "Tabela de Clientes"
+msgstr "Customers Screen"
+
+#: management/templates/footer/footer.html:7
+msgid "Total de usuários registrados:"
+msgstr "Total registered users:"
