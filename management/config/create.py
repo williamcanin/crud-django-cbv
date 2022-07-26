@@ -69,6 +69,7 @@ class Env:
     # DB_PASSWORD=
     # DB_HOST=
     # DB_PORT=
+    # # E.g URL postgresql: postgres://postgres:admin@localhost:5432/database
     # DATABASE_URL=postgres://USER:PASSWORD@HOST:PORT/NAME
     # DEFAULT_FROM_EMAIL=
     # EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackend
