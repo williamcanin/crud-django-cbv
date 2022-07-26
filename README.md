@@ -20,7 +20,7 @@ CRUD Django using Class Based-Views. Through NPM, the SASS preprocessor was used
 * Pip >= 21.2
 * Poetry >= 1.1.8
 * Npm >= 6.14
-* PostgreSQL = 13.4
+* PostgreSQL >= 13.4
 * libpq-dev (Ubuntu and derivatives)
 
 ## Using
