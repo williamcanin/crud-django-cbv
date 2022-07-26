@@ -11,6 +11,7 @@
     "postinstall": "gulp assets",
     "collectstatic": "python manage.py collectstatic",
     "migrate": "python manage.py migrate",
+    "createsuperuser": "python manage.py createsuperuser",
     "make": "python manage.py makemigrations",
     "server": "python manage.py runserver",
     "dev": "gulp dev",
